@@ -5,7 +5,7 @@ import './style.scss';
 Handlebars.registerPartial('inputFile', tpl);
 
 const inputFile = (props = {
-    type: 'text'
-}) => tpl(props)
+  type: 'text',
+}) => tpl(props);
 
-export default inputFile
+export default inputFile;

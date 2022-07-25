@@ -6,4 +6,4 @@ Handlebars.registerPartial('emptyLayout', tpl);
 
 const emptyLayout = (props = {}) => tpl(props);
 
-export default emptyLayout
+export default emptyLayout;

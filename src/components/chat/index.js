@@ -6,4 +6,4 @@ Handlebars.registerPartial('chat', tpl);
 
 const chat = (props = {}) => tpl(props);
 
-export default chat
+export default chat;

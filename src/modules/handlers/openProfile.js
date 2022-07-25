@@ -1,12 +1,11 @@
 function handlerOpenProfile(clb) {
-    const $openProfile = document.querySelector('.openProfile__title');
+  const $openProfile = document.querySelector('.openProfile__title');
 
-    if ($openProfile) {
-        $openProfile.addEventListener('click', () => {
-            clb();
-        })
-    }
+  if ($openProfile) {
+    $openProfile.addEventListener('click', () => {
+      clb();
+    });
+  }
 }
 
-
-export default handlerOpenProfile
+export default handlerOpenProfile;

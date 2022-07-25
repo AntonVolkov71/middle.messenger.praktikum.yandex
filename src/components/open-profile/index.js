@@ -6,4 +6,4 @@ Handlebars.registerPartial('openProfile', tpl);
 
 const openProfile = (props = {}) => tpl(props);
 
-export default openProfile
+export default openProfile;

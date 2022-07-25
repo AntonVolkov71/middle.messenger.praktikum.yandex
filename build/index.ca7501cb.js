@@ -731,7 +731,7 @@ try {
     }));
 }
 
-},{"./styles/style.scss":"lkgsf","./mock-data":"lIOBJ","./partials/button":"Dlug2","./partials/empty-chats":"dfqj5","./partials/input":"1GgI5","./partials/input-file":"2Hbcv","./partials/message":"5kQrv","./partials/not-found":"6IncN","./partials/server-error":"1WN8x","./components/active-chat":"9wGSb","./pages/auth":"4Io2Q","./components/input-message":"az4kH","./components/list-chats":"lFCve","./components/list-messages":"abrB9","./pages/main":"3pXTa","./components/open-profile":"7tXcl","./components/profile":"a3XBs","./components/search-chat":"6tWoC","./utils/parseDate":"4ZLZ4","./utils/processingRouting":"kAViS","./utils/renderServerError":"6OnVz","@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh","./pages/login":"ijY2Y","./modules/handlers/auth":"aUDy5","./modules/handlers/changeAvatar":"ka3iV","./modules/handlers/change-password":"kwkcR","./modules/handlers/change-profile":"b2rUt","./modules/handlers/chat":"lb0pM","./modules/handlers/login":"dxUda","./modules/handlers/openProfile":"d8JSr","./modules/handlers/search-profile":"fU05V"}],"lkgsf":[function() {},{}],"lIOBJ":[function(require,module,exports) {
+},{"./styles/style.scss":"lkgsf","./mock-data":"lIOBJ","./partials/button":"Dlug2","./partials/empty-chats":"dfqj5","./partials/input":"1GgI5","./partials/input-file":"2Hbcv","./partials/message":"5kQrv","./partials/not-found":"6IncN","./partials/server-error":"1WN8x","./components/active-chat":"9wGSb","./pages/auth":"4Io2Q","./components/input-message":"az4kH","./components/list-chats":"lFCve","./components/list-messages":"abrB9","./pages/login":"ijY2Y","./pages/main":"3pXTa","./components/open-profile":"7tXcl","./components/profile":"a3XBs","./components/search-chat":"6tWoC","./modules/handlers/auth":"aUDy5","./modules/handlers/changeAvatar":"ka3iV","./modules/handlers/change-password":"kwkcR","./modules/handlers/change-profile":"b2rUt","./modules/handlers/chat":"lb0pM","./modules/handlers/login":"dxUda","./modules/handlers/openProfile":"d8JSr","./modules/handlers/search-profile":"fU05V","./utils/parseDate":"4ZLZ4","./utils/processingRouting":"kAViS","./utils/renderServerError":"6OnVz","@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"lkgsf":[function() {},{}],"lIOBJ":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "existUsers", ()=>existUsers);
@@ -776,8 +776,8 @@ const urlAvatars = [
 function randomString() {
     return (Math.random() + 1).toString(36).substring(7);
 }
-function createMockChats(sizeChats1) {
-    return Array(sizeChats1).fill({}).map((_, i)=>({
+function createMockChats(sizeChatsCurrent) {
+    return Array(sizeChatsCurrent).fill({}).map((_, i)=>({
             id: i,
             name: randomString(),
             dataLastMessage: {
@@ -13575,7 +13575,97 @@ const templateFunction = (0, _handlebarsDefault.default).template({
 });
 exports.default = templateFunction;
 
-},{"handlebars":"dH8Fg","@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"6lmRK":[function() {},{}],"3pXTa":[function(require,module,exports) {
+},{"handlebars":"dH8Fg","@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"6lmRK":[function() {},{}],"ijY2Y":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _handlebars = require("handlebars");
+var _handlebarsDefault = parcelHelpers.interopDefault(_handlebars);
+var _tplHbs = require("./tpl.hbs");
+var _tplHbsDefault = parcelHelpers.interopDefault(_tplHbs);
+var _styleScss = require("./style.scss");
+(0, _handlebarsDefault.default).registerPartial("login", (0, _tplHbsDefault.default));
+const login = (props = {
+    label: "\u0412\u0445\u043E\u0434"
+})=>(0, _tplHbsDefault.default)(props);
+exports.default = login;
+
+},{"handlebars":"dH8Fg","./tpl.hbs":"8acqY","./style.scss":"b3YlF","@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"8acqY":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _handlebars = require("handlebars");
+var _handlebarsDefault = parcelHelpers.interopDefault(_handlebars);
+const templateFunction = (0, _handlebarsDefault.default).template({
+    "compiler": [
+        8,
+        ">= 4.3.0"
+    ],
+    "main": function(container, depth0, helpers, partials, data) {
+        var stack1, helper, lookupProperty = container.lookupProperty || function(parent, propertyName) {
+            if (Object.prototype.hasOwnProperty.call(parent, propertyName)) return parent[propertyName];
+            return undefined;
+        };
+        return '<div class="login popup">\r\n    <form class="login__form form">\r\n        <p class="form__title">' + container.escapeExpression((helper = (helper = lookupProperty(helpers, "label") || (depth0 != null ? lookupProperty(depth0, "label") : depth0)) != null ? helper : container.hooks.helperMissing, typeof helper === "function" ? helper.call(depth0 != null ? depth0 : container.nullContext || {}, {
+            "name": "label",
+            "hash": {},
+            "data": data,
+            "loc": {
+                "start": {
+                    "line": 3,
+                    "column": 31
+                },
+                "end": {
+                    "line": 3,
+                    "column": 40
+                }
+            }
+        }) : helper)) + '</p>\r\n\r\n        <label class="form__label" for="login">\u041B\u043E\u0433\u0438\u043D</label>\r\n' + ((stack1 = container.invokePartial(lookupProperty(partials, "input"), depth0, {
+            "name": "input",
+            "hash": {
+                "type": "text",
+                "classNames": "form__input",
+                "name": "login",
+                "id": "login-input"
+            },
+            "data": data,
+            "indent": "        ",
+            "helpers": helpers,
+            "partials": partials,
+            "decorators": container.decorators
+        })) != null ? stack1 : "") + '        <span class="error hidden ">\u041D\u0435\u0432\u0435\u0440\u043D\u044B\u0439 \u043B\u043E\u0433\u0438\u043D</span>\r\n\r\n        <label class="form__label" for="password">\u041F\u0430\u0440\u043E\u043B\u044C</label>\r\n' + ((stack1 = container.invokePartial(lookupProperty(partials, "input"), depth0, {
+            "name": "input",
+            "hash": {
+                "minlength": "2",
+                "type": "password",
+                "classNames": "form__input",
+                "name": "password",
+                "id": "password-input"
+            },
+            "data": data,
+            "indent": "        ",
+            "helpers": helpers,
+            "partials": partials,
+            "decorators": container.decorators
+        })) != null ? stack1 : "") + '        <span class="form__error hidden">\u041D\u0435\u0432\u0435\u0440\u043D\u044B\u0439 \u043F\u0430\u0440\u043E\u043B\u044C</span>\r\n\r\n' + ((stack1 = container.invokePartial(lookupProperty(partials, "button"), depth0, {
+            "name": "button",
+            "hash": {
+                "label": "\u0412\u043E\u0439\u0442\u0438",
+                "type": "submit",
+                "classNames": "login__submit",
+                "id": "login-submit"
+            },
+            "data": data,
+            "indent": "        ",
+            "helpers": helpers,
+            "partials": partials,
+            "decorators": container.decorators
+        })) != null ? stack1 : "") + '        <a class="form__link" href="/auth">\u0417\u0430\u0440\u0435\u0433\u0438\u0441\u0442\u0440\u0438\u0440\u043E\u0432\u0430\u0442\u044C\u0441\u044F</a>\r\n    </form>\r\n</div>';
+    },
+    "usePartial": true,
+    "useData": true
+});
+exports.default = templateFunction;
+
+},{"handlebars":"dH8Fg","@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"b3YlF":[function() {},{}],"3pXTa":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _handlebars = require("handlebars");
@@ -14200,7 +14290,164 @@ const templateFunction = (0, _handlebarsDefault.default).template({
 });
 exports.default = templateFunction;
 
-},{"handlebars":"dH8Fg","@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"3GHRH":[function() {},{}],"4ZLZ4":[function(require,module,exports) {
+},{"handlebars":"dH8Fg","@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"3GHRH":[function() {},{}],"aUDy5":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _toggleClassList = require("../../utils/toggleClassList");
+var _toggleClassListDefault = parcelHelpers.interopDefault(_toggleClassList);
+var _constants = require("../../assets/constants");
+function toggleErrorAuth(form, addOrRemove, className) {
+    const $errors = form.querySelectorAll(".form__error");
+    $errors.forEach((error)=>(0, _toggleClassListDefault.default)(error, addOrRemove, className));
+}
+function checkedAuth(data) {
+    return data;
+}
+function compareString(left, right) {
+    return left === right;
+}
+function handlerAuth() {
+    const $form = document.querySelector(".auth__form");
+    if ($form) $form.addEventListener("submit", (e)=>{
+        e.preventDefault();
+        const form = e.target;
+        toggleErrorAuth(form, "add", "hidden");
+        const password = form["auth-password"].value;
+        const morePassword = form["auth-password-more"].value;
+        const isComparePassword = compareString(password, morePassword);
+        if (!isComparePassword) return toggleErrorAuth(form, "remove", "hidden");
+        const dataUser = {
+            email: form["auth-email"].value,
+            login: form["auth-login"].value,
+            name: form["auth-name"].value,
+            surname: form["auth-surname"].value,
+            phone: form["auth-phone"].value
+        };
+        checkedAuth(dataUser);
+        location.assign((0, _constants.localePaths).login);
+    });
+}
+exports.default = handlerAuth;
+
+},{"../../utils/toggleClassList":"k6FBt","../../assets/constants":"6cbiK","@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"k6FBt":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+function toggleClassList(element, addOrRemove, value) {
+    element.classList[addOrRemove](value);
+}
+exports.default = toggleClassList;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"6cbiK":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "localePaths", ()=>localePaths);
+const localePaths = {
+    login: "/login",
+    auth: "/auth",
+    main: "/main",
+    empty: "/"
+};
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"ka3iV":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+function handlerChangeAvatar(clb) {
+    const $avatar = document.querySelector(".profile__wrapper-avatar");
+    if ($avatar) $avatar.addEventListener("click", ()=>{
+        clb();
+    });
+}
+exports.default = handlerChangeAvatar;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"kwkcR":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+function handlerChangePassword(clb) {
+    const $changePassword = document.querySelector(".profile__button-change-password");
+    if ($changePassword) $changePassword.addEventListener("click", ()=>{
+        clb();
+    });
+}
+exports.default = handlerChangePassword;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"b2rUt":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+function handlerChangeProfile(clb) {
+    const $changeProfile = document.querySelector(".profile__change-data");
+    if ($changeProfile) $changeProfile.addEventListener("click", ()=>{
+        clb();
+    });
+}
+exports.default = handlerChangeProfile;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"lb0pM":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+function handlerChat(clb) {
+    const $activeChat = document.querySelectorAll(".chat__over-click");
+    if ($activeChat) $activeChat.forEach((item)=>{
+        item.addEventListener("click", (e)=>{
+            const { id  } = e.target;
+            const prefix = "-";
+            const indexPrefix = id.indexOf(prefix);
+            const activeChatId = id.slice(indexPrefix + 1);
+            clb(activeChatId);
+        });
+    });
+}
+exports.default = handlerChat;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"dxUda":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _mockData = require("../../mock-data");
+var _toggleClassList = require("../../utils/toggleClassList");
+var _toggleClassListDefault = parcelHelpers.interopDefault(_toggleClassList);
+var _constants = require("../../assets/constants");
+function isAuth(login, password) {
+    return (0, _mockData.existUsers).find((user)=>user.login.toLocaleLowerCase() === login.toLocaleLowerCase() && user.password.toLocaleLowerCase() === password.toLocaleLowerCase());
+}
+function toggleErrorAuth(form, addOrRemove, className) {
+    const $errors = form.querySelectorAll(".form__error");
+    $errors.forEach((error)=>(0, _toggleClassListDefault.default)(error, addOrRemove, className));
+}
+function handlerLogin() {
+    const $form = document.querySelector(".login__form");
+    if ($form) $form.addEventListener("submit", (e)=>{
+        e.preventDefault();
+        const form = e.target;
+        const login = form["login-input"].value;
+        const password = form["password-input"].value;
+        toggleErrorAuth(form, "add", "hidden");
+        isAuth(login, password) ? location.assign((0, _constants.localePaths).main) : toggleErrorAuth(form, "remove", "hidden");
+    });
+}
+exports.default = handlerLogin;
+
+},{"../../mock-data":"lIOBJ","../../utils/toggleClassList":"k6FBt","../../assets/constants":"6cbiK","@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"d8JSr":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+function handlerOpenProfile(clb) {
+    const $openProfile = document.querySelector(".openProfile__title");
+    if ($openProfile) $openProfile.addEventListener("click", ()=>{
+        clb();
+    });
+}
+exports.default = handlerOpenProfile;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"fU05V":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+function handlerSearchProfile(clb) {
+    const $search = document.querySelector(".searchChat__input");
+    if ($search) $search.addEventListener("input", (e)=>{
+        clb(e.target.value);
+    });
+}
+exports.default = handlerSearchProfile;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"4ZLZ4":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 const months = [
@@ -14240,7 +14487,7 @@ var _renderDefault = parcelHelpers.interopDefault(_render);
 const { pathname  } = window.location;
 const $root = document.getElementById("root");
 function processingRouting(pages) {
-    const { main , auth , login , notFound  } = pages;
+    const { main , auth , login , notFound ,  } = pages;
     switch(pathname){
         case (0, _constants.localePaths).login:
             (0, _renderDefault.default)($root, (0, _emptyDefault.default), login);
@@ -14261,18 +14508,7 @@ function processingRouting(pages) {
 }
 exports.default = processingRouting;
 
-},{"../assets/constants":"6cbiK","../layouts/empty":"k1VEM","../layouts/main":"jvyHR","./render":"9Mplm","@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"6cbiK":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "localePaths", ()=>localePaths);
-const localePaths = {
-    login: "/login",
-    auth: "/auth",
-    main: "/main",
-    empty: "/"
-};
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"k1VEM":[function(require,module,exports) {
+},{"../assets/constants":"6cbiK","../layouts/empty":"k1VEM","../layouts/main":"jvyHR","./render":"9Mplm","@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"k1VEM":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _handlebars = require("handlebars");
@@ -14389,241 +14625,5 @@ function renderServerError(serverError) {
 }
 exports.default = renderServerError;
 
-},{"./render":"9Mplm","../layouts/empty":"k1VEM","@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"ijY2Y":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _handlebars = require("handlebars");
-var _handlebarsDefault = parcelHelpers.interopDefault(_handlebars);
-var _tplHbs = require("./tpl.hbs");
-var _tplHbsDefault = parcelHelpers.interopDefault(_tplHbs);
-var _styleScss = require("./style.scss");
-(0, _handlebarsDefault.default).registerPartial("login", (0, _tplHbsDefault.default));
-const login = (props = {
-    label: "\u0412\u0445\u043E\u0434"
-})=>(0, _tplHbsDefault.default)(props);
-exports.default = login;
-
-},{"handlebars":"dH8Fg","./tpl.hbs":"8acqY","./style.scss":"b3YlF","@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"8acqY":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _handlebars = require("handlebars");
-var _handlebarsDefault = parcelHelpers.interopDefault(_handlebars);
-const templateFunction = (0, _handlebarsDefault.default).template({
-    "compiler": [
-        8,
-        ">= 4.3.0"
-    ],
-    "main": function(container, depth0, helpers, partials, data) {
-        var stack1, helper, lookupProperty = container.lookupProperty || function(parent, propertyName) {
-            if (Object.prototype.hasOwnProperty.call(parent, propertyName)) return parent[propertyName];
-            return undefined;
-        };
-        return '<div class="login popup">\r\n    <form class="login__form form">\r\n        <p class="form__title">' + container.escapeExpression((helper = (helper = lookupProperty(helpers, "label") || (depth0 != null ? lookupProperty(depth0, "label") : depth0)) != null ? helper : container.hooks.helperMissing, typeof helper === "function" ? helper.call(depth0 != null ? depth0 : container.nullContext || {}, {
-            "name": "label",
-            "hash": {},
-            "data": data,
-            "loc": {
-                "start": {
-                    "line": 3,
-                    "column": 31
-                },
-                "end": {
-                    "line": 3,
-                    "column": 40
-                }
-            }
-        }) : helper)) + '</p>\r\n\r\n        <label class="form__label" for="login">\u041B\u043E\u0433\u0438\u043D</label>\r\n' + ((stack1 = container.invokePartial(lookupProperty(partials, "input"), depth0, {
-            "name": "input",
-            "hash": {
-                "type": "text",
-                "classNames": "form__input",
-                "name": "login",
-                "id": "login-input"
-            },
-            "data": data,
-            "indent": "        ",
-            "helpers": helpers,
-            "partials": partials,
-            "decorators": container.decorators
-        })) != null ? stack1 : "") + '        <span class="error hidden ">\u041D\u0435\u0432\u0435\u0440\u043D\u044B\u0439 \u043B\u043E\u0433\u0438\u043D</span>\r\n\r\n        <label class="form__label" for="password">\u041F\u0430\u0440\u043E\u043B\u044C</label>\r\n' + ((stack1 = container.invokePartial(lookupProperty(partials, "input"), depth0, {
-            "name": "input",
-            "hash": {
-                "minlength": "2",
-                "type": "password",
-                "classNames": "form__input",
-                "name": "password",
-                "id": "password-input"
-            },
-            "data": data,
-            "indent": "        ",
-            "helpers": helpers,
-            "partials": partials,
-            "decorators": container.decorators
-        })) != null ? stack1 : "") + '        <span class="form__error hidden">\u041D\u0435\u0432\u0435\u0440\u043D\u044B\u0439 \u043F\u0430\u0440\u043E\u043B\u044C</span>\r\n\r\n' + ((stack1 = container.invokePartial(lookupProperty(partials, "button"), depth0, {
-            "name": "button",
-            "hash": {
-                "label": "\u0412\u043E\u0439\u0442\u0438",
-                "type": "submit",
-                "classNames": "login__submit",
-                "id": "login-submit"
-            },
-            "data": data,
-            "indent": "        ",
-            "helpers": helpers,
-            "partials": partials,
-            "decorators": container.decorators
-        })) != null ? stack1 : "") + '        <a class="form__link" href="/auth">\u0417\u0430\u0440\u0435\u0433\u0438\u0441\u0442\u0440\u0438\u0440\u043E\u0432\u0430\u0442\u044C\u0441\u044F</a>\r\n    </form>\r\n</div>';
-    },
-    "usePartial": true,
-    "useData": true
-});
-exports.default = templateFunction;
-
-},{"handlebars":"dH8Fg","@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"b3YlF":[function() {},{}],"aUDy5":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _toggleClassList = require("../../utils/toggleClassList");
-var _toggleClassListDefault = parcelHelpers.interopDefault(_toggleClassList);
-var _constants = require("../../assets/constants");
-function toggleErrorAuth(form, addOrRemove, className) {
-    const $errors = form.querySelectorAll(".form__error");
-    $errors.forEach((error)=>(0, _toggleClassListDefault.default)(error, addOrRemove, className));
-}
-function checkedAuth(data) {
-    return data;
-}
-function compareString(left, right) {
-    return left === right;
-}
-function handlerAuth() {
-    const $form = document.querySelector(".auth__form");
-    if ($form) $form.addEventListener("submit", (e)=>{
-        e.preventDefault();
-        const form = e.target;
-        toggleErrorAuth(form, "add", "hidden");
-        const password = form["auth-password"].value;
-        const morePassword = form["auth-password-more"].value;
-        const isComparePassword = compareString(password, morePassword);
-        if (!isComparePassword) return toggleErrorAuth(form, "remove", "hidden");
-        const dataUser = {
-            email: form["auth-email"].value,
-            login: form["auth-login"].value,
-            name: form["auth-name"].value,
-            surname: form["auth-surname"].value,
-            phone: form["auth-phone"].value
-        };
-        checkedAuth(dataUser);
-        location.assign((0, _constants.localePaths).login);
-    });
-}
-exports.default = handlerAuth;
-
-},{"../../utils/toggleClassList":"k6FBt","../../assets/constants":"6cbiK","@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"k6FBt":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-function toggleClassList(element, addOrRemove, value) {
-    element.classList[addOrRemove](value);
-}
-exports.default = toggleClassList;
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"ka3iV":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-function handlerChangeAvatar(clb) {
-    const $avatar = document.querySelector(".profile__wrapper-avatar");
-    if ($avatar) $avatar.addEventListener("click", ()=>{
-        clb();
-    });
-}
-exports.default = handlerChangeAvatar;
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"kwkcR":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-function handlerChangePassword(clb) {
-    const $changePassword = document.querySelector(".profile__button-change-password");
-    if ($changePassword) $changePassword.addEventListener("click", ()=>{
-        clb();
-    });
-}
-exports.default = handlerChangePassword;
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"b2rUt":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-function handlerChangeProfile(clb) {
-    const $changeProfile = document.querySelector(".profile__change-data");
-    if ($changeProfile) $changeProfile.addEventListener("click", ()=>{
-        clb();
-    });
-}
-exports.default = handlerChangeProfile;
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"lb0pM":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-function handlerChat(clb) {
-    const $activeChat = document.querySelectorAll(".chat__over-click");
-    if ($activeChat) $activeChat.forEach((item)=>{
-        item.addEventListener("click", (e)=>{
-            const { id  } = e.target;
-            const prefix = "-";
-            const indexPrefix = id.indexOf(prefix);
-            const activeChatId = id.slice(indexPrefix + 1);
-            clb(activeChatId);
-        });
-    });
-}
-exports.default = handlerChat;
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"dxUda":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _mockData = require("../../mock-data");
-var _toggleClassList = require("../../utils/toggleClassList");
-var _toggleClassListDefault = parcelHelpers.interopDefault(_toggleClassList);
-var _constants = require("../../assets/constants");
-function isAuth(login, password) {
-    return (0, _mockData.existUsers).find((user)=>user.login.toLocaleLowerCase() === login.toLocaleLowerCase() && user.password.toLocaleLowerCase() === password.toLocaleLowerCase());
-}
-function toggleErrorAuth(form, addOrRemove, className) {
-    const $errors = form.querySelectorAll(".form__error");
-    $errors.forEach((error)=>(0, _toggleClassListDefault.default)(error, addOrRemove, className));
-}
-function handlerLogin() {
-    const $form = document.querySelector(".login__form");
-    if ($form) $form.addEventListener("submit", (e)=>{
-        e.preventDefault();
-        const form = e.target;
-        const login = form["login-input"].value;
-        const password = form["password-input"].value;
-        toggleErrorAuth(form, "add", "hidden");
-        isAuth(login, password) ? location.assign((0, _constants.localePaths).main) : toggleErrorAuth(form, "remove", "hidden");
-    });
-}
-exports.default = handlerLogin;
-
-},{"../../mock-data":"lIOBJ","../../utils/toggleClassList":"k6FBt","../../assets/constants":"6cbiK","@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"d8JSr":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-function handlerOpenProfile(clb) {
-    const $openProfile = document.querySelector(".openProfile__title");
-    if ($openProfile) $openProfile.addEventListener("click", ()=>{
-        clb();
-    });
-}
-exports.default = handlerOpenProfile;
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"fU05V":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-function handlerSearchProfile(clb) {
-    const $search = document.querySelector(".searchChat__input");
-    if ($search) $search.addEventListener("input", (e)=>{
-        clb(e.target.value);
-    });
-}
-exports.default = handlerSearchProfile;
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}]},["8TWO2","b9BDZ"], "b9BDZ", "parcelRequire0866")
+},{"./render":"9Mplm","../layouts/empty":"k1VEM","@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}]},["8TWO2","b9BDZ"], "b9BDZ", "parcelRequire0866")
 

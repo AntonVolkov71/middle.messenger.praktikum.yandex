@@ -1,13 +1,11 @@
+function handlerChangePassword(clb) {
+  const $changePassword = document.querySelector('.profile__button-change-password');
 
-
-function handlerChangePassword(clb){
-    const $changePassword = document.querySelector('.profile__button-change-password')
-
-    if($changePassword){
-        $changePassword.addEventListener('click', ()=>{
-            clb()
-        })
-    }
+  if ($changePassword) {
+    $changePassword.addEventListener('click', () => {
+      clb();
+    });
+  }
 }
 
-export default handlerChangePassword
+export default handlerChangePassword;

@@ -1,7 +1,0 @@
-
-
-const store = {
-    user: {
-        login: '',
-    }
-}

@@ -5,7 +5,7 @@ import './style.scss';
 Handlebars.registerPartial('input', tpl);
 
 const input = (props = {
-    type: 'text'
-}) => tpl(props)
+  type: 'text',
+}) => tpl(props);
 
-export default input
+export default input;

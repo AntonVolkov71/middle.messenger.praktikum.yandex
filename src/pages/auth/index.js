@@ -5,7 +5,7 @@ import './style.scss';
 Handlebars.registerPartial('auth', tpl);
 
 const auth = (props = {
-    label: 'Регистрация',
+  label: 'Регистрация',
 }) => tpl(props);
 
-export default auth
+export default auth;

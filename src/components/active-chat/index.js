@@ -6,4 +6,4 @@ Handlebars.registerPartial('activeChat', tpl);
 
 const activeChat = (props = {}) => tpl(props);
 
-export default activeChat
+export default activeChat;

@@ -6,4 +6,4 @@ Handlebars.registerPartial('searchChat', tpl);
 
 const searchChat = (props = {}) => tpl(props);
 
-export default searchChat
+export default searchChat;

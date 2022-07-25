@@ -5,7 +5,7 @@ import './style.scss';
 Handlebars.registerPartial('serverError', tpl);
 
 const serverError = (props = {
-    type: 'text'
+  type: 'text',
 }) => tpl(props);
 
-export default serverError
+export default serverError;

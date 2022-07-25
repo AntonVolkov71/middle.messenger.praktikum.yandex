@@ -1,5 +1,5 @@
 function toggleClassList(element, addOrRemove, value) {
-    element.classList[addOrRemove](value)
+  element.classList[addOrRemove](value);
 }
 
-export default toggleClassList
+export default toggleClassList;

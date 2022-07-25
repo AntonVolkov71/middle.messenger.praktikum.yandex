@@ -6,4 +6,4 @@ Handlebars.registerPartial('profile', tpl);
 
 const profile = (props = {}) => tpl(props);
 
-export default profile
+export default profile;

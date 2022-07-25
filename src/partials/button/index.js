@@ -4,6 +4,8 @@ import './style.scss';
 
 Handlebars.registerPartial('button', tpl);
 
-const button = (id, className, type = 'button', label) => tpl({id, className, type, label});
+const button = (id, className, type = 'button', label) => tpl({
+  id, className, type, label,
+});
 
-export default button
+export default button;

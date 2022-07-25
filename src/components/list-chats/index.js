@@ -1,13 +1,13 @@
 import Handlebars from 'handlebars';
 import tpl from './tpl.hbs';
 import './style.scss';
-import chat from "../chat";
-import {chats} from "../../mock-data";
+import chat from '../chat';
+import { chats } from '../../mock-data';
 
 Handlebars.registerPartial('listChats', tpl);
 
 const listChats = (props = {
-    chats,
+  chats,
 }) => tpl(props);
 
-export default listChats
+export default listChats;

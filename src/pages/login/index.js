@@ -4,10 +4,8 @@ import './style.scss';
 
 Handlebars.registerPartial('login', tpl);
 
-
 const login = (props = {
-    label: 'Вход',
-}) => tpl(props)
+  label: 'Вход',
+}) => tpl(props);
 
-export default login
-
+export default login;

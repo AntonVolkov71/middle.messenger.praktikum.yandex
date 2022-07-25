@@ -4,6 +4,6 @@ import './style.scss';
 
 Handlebars.registerPartial('mainLayout', tpl);
 
-const mainLayout =  (props = {}) => tpl(props);
+const mainLayout = (props = {}) => tpl(props);
 
-export default mainLayout
+export default mainLayout;

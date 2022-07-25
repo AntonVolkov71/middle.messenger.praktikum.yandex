@@ -5,4 +5,4 @@ import './style.scss';
 Handlebars.registerPartial('emptyChat', tpl);
 
 const emptyChats = (props = {}) => tpl(props);
-export default emptyChats
+export default emptyChats;

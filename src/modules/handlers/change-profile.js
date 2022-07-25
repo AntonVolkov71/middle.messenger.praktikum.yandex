@@ -1,13 +1,11 @@
+function handlerChangeProfile(clb) {
+  const $changeProfile = document.querySelector('.profile__change-data');
 
-
-function handlerChangeProfile(clb){
-    const $changeProfile = document.querySelector('.profile__change-data')
-    
-    if($changeProfile){
-        $changeProfile.addEventListener('click', ()=>{
-           clb()
-        })
-    }
+  if ($changeProfile) {
+    $changeProfile.addEventListener('click', () => {
+      clb();
+    });
+  }
 }
 
-export default handlerChangeProfile
+export default handlerChangeProfile;
