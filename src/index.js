@@ -14,7 +14,7 @@ import auth from './pages/auth';
 import inputMessage from './components/input-message';
 import listChats from './components/list-chats';
 import listMessages from './components/list-messages';
-import login from "./pages/login";
+import login from './pages/login';
 import main from './pages/main';
 import openProfile from './components/open-profile';
 import profile from './components/profile';
