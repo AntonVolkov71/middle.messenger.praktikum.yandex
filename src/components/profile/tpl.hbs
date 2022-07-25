@@ -1,0 +1,96 @@
+<div class="profile border">
+    <div class="profile__wrapper-avatar">
+        <img src="{{avatar}}" alt="my photo" class="profile__image">
+        <div class="profile__change-avatar"> Поменять аватар</div>
+    </div>
+
+    {{#if inputFile}}
+        {{{inputFile}}}
+    {{/if}}
+    <h2 class="profile__name">{{name}}</h2>
+
+    {{#if changePassword}}
+        <form class="profile__change-password">
+            <div class="profile__field">
+                <label for="profile-old-password">
+                    Старый пароль
+                </label>
+                {{> input value=oldPassword name='profile-old-password' type='password'  minlength=2 required=true }}
+            </div>
+
+            <div class="profile__field">
+                <label for="profile-new-password">
+                    Новый пароль
+                </label>
+                {{> input name='profile-new-password' type='password'  minlength=2 required=true }}
+            </div>
+
+            <div class="profile__field">
+                <label for="profile-repeat-new-password">
+                    Повторите новый пароль
+                </label>
+                {{> input name='profile-repeat-new-password' type='password'  minlength=2 required=true }}
+            </div>
+
+            {{#unless  isShow}}
+                {{> button type='submit' classNames='profile__button-save-password' label='Сохранить' }}
+            {{/unless }}
+        </form>
+    {{else}}
+        <form class="profile__data">
+            <div class="profile__field">
+                <label for="profile-email">
+                    Почта
+                </label>
+                {{> input value=email name='profile-email' type='email'  disabled=isShow minlength=2 required=true }}
+            </div>
+
+            <div class="profile__field">
+                <label for="profile-login">
+                    Логин
+                </label>
+                {{> input value=login name='profile-login' type='text'  disabled=isShow minlength=2 required=true }}
+            </div>
+
+            <div class="profile__field">
+                <label for="profile-name">
+                    Имя
+                </label>
+                {{> input value=name name='profile-name' type='text'  disabled=isShow minlength=2 required=true }}
+            </div>
+
+            <div class="profile__field">
+                <label for="profile-second-name">
+                    Фамилия
+                </label>
+                {{> input value=secondName name='profile-second-name' type='text'  disabled=isShow minlength=2 required=true }}
+            </div>
+
+            <div class="profile__field">
+                <label for="profile-name-in-chat">
+                    Имя в чате
+                </label>
+                {{> input value=nameInChat name='profile-name-in-chat' type='text'  disabled=isShow minlength=2 required=true }}
+            </div>
+
+            <div class="profile__field">
+                <label for="profile-phone">
+                    Телефон
+                </label>
+                {{> input value=phone name='profile-phone' type='tel'  disabled=isShow minlength=2 required=true }}
+            </div>
+
+            {{#unless  isShow}}
+                {{> button type='submit' classNames='profile__button-save' label='Сохранить' }}
+            {{/unless }}
+        </form>
+        {{#if isShow}}
+            <p class="profile__change-data">Изменить данные</p>
+            <p class="profile__button-change-password">Изменить пароль</p>
+
+            <p class="profile__signout">Выйти</p>
+        {{/if}}
+    {{/if}}
+
+
+</div>

@@ -1,0 +1,7 @@
+
+
+const store = {
+    user: {
+        login: '',
+    }
+}

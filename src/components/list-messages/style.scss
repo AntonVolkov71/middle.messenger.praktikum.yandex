@@ -1,0 +1,18 @@
+@import '../../styles/variables';
+
+.listMessages {
+  .listMessages__message {
+    display: flex;
+    justify-content: start;
+  }
+
+  .listMessages__message_my {
+    justify-content: end;
+  }
+
+  .listMessages__date-title {
+    text-align: center;
+    color: $colorInfo;
+    font-size: $fontXs;
+  }
+}
