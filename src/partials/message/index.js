@@ -4,4 +4,6 @@ import './style.scss';
 
 Handlebars.registerPartial('message', tpl);
 
-export default (props = {}) => tpl(props);
+const message = (props = {}) => tpl(props)
+
+export default message

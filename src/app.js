@@ -1,7 +1,7 @@
 const express = require('express');
 const path = require('path');
 
-const defaultPort = 3333;
+const defaultPort = 3000;
 const staticDir = path.resolve('dist');
 const htmlFile = 'index.html';
 

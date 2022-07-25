@@ -4,6 +4,8 @@ import './style.scss';
 
 Handlebars.registerPartial('input', tpl);
 
-export default (props = {
+const input = (props = {
     type: 'text'
-}) => tpl(props);
+}) => tpl(props)
+
+export default input

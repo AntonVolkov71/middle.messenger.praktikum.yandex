@@ -4,6 +4,8 @@ import './style.scss';
 
 Handlebars.registerPartial('auth', tpl);
 
-export default (props = {
+const auth = (props = {
     label: 'Регистрация',
 }) => tpl(props);
+
+export default auth

@@ -1,6 +1,6 @@
-import {existUsers} from "../mock-data";
-import toggleClassList from "../utils/toggleClassList";
-import {localePaths} from "../assets/constants";
+import {existUsers} from "../../mock-data";
+import toggleClassList from "../../utils/toggleClassList";
+import {localePaths} from "../../assets/constants";
 
 function isAuth(login, password) {
     return existUsers.find(user =>

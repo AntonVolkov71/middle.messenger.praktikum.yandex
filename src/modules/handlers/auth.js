@@ -1,5 +1,5 @@
-import toggleClassList from "../utils/toggleClassList";
-import {localePaths} from "../assets/constants";
+import toggleClassList from "../../utils/toggleClassList";
+import {localePaths} from "../../assets/constants";
 
 function toggleErrorAuth(form, addOrRemove, className) {
     const $errors = form.querySelectorAll('.form__error');

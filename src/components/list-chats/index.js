@@ -6,6 +6,8 @@ import {chats} from "../../mock-data";
 
 Handlebars.registerPartial('listChats', tpl);
 
-export default (props = {
+const listChats = (props = {
     chats,
 }) => tpl(props);
+
+export default listChats

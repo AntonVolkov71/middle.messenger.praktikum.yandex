@@ -4,4 +4,6 @@ import './style.scss';
 
 Handlebars.registerPartial('openProfile', tpl);
 
-export default (props = {}) => tpl(props);
+const openProfile = (props = {}) => tpl(props);
+
+export default openProfile

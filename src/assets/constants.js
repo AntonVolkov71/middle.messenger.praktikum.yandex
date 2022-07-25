@@ -5,9 +5,5 @@ const localePaths = {
   empty: '/',
 };
 
-const locales = {
-  ru: 'ru',
-  en: 'en',
-};
 
-export { localePaths, locales };
+export { localePaths };

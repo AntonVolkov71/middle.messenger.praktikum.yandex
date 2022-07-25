@@ -7,8 +7,10 @@ import listChats from "../../components/list-chats";
 
 Handlebars.registerPartial('main', tpl);
 
-export default (props = {
+const main = (props = {
     openProfile: openProfile(),
     searchChat: searchChat(),
     listChats: listChats(),
 }) => tpl(props);
+
+export default main

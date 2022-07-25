@@ -4,6 +4,8 @@ import './style.scss';
 
 Handlebars.registerPartial('notFound', tpl);
 
-export default (props = {
+const notFound = (props = {
     type: 'text'
-}) => tpl(props);
+}) => tpl(props)
+
+export default notFound

@@ -4,4 +4,6 @@ import './style.scss';
 
 Handlebars.registerPartial('chat', tpl);
 
-export default (props = {}) => tpl(props);
+const chat = (props = {}) => tpl(props);
+
+export default chat
