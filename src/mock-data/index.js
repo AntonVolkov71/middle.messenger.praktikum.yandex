@@ -121,5 +121,8 @@ function activeChatsOptions() {
 }
 
 const chats = createMockChats(sizeChats);
+const myProfile = existUsers.find((item) => item.id === 1);
 
-export { existUsers, chats, activeChatsOptions };
+export {
+  existUsers, chats, activeChatsOptions, myProfile,
+};

@@ -1,5 +1,6 @@
 function render(root, layout, element) {
-  root.innerHTML = layout({ content: element });
+  const tempRoot = Object.assign(root);
+  tempRoot.innerHTML = layout({ content: element });
 }
 
 export default render;

@@ -533,197 +533,82 @@ function hmrAcceptRun(bundle, id) {
 
 },{}],"b9BDZ":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+var _handlebars = require("handlebars");
+var _handlebarsDefault = parcelHelpers.interopDefault(_handlebars);
 var _styleScss = require("./styles/style.scss");
-var _mockData = require("./mock-data");
 var _button = require("./partials/button");
-var _buttonDefault = parcelHelpers.interopDefault(_button);
 var _emptyChats = require("./partials/empty-chats");
-var _emptyChatsDefault = parcelHelpers.interopDefault(_emptyChats);
 var _input = require("./partials/input");
-var _inputDefault = parcelHelpers.interopDefault(_input);
-var _inputFile = require("./partials/input-file");
-var _inputFileDefault = parcelHelpers.interopDefault(_inputFile);
 var _message = require("./partials/message");
-var _messageDefault = parcelHelpers.interopDefault(_message);
-var _notFound = require("./partials/not-found");
-var _notFoundDefault = parcelHelpers.interopDefault(_notFound);
+var _chat = require("./partials/chat");
 var _serverError = require("./partials/server-error");
 var _serverErrorDefault = parcelHelpers.interopDefault(_serverError);
-var _activeChat = require("./components/active-chat");
-var _activeChatDefault = parcelHelpers.interopDefault(_activeChat);
-var _auth = require("./pages/auth");
+var _config = require("./assets/config");
+var _auth = require("./modules/handlers/auth");
 var _authDefault = parcelHelpers.interopDefault(_auth);
-var _inputMessage = require("./components/input-message");
-var _inputMessageDefault = parcelHelpers.interopDefault(_inputMessage);
-var _listChats = require("./components/list-chats");
-var _listChatsDefault = parcelHelpers.interopDefault(_listChats);
-var _listMessages = require("./components/list-messages");
-var _listMessagesDefault = parcelHelpers.interopDefault(_listMessages);
-var _login = require("./pages/login");
-var _loginDefault = parcelHelpers.interopDefault(_login);
-var _main = require("./pages/main");
-var _mainDefault = parcelHelpers.interopDefault(_main);
-var _openProfile = require("./components/open-profile");
-var _openProfileDefault = parcelHelpers.interopDefault(_openProfile);
-var _profile = require("./components/profile");
-var _profileDefault = parcelHelpers.interopDefault(_profile);
-var _searchChat = require("./components/search-chat");
-var _searchChatDefault = parcelHelpers.interopDefault(_searchChat);
-var _auth1 = require("./modules/handlers/auth");
-var _authDefault1 = parcelHelpers.interopDefault(_auth1);
 var _changeAvatar = require("./modules/handlers/changeAvatar");
 var _changeAvatarDefault = parcelHelpers.interopDefault(_changeAvatar);
 var _changePassword = require("./modules/handlers/change-password");
 var _changePasswordDefault = parcelHelpers.interopDefault(_changePassword);
 var _changeProfile = require("./modules/handlers/change-profile");
 var _changeProfileDefault = parcelHelpers.interopDefault(_changeProfile);
-var _chat = require("./modules/handlers/chat");
-var _chatDefault = parcelHelpers.interopDefault(_chat);
-var _login1 = require("./modules/handlers/login");
-var _loginDefault1 = parcelHelpers.interopDefault(_login1);
-var _openProfile1 = require("./modules/handlers/openProfile");
-var _openProfileDefault1 = parcelHelpers.interopDefault(_openProfile1);
+var _chat1 = require("./modules/handlers/chat");
+var _chatDefault = parcelHelpers.interopDefault(_chat1);
+var _login = require("./modules/handlers/login");
+var _loginDefault = parcelHelpers.interopDefault(_login);
+var _openProfile = require("./modules/handlers/openProfile");
+var _openProfileDefault = parcelHelpers.interopDefault(_openProfile);
 var _searchProfile = require("./modules/handlers/search-profile");
 var _searchProfileDefault = parcelHelpers.interopDefault(_searchProfile);
-var _parseDate = require("./utils/parseDate");
-var _parseDateDefault = parcelHelpers.interopDefault(_parseDate);
+var _activeChat = require("./modules/callbacks/activeChat");
+var _activeChatDefault = parcelHelpers.interopDefault(_activeChat);
+var _changeAvatar1 = require("./modules/callbacks/changeAvatar");
+var _changeAvatarDefault1 = parcelHelpers.interopDefault(_changeAvatar1);
+var _changePassword1 = require("./modules/callbacks/changePassword");
+var _changePasswordDefault1 = parcelHelpers.interopDefault(_changePassword1);
+var _changeProfile1 = require("./modules/callbacks/changeProfile");
+var _changeProfileDefault1 = parcelHelpers.interopDefault(_changeProfile1);
+var _openProfile1 = require("./modules/callbacks/openProfile");
+var _openProfileDefault1 = parcelHelpers.interopDefault(_openProfile1);
+var _searchChats = require("./modules/callbacks/searchChats");
+var _searchChatsDefault = parcelHelpers.interopDefault(_searchChats);
 var _processingRouting = require("./utils/processingRouting");
 var _processingRoutingDefault = parcelHelpers.interopDefault(_processingRouting);
+var _ifEqualsId = require("./utils/helpers/ifEqualsId");
+var _ifEqualsIdDefault = parcelHelpers.interopDefault(_ifEqualsId);
 var _renderServerError = require("./utils/renderServerError");
 var _renderServerErrorDefault = parcelHelpers.interopDefault(_renderServerError);
 try {
-    const initialOptionsRouting = {
-        main: (0, _mainDefault.default)(),
-        login: (0, _loginDefault.default)(),
-        auth: (0, _authDefault.default)(),
-        notFound: (0, _notFoundDefault.default)()
+    (0, _handlebarsDefault.default).registerHelper("ifEqualsId", (0, _ifEqualsIdDefault.default));
+    (0, _processingRoutingDefault.default)((0, _config.initialOptionsRouting));
+    const handlers = ()=>{
+        (0, _loginDefault.default)();
+        (0, _authDefault.default)();
+        (0, _openProfileDefault.default)(()=>{
+            (0, _openProfileDefault1.default)();
+            handlers();
+        });
+        (0, _chatDefault.default)((chatId)=>{
+            (0, _activeChatDefault.default)(chatId);
+            handlers();
+        });
+        (0, _searchProfileDefault.default)((searchText)=>{
+            (0, _searchChatsDefault.default)(searchText);
+            handlers();
+        });
+        (0, _changeProfileDefault.default)(()=>{
+            (0, _changeProfileDefault1.default)();
+            handlers();
+        });
+        (0, _changePasswordDefault.default)(()=>{
+            (0, _changePasswordDefault1.default)();
+            handlers();
+        });
+        (0, _changeAvatarDefault.default)(()=>{
+            (0, _changeAvatarDefault1.default)();
+            handlers();
+        });
     };
-    let isOpenProfile = false;
-    const myProfile = (0, _mockData.existUsers).find((item)=>item.id === 1);
-    (0, _processingRoutingDefault.default)(initialOptionsRouting);
-    function handlers() {
-        (0, _loginDefault1.default)();
-        (0, _authDefault1.default)();
-        (0, _openProfileDefault1.default)(clbOpenProfile);
-        (0, _chatDefault.default)(clbActiveChat);
-        (0, _searchProfileDefault.default)(clbSearchChats);
-        (0, _changeProfileDefault.default)(clbChangeProfile);
-        (0, _changePasswordDefault.default)(clbChangePassword);
-        (0, _changeAvatarDefault.default)(clbChangeAvatar);
-    }
-    function clbActiveChat(chatId) {
-        const changeActiveChats = (0, _mockData.chats).map((chat)=>{
-            chat.active = chat.id === +chatId;
-            return chat;
-        });
-        const findChatsOptions = (0, _mockData.activeChatsOptions)().find((item)=>item.id === +chatId);
-        (0, _processingRoutingDefault.default)({
-            ...initialOptionsRouting,
-            main: (0, _mainDefault.default)({
-                openProfile: (0, _openProfileDefault.default)(),
-                searchChat: (0, _searchChatDefault.default)(),
-                listChats: (0, _listChatsDefault.default)({
-                    chats: changeActiveChats
-                }),
-                activeChat: findChatsOptions ? (0, _activeChatDefault.default)({
-                    linkUser: findChatsOptions.linkUser,
-                    messages: (0, _listMessagesDefault.default)({
-                        messages: findChatsOptions.messages,
-                        myId: 1,
-                        dateMessage: (0, _parseDateDefault.default)(new Date(), "dayMonth")
-                    }),
-                    inputMessage: (0, _inputMessageDefault.default)()
-                }) : null
-            })
-        });
-        handlers();
-    }
-    function clbSearchChats(searchText) {
-        const findChats = (0, _mockData.chats).filter((el)=>el.name.toLowerCase().includes(searchText.toLowerCase()));
-        (0, _processingRoutingDefault.default)({
-            ...initialOptionsRouting,
-            main: (0, _mainDefault.default)({
-                openProfile: (0, _openProfileDefault.default)(),
-                searchChat: (0, _searchChatDefault.default)({
-                    currentValue: searchText
-                }),
-                listChats: (0, _listChatsDefault.default)({
-                    chats: findChats
-                })
-            })
-        });
-        handlers();
-    }
-    function clbOpenProfile() {
-        (0, _processingRoutingDefault.default)({
-            ...initialOptionsRouting,
-            main: (0, _mainDefault.default)({
-                isOpenProfile: !isOpenProfile,
-                openProfile: (0, _openProfileDefault.default)(),
-                searchChat: isOpenProfile ? (0, _searchChatDefault.default)() : null,
-                listChats: isOpenProfile ? (0, _listChatsDefault.default)() : null,
-                profile: (0, _profileDefault.default)({
-                    ...myProfile,
-                    isShow: true
-                })
-            })
-        });
-        isOpenProfile = !isOpenProfile;
-        handlers();
-    }
-    function clbChangeProfile() {
-        (0, _processingRoutingDefault.default)({
-            ...initialOptionsRouting,
-            main: (0, _mainDefault.default)({
-                isOpenProfile: true,
-                openProfile: (0, _openProfileDefault.default)(),
-                searchChat: null,
-                listChats: null,
-                profile: (0, _profileDefault.default)({
-                    ...myProfile,
-                    isShow: false
-                })
-            })
-        });
-        handlers();
-    }
-    function clbChangePassword() {
-        (0, _processingRoutingDefault.default)({
-            ...initialOptionsRouting,
-            main: (0, _mainDefault.default)({
-                isOpenProfile: true,
-                openProfile: (0, _openProfileDefault.default)(),
-                searchChat: null,
-                listChats: null,
-                profile: (0, _profileDefault.default)({
-                    ...myProfile,
-                    isShow: false,
-                    changePassword: true,
-                    oldPassword: "12456"
-                })
-            })
-        });
-        handlers();
-    }
-    function clbChangeAvatar() {
-        (0, _processingRoutingDefault.default)({
-            ...initialOptionsRouting,
-            main: (0, _mainDefault.default)({
-                isOpenProfile: true,
-                openProfile: (0, _openProfileDefault.default)(),
-                searchChat: null,
-                listChats: null,
-                profile: (0, _profileDefault.default)({
-                    ...myProfile,
-                    isShow: true,
-                    inputFile: (0, _inputFileDefault.default)({
-                        titleError: "\u041E\u0448\u0438\u0431\u043A\u0430, \u043F\u043E\u043F\u0440\u043E\u0431\u0443\u0439\u0442\u0435 \u0435\u0449\u0435 \u0440\u0430\u0437\u043E\u043A"
-                    })
-                })
-            })
-        });
-        handlers();
-    }
     handlers();
 } catch (e) {
     (0, _renderServerErrorDefault.default)((0, _serverErrorDefault.default)({
@@ -731,157 +616,7 @@ try {
     }));
 }
 
-},{"./styles/style.scss":"lkgsf","./mock-data":"lIOBJ","./partials/button":"Dlug2","./partials/empty-chats":"dfqj5","./partials/input":"1GgI5","./partials/input-file":"2Hbcv","./partials/message":"5kQrv","./partials/not-found":"6IncN","./partials/server-error":"1WN8x","./components/active-chat":"9wGSb","./pages/auth":"4Io2Q","./components/input-message":"az4kH","./components/list-chats":"lFCve","./components/list-messages":"abrB9","./pages/login":"ijY2Y","./pages/main":"3pXTa","./components/open-profile":"7tXcl","./components/profile":"a3XBs","./components/search-chat":"6tWoC","./modules/handlers/auth":"aUDy5","./modules/handlers/changeAvatar":"ka3iV","./modules/handlers/change-password":"kwkcR","./modules/handlers/change-profile":"b2rUt","./modules/handlers/chat":"lb0pM","./modules/handlers/login":"dxUda","./modules/handlers/openProfile":"d8JSr","./modules/handlers/search-profile":"fU05V","./utils/parseDate":"4ZLZ4","./utils/processingRouting":"kAViS","./utils/renderServerError":"6OnVz","@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"lkgsf":[function() {},{}],"lIOBJ":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "existUsers", ()=>existUsers);
-parcelHelpers.export(exports, "chats", ()=>chats);
-parcelHelpers.export(exports, "activeChatsOptions", ()=>activeChatsOptions);
-const existUsers = [
-    {
-        id: 1,
-        login: "Anton",
-        password: "123456",
-        email: "volk@ura.ru",
-        name: "Anton",
-        secondName: "Volkov",
-        nameInChat: "Aleshka",
-        phone: "+7(999)999 99 99",
-        avatar: "https://images.unsplash.com/photo-1520542059400-dc9d1d8ae9de?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80"
-    }, 
-];
-const sizeChats = 20;
-function getHoursMinutes() {
-    const date = new Date();
-    const hours = date.getHours();
-    const minutes = date.getMinutes();
-    const addZeroMinutes = minutes.toString().length < 2 ? `0${minutes}` : minutes;
-    const result = `${hours}:${addZeroMinutes}`;
-    return result;
-}
-const urlAvatars = [
-    "https://images.unsplash.com/photo-1530281700549-e82e7bf110d6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=388&q=80",
-    "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1143&q=80",
-    "https://images.unsplash.com/photo-1573865526739-10659fec78a5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1915&q=80",
-    "https://images.unsplash.com/photo-1533738363-b7f9aef128ce?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=435&q=80",
-    "https://images.unsplash.com/photo-1495360010541-f48722b34f7d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=436&q=80",
-    "https://images.unsplash.com/photo-1526336024174-e58f5cdd8e13?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80",
-    "",
-    "https://images.unsplash.com/photo-1537033206914-9d3551ff8103?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
-    "",
-    "https://images.unsplash.com/photo-1527153857715-3908f2bae5e8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8Y293fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
-    "",
-    "https://images.unsplash.com/photo-1439434768192-c60615c1b3c8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8YnVsbHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60", 
-];
-function randomString() {
-    return (Math.random() + 1).toString(36).substring(7);
-}
-function createMockChats(sizeChatsCurrent) {
-    return Array(sizeChatsCurrent).fill({}).map((_, i)=>({
-            id: i,
-            name: randomString(),
-            dataLastMessage: {
-                content: i % 2 ? randomString() : "\u0418\u0437\u043E\u0431\u0440\u0430\u0436\u0435\u043D\u0438\u0435",
-                time: getHoursMinutes(),
-                ofUnread: Math.floor(Math.random() * 10)
-            },
-            avatar: urlAvatars[i],
-            active: false
-        }));
-}
-function activeChatsOptions() {
-    return [
-        {
-            id: 0,
-            linkUser: {
-                id: 2,
-                name: "Vasya",
-                avatar: urlAvatars[1]
-            },
-            messages: [
-                {
-                    id: 1,
-                    content: {
-                        text: "message not my",
-                        image: null
-                    },
-                    time: getHoursMinutes(),
-                    author: {
-                        id: 2
-                    }
-                },
-                {
-                    id: 2,
-                    content: {
-                        text: "messagedskajdklsajlkdjaskjdlkasjdlkjaskdjaljdlkajd;klajflk;sjdklgjfd;gkjsdfkgjdaskfkhajk fhskdjfh ljsdhfljk hsdkjlfh sldkjhf ksjdhdf kjshdfjkhs djfhdkjhf skjdhfksh ldfhsl kfsdkjhf jkshdf lhsdfkh skdhf lshdfk jshdlfh sldkjhf sldhfl shdflj hsdlkfh slkdhf lskdhflkshdf lkjhsdk; dlkjgd;flkjgs;lkdfjgl;kdfsjl my",
-                        image: null
-                    },
-                    time: getHoursMinutes(),
-                    author: {
-                        id: 1
-                    },
-                    unread: true
-                },
-                {
-                    id: 3,
-                    content: {
-                        text: null,
-                        image: urlAvatars[5]
-                    },
-                    time: getHoursMinutes(),
-                    author: {
-                        id: 2
-                    }
-                },
-                {
-                    id: 4,
-                    content: {
-                        text: "message my",
-                        image: null
-                    },
-                    time: getHoursMinutes(),
-                    author: {
-                        id: 1
-                    },
-                    unread: false
-                }, 
-            ]
-        }, 
-    ];
-}
-const chats = createMockChats(sizeChats);
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"j7FRh":[function(require,module,exports) {
-exports.interopDefault = function(a) {
-    return a && a.__esModule ? a : {
-        default: a
-    };
-};
-exports.defineInteropFlag = function(a) {
-    Object.defineProperty(a, "__esModule", {
-        value: true
-    });
-};
-exports.exportAll = function(source, dest) {
-    Object.keys(source).forEach(function(key) {
-        if (key === "default" || key === "__esModule" || dest.hasOwnProperty(key)) return;
-        Object.defineProperty(dest, key, {
-            enumerable: true,
-            get: function() {
-                return source[key];
-            }
-        });
-    });
-    return dest;
-};
-exports.export = function(dest, destName, get) {
-    Object.defineProperty(dest, destName, {
-        enumerable: true,
-        get: get
-    });
-};
-
-},{}],"Dlug2":[function(require,module,exports) {
+},{"./styles/style.scss":"lkgsf","./partials/button":"Dlug2","./partials/empty-chats":"dfqj5","./partials/input":"1GgI5","./partials/message":"5kQrv","./modules/handlers/auth":"aUDy5","./modules/handlers/changeAvatar":"ka3iV","./modules/handlers/change-password":"kwkcR","./modules/handlers/change-profile":"b2rUt","./modules/handlers/chat":"lb0pM","./modules/handlers/login":"dxUda","./modules/handlers/openProfile":"d8JSr","./modules/handlers/search-profile":"fU05V","./utils/processingRouting":"kAViS","@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh","./partials/chat":"ljV2Z","handlebars":"dH8Fg","./utils/helpers/ifEqualsId":"3F7Ox","./assets/config":"2XEyu","./modules/callbacks/openProfile":"6l1xv","./modules/callbacks/activeChat":"lLuyM","./modules/callbacks/searchChats":"25EwJ","./modules/callbacks/changeProfile":"01o0r","./modules/callbacks/changePassword":"yvzGI","./modules/callbacks/changeAvatar":"bJXU4","./utils/renderServerError":"6OnVz","./partials/server-error":"1WN8x"}],"lkgsf":[function() {},{}],"Dlug2":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _handlebars = require("handlebars");
@@ -890,11 +625,9 @@ var _tplHbs = require("./tpl.hbs");
 var _tplHbsDefault = parcelHelpers.interopDefault(_tplHbs);
 var _styleScss = require("./style.scss");
 (0, _handlebarsDefault.default).registerPartial("button", (0, _tplHbsDefault.default));
-const button = (id, className, type = "button", label)=>(0, _tplHbsDefault.default)({
-        id,
-        className,
-        type,
-        label
+const button = (props = {})=>(0, _tplHbsDefault.default)({
+        ...props,
+        type: "button"
     });
 exports.default = button;
 
@@ -12293,7 +12026,37 @@ const templateFunction = (0, _handlebarsDefault.default).template({
 });
 exports.default = templateFunction;
 
-},{"handlebars":"dH8Fg","@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"fLmkW":[function() {},{}],"dfqj5":[function(require,module,exports) {
+},{"handlebars":"dH8Fg","@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"j7FRh":[function(require,module,exports) {
+exports.interopDefault = function(a) {
+    return a && a.__esModule ? a : {
+        default: a
+    };
+};
+exports.defineInteropFlag = function(a) {
+    Object.defineProperty(a, "__esModule", {
+        value: true
+    });
+};
+exports.exportAll = function(source, dest) {
+    Object.keys(source).forEach(function(key) {
+        if (key === "default" || key === "__esModule" || dest.hasOwnProperty(key)) return;
+        Object.defineProperty(dest, key, {
+            enumerable: true,
+            get: function() {
+                return source[key];
+            }
+        });
+    });
+    return dest;
+};
+exports.export = function(dest, destName, get) {
+    Object.defineProperty(dest, destName, {
+        enumerable: true,
+        get: get
+    });
+};
+
+},{}],"fLmkW":[function() {},{}],"dfqj5":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _handlebars = require("handlebars");
@@ -12488,244 +12251,7 @@ const templateFunction = (0, _handlebarsDefault.default).template({
 });
 exports.default = templateFunction;
 
-},{"handlebars":"dH8Fg","@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"X9XFk":[function() {},{}],"2Hbcv":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _handlebars = require("handlebars");
-var _handlebarsDefault = parcelHelpers.interopDefault(_handlebars);
-var _tplHbs = require("./tpl.hbs");
-var _tplHbsDefault = parcelHelpers.interopDefault(_tplHbs);
-var _styleScss = require("./style.scss");
-(0, _handlebarsDefault.default).registerPartial("inputFile", (0, _tplHbsDefault.default));
-const inputFile = (props = {
-    type: "text"
-})=>(0, _tplHbsDefault.default)(props);
-exports.default = inputFile;
-
-},{"handlebars":"dH8Fg","./tpl.hbs":"ddkme","./style.scss":"6Kqxf","@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"ddkme":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _handlebars = require("handlebars");
-var _handlebarsDefault = parcelHelpers.interopDefault(_handlebars);
-const templateFunction = (0, _handlebarsDefault.default).template({
-    "1": function(container, depth0, helpers, partials, data) {
-        return "input-file__title_error";
-    },
-    "3": function(container, depth0, helpers, partials, data) {
-        var helper, lookupProperty = container.lookupProperty || function(parent, propertyName) {
-            if (Object.prototype.hasOwnProperty.call(parent, propertyName)) return parent[propertyName];
-            return undefined;
-        };
-        return container.escapeExpression((helper = (helper = lookupProperty(helpers, "titleSuccess") || (depth0 != null ? lookupProperty(depth0, "titleSuccess") : depth0)) != null ? helper : container.hooks.helperMissing, typeof helper === "function" ? helper.call(depth0 != null ? depth0 : container.nullContext || {}, {
-            "name": "titleSuccess",
-            "hash": {},
-            "data": data,
-            "loc": {
-                "start": {
-                    "line": 4,
-                    "column": 32
-                },
-                "end": {
-                    "line": 4,
-                    "column": 48
-                }
-            }
-        }) : helper));
-    },
-    "5": function(container, depth0, helpers, partials, data) {
-        var helper, lookupProperty = container.lookupProperty || function(parent, propertyName) {
-            if (Object.prototype.hasOwnProperty.call(parent, propertyName)) return parent[propertyName];
-            return undefined;
-        };
-        return container.escapeExpression((helper = (helper = lookupProperty(helpers, "titlePutFile") || (depth0 != null ? lookupProperty(depth0, "titlePutFile") : depth0)) != null ? helper : container.hooks.helperMissing, typeof helper === "function" ? helper.call(depth0 != null ? depth0 : container.nullContext || {}, {
-            "name": "titlePutFile",
-            "hash": {},
-            "data": data,
-            "loc": {
-                "start": {
-                    "line": 5,
-                    "column": 32
-                },
-                "end": {
-                    "line": 5,
-                    "column": 48
-                }
-            }
-        }) : helper));
-    },
-    "7": function(container, depth0, helpers, partials, data) {
-        var helper, lookupProperty = container.lookupProperty || function(parent, propertyName) {
-            if (Object.prototype.hasOwnProperty.call(parent, propertyName)) return parent[propertyName];
-            return undefined;
-        };
-        return container.escapeExpression((helper = (helper = lookupProperty(helpers, "titleError") || (depth0 != null ? lookupProperty(depth0, "titleError") : depth0)) != null ? helper : container.hooks.helperMissing, typeof helper === "function" ? helper.call(depth0 != null ? depth0 : container.nullContext || {}, {
-            "name": "titleError",
-            "hash": {},
-            "data": data,
-            "loc": {
-                "start": {
-                    "line": 6,
-                    "column": 30
-                },
-                "end": {
-                    "line": 6,
-                    "column": 44
-                }
-            }
-        }) : helper));
-    },
-    "9": function(container, depth0, helpers, partials, data) {
-        var helper, lookupProperty = container.lookupProperty || function(parent, propertyName) {
-            if (Object.prototype.hasOwnProperty.call(parent, propertyName)) return parent[propertyName];
-            return undefined;
-        };
-        return '        <p class="input-file__name-file>\r\n            ' + container.escapeExpression((helper = (helper = lookupProperty(helpers, "nameFile") || (depth0 != null ? lookupProperty(depth0, "nameFile") : depth0)) != null ? helper : container.hooks.helperMissing, typeof helper === "function" ? helper.call(depth0 != null ? depth0 : container.nullContext || {}, {
-            "name": "nameFile",
-            "hash": {},
-            "data": data,
-            "loc": {
-                "start": {
-                    "line": 11,
-                    "column": 12
-                },
-                "end": {
-                    "line": 11,
-                    "column": 24
-                }
-            }
-        }) : helper)) + "\r\n            </p>\r\n";
-    },
-    "11": function(container, depth0, helpers, partials, data) {
-        return '            <div class=" input-file__input-wrapper">\r\n            <label for="input-file" class="input-file__label">\r\n                <span class="input-file__button-text ">\u0412\u044B\u0431\u0440\u0430\u0442\u044C \u0444\u0430\u0439\u043B \u043D\u0430 \u043A\u043E\u043C\u043F\u044C\u044E\u0442\u0435\u0440\u0435</span></label>\r\n            <input type="file" id="input-file" name="input-file" class="input-file__input-file">\r\n';
-    },
-    "13": function(container, depth0, helpers, partials, data) {
-        return "";
-    },
-    "compiler": [
-        8,
-        ">= 4.3.0"
-    ],
-    "main": function(container, depth0, helpers, partials, data) {
-        var stack1, alias1 = depth0 != null ? depth0 : container.nullContext || {}, lookupProperty = container.lookupProperty || function(parent, propertyName) {
-            if (Object.prototype.hasOwnProperty.call(parent, propertyName)) return parent[propertyName];
-            return undefined;
-        };
-        return '<div class="input-file">\r\n    <div class="input-file__card">\r\n        <p class="input-file__title ' + ((stack1 = lookupProperty(helpers, "if").call(alias1, depth0 != null ? lookupProperty(depth0, "titleError") : depth0, {
-            "name": "if",
-            "hash": {},
-            "fn": container.program(1, data, 0),
-            "inverse": container.noop,
-            "data": data,
-            "loc": {
-                "start": {
-                    "line": 3,
-                    "column": 36
-                },
-                "end": {
-                    "line": 3,
-                    "column": 84
-                }
-            }
-        })) != null ? stack1 : "") + '">\r\n            ' + ((stack1 = lookupProperty(helpers, "if").call(alias1, depth0 != null ? lookupProperty(depth0, "titleSuccess") : depth0, {
-            "name": "if",
-            "hash": {},
-            "fn": container.program(3, data, 0),
-            "inverse": container.noop,
-            "data": data,
-            "loc": {
-                "start": {
-                    "line": 4,
-                    "column": 12
-                },
-                "end": {
-                    "line": 4,
-                    "column": 55
-                }
-            }
-        })) != null ? stack1 : "") + "\r\n            " + ((stack1 = lookupProperty(helpers, "if").call(alias1, depth0 != null ? lookupProperty(depth0, "titlePutFile") : depth0, {
-            "name": "if",
-            "hash": {},
-            "fn": container.program(5, data, 0),
-            "inverse": container.noop,
-            "data": data,
-            "loc": {
-                "start": {
-                    "line": 5,
-                    "column": 12
-                },
-                "end": {
-                    "line": 5,
-                    "column": 55
-                }
-            }
-        })) != null ? stack1 : "") + "\r\n            " + ((stack1 = lookupProperty(helpers, "if").call(alias1, depth0 != null ? lookupProperty(depth0, "titleError") : depth0, {
-            "name": "if",
-            "hash": {},
-            "fn": container.program(7, data, 0),
-            "inverse": container.noop,
-            "data": data,
-            "loc": {
-                "start": {
-                    "line": 6,
-                    "column": 12
-                },
-                "end": {
-                    "line": 6,
-                    "column": 51
-                }
-            }
-        })) != null ? stack1 : "") + "\r\n        </p>\r\n\r\n" + ((stack1 = lookupProperty(helpers, "if").call(alias1, depth0 != null ? lookupProperty(depth0, "titleSuccess") : depth0, {
-            "name": "if",
-            "hash": {},
-            "fn": container.program(9, data, 0),
-            "inverse": container.program(11, data, 0),
-            "data": data,
-            "loc": {
-                "start": {
-                    "line": 9,
-                    "column": 8
-                },
-                "end": {
-                    "line": 18,
-                    "column": 15
-                }
-            }
-        })) != null ? stack1 : "") + "    </div>\r\n\r\n" + ((stack1 = container.invokePartial(lookupProperty(partials, "button"), depth0, {
-            "name": "button",
-            "hash": {
-                "label": "\u041F\u043E\u043C\u0435\u043D\u044F\u0442\u044C",
-                "type": "button",
-                "classNames": "input-file__button-change"
-            },
-            "data": data,
-            "indent": "    ",
-            "helpers": helpers,
-            "partials": partials,
-            "decorators": container.decorators
-        })) != null ? stack1 : "") + "\r\n    " + ((stack1 = lookupProperty(helpers, "if").call(alias1, depth0 != null ? lookupProperty(depth0, "errorNotSelect") : depth0, {
-            "name": "if",
-            "hash": {},
-            "fn": container.program(13, data, 0),
-            "inverse": container.noop,
-            "data": data,
-            "loc": {
-                "start": {
-                    "line": 23,
-                    "column": 4
-                },
-                "end": {
-                    "line": 23,
-                    "column": 33
-                }
-            }
-        })) != null ? stack1 : "") + "\r\n</div>\r\n</div>\r\n";
-    },
-    "usePartial": true,
-    "useData": true
-});
-exports.default = templateFunction;
-
-},{"handlebars":"dH8Fg","@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"6Kqxf":[function() {},{}],"5kQrv":[function(require,module,exports) {
+},{"handlebars":"dH8Fg","@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"X9XFk":[function() {},{}],"5kQrv":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _handlebars = require("handlebars");
@@ -12852,7 +12378,326 @@ const templateFunction = (0, _handlebarsDefault.default).template({
 });
 exports.default = templateFunction;
 
-},{"handlebars":"dH8Fg","@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"is9jW":[function() {},{}],"6IncN":[function(require,module,exports) {
+},{"handlebars":"dH8Fg","@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"is9jW":[function() {},{}],"aUDy5":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _toggleClassList = require("../../utils/toggleClassList");
+var _toggleClassListDefault = parcelHelpers.interopDefault(_toggleClassList);
+var _constants = require("../../assets/constants");
+var _constantsDefault = parcelHelpers.interopDefault(_constants);
+function toggleErrorAuth(form, addOrRemove, className) {
+    const $errors = form.querySelectorAll(".form__error");
+    $errors.forEach((error)=>(0, _toggleClassListDefault.default)(error, addOrRemove, className));
+}
+function checkedAuth(data) {
+    return data;
+}
+function compareString(left, right) {
+    return left === right;
+}
+function handlerAuth() {
+    const $form = document.querySelector(".auth__form");
+    if ($form) $form.addEventListener("submit", (e)=>{
+        e.preventDefault();
+        const form = e.target;
+        toggleErrorAuth(form, "add", "hidden");
+        const password = form["auth-password"].value;
+        const morePassword = form["auth-password-more"].value;
+        const isComparePassword = compareString(password, morePassword);
+        if (!isComparePassword) toggleErrorAuth(form, "remove", "hidden");
+        else {
+            const dataUser = {
+                email: form["auth-email"].value,
+                login: form["auth-login"].value,
+                name: form["auth-name"].value,
+                surname: form["auth-surname"].value,
+                phone: form["auth-phone"].value
+            };
+            checkedAuth(dataUser);
+            window.location.assign((0, _constantsDefault.default).login);
+        }
+    });
+}
+exports.default = handlerAuth;
+
+},{"../../utils/toggleClassList":"k6FBt","../../assets/constants":"6cbiK","@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"k6FBt":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+function toggleClassList(element, addOrRemove, value) {
+    element.classList[addOrRemove](value);
+}
+exports.default = toggleClassList;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"6cbiK":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+const localePaths = {
+    login: "/login",
+    auth: "/auth",
+    main: "/main",
+    empty: "/"
+};
+exports.default = localePaths;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"ka3iV":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+function handlerChangeAvatar(clb) {
+    const $avatar = document.querySelector(".profile__wrapper-avatar");
+    if ($avatar) $avatar.addEventListener("click", ()=>{
+        clb();
+    });
+}
+exports.default = handlerChangeAvatar;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"kwkcR":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+function handlerChangePassword(clb) {
+    const $changePassword = document.querySelector(".profile__button-change-password");
+    if ($changePassword) $changePassword.addEventListener("click", ()=>{
+        clb();
+    });
+}
+exports.default = handlerChangePassword;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"b2rUt":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+function handlerChangeProfile(clb) {
+    const $changeProfile = document.querySelector(".profile__change-data");
+    if ($changeProfile) $changeProfile.addEventListener("click", ()=>{
+        clb();
+    });
+}
+exports.default = handlerChangeProfile;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"lb0pM":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+function handlerChat(clb) {
+    const $activeChat = document.querySelectorAll(".chat__over-click");
+    if ($activeChat) $activeChat.forEach((item)=>{
+        item.addEventListener("click", (e)=>{
+            const { id  } = e.target;
+            const prefix = "-";
+            const indexPrefix = id.indexOf(prefix);
+            const activeChatId = id.slice(indexPrefix + 1);
+            clb(activeChatId);
+        });
+    });
+}
+exports.default = handlerChat;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"dxUda":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _mockData = require("../../mock-data");
+var _toggleClassList = require("../../utils/toggleClassList");
+var _toggleClassListDefault = parcelHelpers.interopDefault(_toggleClassList);
+var _constants = require("../../assets/constants");
+var _constantsDefault = parcelHelpers.interopDefault(_constants);
+function isAuth(login, password) {
+    return (0, _mockData.existUsers).find((user)=>user.login.toLocaleLowerCase() === login.toLocaleLowerCase() && user.password.toLocaleLowerCase() === password.toLocaleLowerCase());
+}
+function toggleErrorAuth(form, addOrRemove, className) {
+    const $errors = form.querySelectorAll(".form__error");
+    $errors.forEach((error)=>(0, _toggleClassListDefault.default)(error, addOrRemove, className));
+}
+function handlerLogin() {
+    const $form = document.querySelector(".login__form");
+    if ($form) $form.addEventListener("submit", (e)=>{
+        e.preventDefault();
+        const form = e.target;
+        const login = form["login-input"].value;
+        const password = form["password-input"].value;
+        toggleErrorAuth(form, "add", "hidden");
+        if (isAuth(login, password)) window.location.assign((0, _constantsDefault.default).main);
+        else toggleErrorAuth(form, "remove", "hidden");
+    });
+}
+exports.default = handlerLogin;
+
+},{"../../mock-data":"lIOBJ","../../utils/toggleClassList":"k6FBt","../../assets/constants":"6cbiK","@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"lIOBJ":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "existUsers", ()=>existUsers);
+parcelHelpers.export(exports, "chats", ()=>chats);
+parcelHelpers.export(exports, "activeChatsOptions", ()=>activeChatsOptions);
+parcelHelpers.export(exports, "myProfile", ()=>myProfile);
+const existUsers = [
+    {
+        id: 1,
+        login: "Anton",
+        password: "123456",
+        email: "volk@ura.ru",
+        name: "Anton",
+        secondName: "Volkov",
+        nameInChat: "Aleshka",
+        phone: "+7(999)999 99 99",
+        avatar: "https://images.unsplash.com/photo-1520542059400-dc9d1d8ae9de?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80"
+    }, 
+];
+const sizeChats = 20;
+function getHoursMinutes() {
+    const date = new Date();
+    const hours = date.getHours();
+    const minutes = date.getMinutes();
+    const addZeroMinutes = minutes.toString().length < 2 ? `0${minutes}` : minutes;
+    const result = `${hours}:${addZeroMinutes}`;
+    return result;
+}
+const urlAvatars = [
+    "https://images.unsplash.com/photo-1530281700549-e82e7bf110d6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=388&q=80",
+    "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1143&q=80",
+    "https://images.unsplash.com/photo-1573865526739-10659fec78a5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1915&q=80",
+    "https://images.unsplash.com/photo-1533738363-b7f9aef128ce?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=435&q=80",
+    "https://images.unsplash.com/photo-1495360010541-f48722b34f7d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=436&q=80",
+    "https://images.unsplash.com/photo-1526336024174-e58f5cdd8e13?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80",
+    "",
+    "https://images.unsplash.com/photo-1537033206914-9d3551ff8103?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+    "",
+    "https://images.unsplash.com/photo-1527153857715-3908f2bae5e8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8Y293fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
+    "",
+    "https://images.unsplash.com/photo-1439434768192-c60615c1b3c8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8YnVsbHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60", 
+];
+function randomString() {
+    return (Math.random() + 1).toString(36).substring(7);
+}
+function createMockChats(sizeChatsCurrent) {
+    return Array(sizeChatsCurrent).fill({}).map((_, i)=>({
+            id: i,
+            name: randomString(),
+            dataLastMessage: {
+                content: i % 2 ? randomString() : "\u0418\u0437\u043E\u0431\u0440\u0430\u0436\u0435\u043D\u0438\u0435",
+                time: getHoursMinutes(),
+                ofUnread: Math.floor(Math.random() * 10)
+            },
+            avatar: urlAvatars[i],
+            active: false
+        }));
+}
+function activeChatsOptions() {
+    return [
+        {
+            id: 0,
+            linkUser: {
+                id: 2,
+                name: "Vasya",
+                avatar: urlAvatars[1]
+            },
+            messages: [
+                {
+                    id: 1,
+                    content: {
+                        text: "message not my",
+                        image: null
+                    },
+                    time: getHoursMinutes(),
+                    author: {
+                        id: 2
+                    }
+                },
+                {
+                    id: 2,
+                    content: {
+                        text: "messagedskajdklsajlkdjaskjdlkasjdlkjaskdjaljdlkajd;klajflk;sjdklgjfd;gkjsdfkgjdaskfkhajk fhskdjfh ljsdhfljk hsdkjlfh sldkjhf ksjdhdf kjshdfjkhs djfhdkjhf skjdhfksh ldfhsl kfsdkjhf jkshdf lhsdfkh skdhf lshdfk jshdlfh sldkjhf sldhfl shdflj hsdlkfh slkdhf lskdhflkshdf lkjhsdk; dlkjgd;flkjgs;lkdfjgl;kdfsjl my",
+                        image: null
+                    },
+                    time: getHoursMinutes(),
+                    author: {
+                        id: 1
+                    },
+                    unread: true
+                },
+                {
+                    id: 3,
+                    content: {
+                        text: null,
+                        image: urlAvatars[5]
+                    },
+                    time: getHoursMinutes(),
+                    author: {
+                        id: 2
+                    }
+                },
+                {
+                    id: 4,
+                    content: {
+                        text: "message my",
+                        image: null
+                    },
+                    time: getHoursMinutes(),
+                    author: {
+                        id: 1
+                    },
+                    unread: false
+                }, 
+            ]
+        }, 
+    ];
+}
+const chats = createMockChats(sizeChats);
+const myProfile = existUsers.find((item)=>item.id === 1);
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"d8JSr":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+function handlerOpenProfile(clb) {
+    const $openProfile = document.querySelector(".openProfile__title");
+    if ($openProfile) $openProfile.addEventListener("click", ()=>{
+        clb();
+    });
+}
+exports.default = handlerOpenProfile;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"fU05V":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+function handlerSearchProfile(clb) {
+    const $search = document.querySelector(".searchChat__input");
+    if ($search) $search.addEventListener("input", (e)=>{
+        clb(e.target.value);
+    });
+}
+exports.default = handlerSearchProfile;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"kAViS":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _constants = require("../assets/constants");
+var _constantsDefault = parcelHelpers.interopDefault(_constants);
+var _empty = require("../layouts/empty");
+var _emptyDefault = parcelHelpers.interopDefault(_empty);
+var _main = require("../layouts/main");
+var _mainDefault = parcelHelpers.interopDefault(_main);
+var _render = require("./render");
+var _renderDefault = parcelHelpers.interopDefault(_render);
+const { pathname  } = window.location;
+const $root = document.getElementById("root");
+function processingRouting(pages) {
+    const { main , auth , login , notFound ,  } = pages;
+    switch(pathname){
+        case (0, _constantsDefault.default).login:
+            (0, _renderDefault.default)($root, (0, _emptyDefault.default), login);
+            break;
+        case (0, _constantsDefault.default).auth:
+            (0, _renderDefault.default)($root, (0, _emptyDefault.default), auth);
+            break;
+        case (0, _constantsDefault.default).main:
+            (0, _renderDefault.default)($root, (0, _mainDefault.default), main);
+            break;
+        case (0, _constantsDefault.default).empty:
+            (0, _renderDefault.default)($root, (0, _emptyDefault.default), login);
+            break;
+        default:
+            (0, _renderDefault.default)($root, (0, _emptyDefault.default), notFound);
+            break;
+    }
+}
+exports.default = processingRouting;
+
+},{"../assets/constants":"6cbiK","../layouts/empty":"k1VEM","../layouts/main":"jvyHR","./render":"9Mplm","@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"k1VEM":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _handlebars = require("handlebars");
@@ -12860,180 +12705,11 @@ var _handlebarsDefault = parcelHelpers.interopDefault(_handlebars);
 var _tplHbs = require("./tpl.hbs");
 var _tplHbsDefault = parcelHelpers.interopDefault(_tplHbs);
 var _styleScss = require("./style.scss");
-(0, _handlebarsDefault.default).registerPartial("notFound", (0, _tplHbsDefault.default));
-const notFound = (props = {
-    type: "text"
-})=>(0, _tplHbsDefault.default)(props);
-exports.default = notFound;
+(0, _handlebarsDefault.default).registerPartial("emptyLayout", (0, _tplHbsDefault.default));
+const emptyLayout = (props = {})=>(0, _tplHbsDefault.default)(props);
+exports.default = emptyLayout;
 
-},{"handlebars":"dH8Fg","./tpl.hbs":"7dwqg","./style.scss":"fa3K3","@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"7dwqg":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _handlebars = require("handlebars");
-var _handlebarsDefault = parcelHelpers.interopDefault(_handlebars);
-const templateFunction = (0, _handlebarsDefault.default).template({
-    "compiler": [
-        8,
-        ">= 4.3.0"
-    ],
-    "main": function(container, depth0, helpers, partials, data) {
-        return '<div class="notFound">\r\n    <h1 class="notFound__http-status ">404</h1>\r\n    <p class="notFound__description">\u0423\u043F\u0441, \u0442\u0430\u043A\u043E\u0439 \u0441\u0442\u0440\u0430\u043D\u0438\u0447\u043A\u0438 \u043D\u0435 \u0441\u0443\u0449\u0435\u0441\u0442\u0432\u0443\u0435\u0442</p>\r\n    <a href="/" class="notFound__link-back">\u041D\u0430\u0436\u043C\u0438 \u0438 \u044F \u043D\u0430\u043F\u0440\u0430\u0432\u043B\u044E \u0442\u0435\u0431\u044F</a>\r\n</div>';
-    },
-    "useData": true
-});
-exports.default = templateFunction;
-
-},{"handlebars":"dH8Fg","@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"fa3K3":[function() {},{}],"1WN8x":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _handlebars = require("handlebars");
-var _handlebarsDefault = parcelHelpers.interopDefault(_handlebars);
-var _tplHbs = require("./tpl.hbs");
-var _tplHbsDefault = parcelHelpers.interopDefault(_tplHbs);
-var _styleScss = require("./style.scss");
-(0, _handlebarsDefault.default).registerPartial("serverError", (0, _tplHbsDefault.default));
-const serverError = (props = {
-    type: "text"
-})=>(0, _tplHbsDefault.default)(props);
-exports.default = serverError;
-
-},{"handlebars":"dH8Fg","./tpl.hbs":"CsB7l","./style.scss":"gLVBJ","@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"CsB7l":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _handlebars = require("handlebars");
-var _handlebarsDefault = parcelHelpers.interopDefault(_handlebars);
-const templateFunction = (0, _handlebarsDefault.default).template({
-    "compiler": [
-        8,
-        ">= 4.3.0"
-    ],
-    "main": function(container, depth0, helpers, partials, data) {
-        var helper, lookupProperty = container.lookupProperty || function(parent, propertyName) {
-            if (Object.prototype.hasOwnProperty.call(parent, propertyName)) return parent[propertyName];
-            return undefined;
-        };
-        return '<div class="server-error">\r\n    <h1 class="server-error__http-status ">' + container.escapeExpression((helper = (helper = lookupProperty(helpers, "httpStatus") || (depth0 != null ? lookupProperty(depth0, "httpStatus") : depth0)) != null ? helper : container.hooks.helperMissing, typeof helper === "function" ? helper.call(depth0 != null ? depth0 : container.nullContext || {}, {
-            "name": "httpStatus",
-            "hash": {},
-            "data": data,
-            "loc": {
-                "start": {
-                    "line": 2,
-                    "column": 43
-                },
-                "end": {
-                    "line": 2,
-                    "column": 57
-                }
-            }
-        }) : helper)) + '</h1>\r\n    <p class="server-error__description">\u0411\u044B\u0432\u0430\u0435\u0442...</p>\r\n    <a href="/" class="server-error__link-back">\u041D\u0430\u0436\u043C\u0438 \u0438 \u044F \u043D\u0430\u043F\u0440\u0430\u0432\u043B\u044E \u0442\u0435\u0431\u044F</a>\r\n</div>';
-    },
-    "useData": true
-});
-exports.default = templateFunction;
-
-},{"handlebars":"dH8Fg","@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"gLVBJ":[function() {},{}],"9wGSb":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _handlebars = require("handlebars");
-var _handlebarsDefault = parcelHelpers.interopDefault(_handlebars);
-var _tplHbs = require("./tpl.hbs");
-var _tplHbsDefault = parcelHelpers.interopDefault(_tplHbs);
-var _styleScss = require("./style.scss");
-(0, _handlebarsDefault.default).registerPartial("activeChat", (0, _tplHbsDefault.default));
-const activeChat = (props = {})=>(0, _tplHbsDefault.default)(props);
-exports.default = activeChat;
-
-},{"handlebars":"dH8Fg","./tpl.hbs":"4trw0","./style.scss":"fgcZK","@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"4trw0":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _handlebars = require("handlebars");
-var _handlebarsDefault = parcelHelpers.interopDefault(_handlebars);
-const templateFunction = (0, _handlebarsDefault.default).template({
-    "1": function(container, depth0, helpers, partials, data) {
-        var stack1, lookupProperty = container.lookupProperty || function(parent, propertyName) {
-            if (Object.prototype.hasOwnProperty.call(parent, propertyName)) return parent[propertyName];
-            return undefined;
-        };
-        return '                <img class="activeChat__avatar_image" src="' + container.escapeExpression(container.lambda((stack1 = depth0 != null ? lookupProperty(depth0, "linkUser") : depth0) != null ? lookupProperty(stack1, "avatar") : stack1, depth0)) + '"/>\r\n';
-    },
-    "3": function(container, depth0, helpers, partials, data) {
-        return '                <div class="activeChat__avatar_image"></div>\r\n';
-    },
-    "compiler": [
-        8,
-        ">= 4.3.0"
-    ],
-    "main": function(container, depth0, helpers, partials, data) {
-        var stack1, helper, alias1 = depth0 != null ? depth0 : container.nullContext || {}, alias2 = container.hooks.helperMissing, alias3 = "function", lookupProperty = container.lookupProperty || function(parent, propertyName) {
-            if (Object.prototype.hasOwnProperty.call(parent, propertyName)) return parent[propertyName];
-            return undefined;
-        };
-        return '<div class="activeChat ">\r\n    <div class=" activeChat__header ">\r\n        <div class="activeChat__profile-wrapper">\r\n' + ((stack1 = lookupProperty(helpers, "if").call(alias1, (stack1 = depth0 != null ? lookupProperty(depth0, "linkUser") : depth0) != null ? lookupProperty(stack1, "avatar") : stack1, {
-            "name": "if",
-            "hash": {},
-            "fn": container.program(1, data, 0),
-            "inverse": container.program(3, data, 0),
-            "data": data,
-            "loc": {
-                "start": {
-                    "line": 4,
-                    "column": 12
-                },
-                "end": {
-                    "line": 8,
-                    "column": 19
-                }
-            }
-        })) != null ? stack1 : "") + '            <p class="activeChat__name-profile">' + container.escapeExpression(container.lambda((stack1 = depth0 != null ? lookupProperty(depth0, "linkUser") : depth0) != null ? lookupProperty(stack1, "name") : stack1, depth0)) + '</p>\r\n        </div>\r\n        <div class="activeChat__profile-menu">\r\n            <span class="material-icons">more_vert</span>\r\n        </div>\r\n    </div>\r\n\r\n    <div class="activeChat__messages scroll">\r\n        ' + ((stack1 = (helper = (helper = lookupProperty(helpers, "messages") || (depth0 != null ? lookupProperty(depth0, "messages") : depth0)) != null ? helper : alias2, typeof helper === alias3 ? helper.call(alias1, {
-            "name": "messages",
-            "hash": {},
-            "data": data,
-            "loc": {
-                "start": {
-                    "line": 17,
-                    "column": 8
-                },
-                "end": {
-                    "line": 17,
-                    "column": 22
-                }
-            }
-        }) : helper)) != null ? stack1 : "") + '\r\n    </div>\r\n\r\n    <div class="active__send-messages">\r\n        ' + ((stack1 = (helper = (helper = lookupProperty(helpers, "inputMessage") || (depth0 != null ? lookupProperty(depth0, "inputMessage") : depth0)) != null ? helper : alias2, typeof helper === alias3 ? helper.call(alias1, {
-            "name": "inputMessage",
-            "hash": {},
-            "data": data,
-            "loc": {
-                "start": {
-                    "line": 21,
-                    "column": 8
-                },
-                "end": {
-                    "line": 21,
-                    "column": 26
-                }
-            }
-        }) : helper)) != null ? stack1 : "") + "\r\n    </div>\r\n</div>";
-    },
-    "useData": true
-});
-exports.default = templateFunction;
-
-},{"handlebars":"dH8Fg","@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"fgcZK":[function() {},{}],"4Io2Q":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _handlebars = require("handlebars");
-var _handlebarsDefault = parcelHelpers.interopDefault(_handlebars);
-var _tplHbs = require("./tpl.hbs");
-var _tplHbsDefault = parcelHelpers.interopDefault(_tplHbs);
-var _styleScss = require("./style.scss");
-(0, _handlebarsDefault.default).registerPartial("auth", (0, _tplHbsDefault.default));
-const auth = (props = {
-    label: "\u0420\u0435\u0433\u0438\u0441\u0442\u0440\u0430\u0446\u0438\u044F"
-})=>(0, _tplHbsDefault.default)(props);
-exports.default = auth;
-
-},{"handlebars":"dH8Fg","./tpl.hbs":"9TeBW","./style.scss":"lah5m","@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"9TeBW":[function(require,module,exports) {
+},{"handlebars":"dH8Fg","./tpl.hbs":"g6li9","./style.scss":"8xQLq","@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"g6li9":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _handlebars = require("handlebars");
@@ -13048,238 +12724,9 @@ const templateFunction = (0, _handlebarsDefault.default).template({
             if (Object.prototype.hasOwnProperty.call(parent, propertyName)) return parent[propertyName];
             return undefined;
         };
-        return '<div class="auth popup">\r\n    <form class="auth__form form">\r\n        <p class="form__title">' + container.escapeExpression((helper = (helper = lookupProperty(helpers, "label") || (depth0 != null ? lookupProperty(depth0, "label") : depth0)) != null ? helper : container.hooks.helperMissing, typeof helper === "function" ? helper.call(depth0 != null ? depth0 : container.nullContext || {}, {
-            "name": "label",
+        return '<div class="empty-layout">\r\n    ' + ((stack1 = (helper = (helper = lookupProperty(helpers, "content") || (depth0 != null ? lookupProperty(depth0, "content") : depth0)) != null ? helper : container.hooks.helperMissing, typeof helper === "function" ? helper.call(depth0 != null ? depth0 : container.nullContext || {}, {
+            "name": "content",
             "hash": {},
-            "data": data,
-            "loc": {
-                "start": {
-                    "line": 3,
-                    "column": 31
-                },
-                "end": {
-                    "line": 3,
-                    "column": 40
-                }
-            }
-        }) : helper)) + '</p>\r\n\r\n        <label class="form__label" for="auth-email">\u041F\u043E\u0447\u0442\u0430</label>\r\n' + ((stack1 = container.invokePartial(lookupProperty(partials, "input"), depth0, {
-            "name": "input",
-            "hash": {
-                "type": "email",
-                "classNames": "form__input",
-                "name": "auth-email",
-                "id": "auth-email"
-            },
-            "data": data,
-            "indent": "        ",
-            "helpers": helpers,
-            "partials": partials,
-            "decorators": container.decorators
-        })) != null ? stack1 : "") + '\r\n        <label class="form__label" for="auth-login">\u041B\u043E\u0433\u0438\u043D</label>\r\n' + ((stack1 = container.invokePartial(lookupProperty(partials, "input"), depth0, {
-            "name": "input",
-            "hash": {
-                "minlength": "2",
-                "type": "text",
-                "classNames": "form__input",
-                "name": "auth-login",
-                "id": "auth-login"
-            },
-            "data": data,
-            "indent": "        ",
-            "helpers": helpers,
-            "partials": partials,
-            "decorators": container.decorators
-        })) != null ? stack1 : "") + '\r\n        <label class="form__label" for="auth-name">\u0418\u043C\u044F</label>\r\n' + ((stack1 = container.invokePartial(lookupProperty(partials, "input"), depth0, {
-            "name": "input",
-            "hash": {
-                "minlength": "2",
-                "type": "text",
-                "classNames": "form__input",
-                "name": "auth-name",
-                "id": "auth-name"
-            },
-            "data": data,
-            "indent": "        ",
-            "helpers": helpers,
-            "partials": partials,
-            "decorators": container.decorators
-        })) != null ? stack1 : "") + '\r\n         <label class="form__label" for="auth-surname">\u0424\u0430\u043C\u0438\u043B\u0438\u044F</label>\r\n' + ((stack1 = container.invokePartial(lookupProperty(partials, "input"), depth0, {
-            "name": "input",
-            "hash": {
-                "minlength": "2",
-                "type": "text",
-                "classNames": "form__input",
-                "name": "auth-surname",
-                "id": "auth-surname"
-            },
-            "data": data,
-            "indent": "        ",
-            "helpers": helpers,
-            "partials": partials,
-            "decorators": container.decorators
-        })) != null ? stack1 : "") + '\r\n        <label class="form__label" for="auth-phone">\u0422\u0435\u043B\u0435\u0444\u043E\u043D</label>\r\n' + ((stack1 = container.invokePartial(lookupProperty(partials, "input"), depth0, {
-            "name": "input",
-            "hash": {
-                "required": "required",
-                "type": "tel",
-                "classNames": "form__input",
-                "name": "auth-phone",
-                "id": "auth-phone"
-            },
-            "data": data,
-            "indent": "        ",
-            "helpers": helpers,
-            "partials": partials,
-            "decorators": container.decorators
-        })) != null ? stack1 : "") + '\r\n\r\n        <label class="form__label" for="auth-password">\u041F\u0430\u0440\u043E\u043B\u044C</label>\r\n' + ((stack1 = container.invokePartial(lookupProperty(partials, "input"), depth0, {
-            "name": "input",
-            "hash": {
-                "minlength": "2",
-                "type": "password",
-                "classNames": "form__input",
-                "name": "auth-password",
-                "id": "auth-password"
-            },
-            "data": data,
-            "indent": "        ",
-            "helpers": helpers,
-            "partials": partials,
-            "decorators": container.decorators
-        })) != null ? stack1 : "") + '\r\n        <label class="form__label" for="auth-password-more">\u041F\u0430\u0440\u043E\u043B\u044C (\u0435\u0449\u0435 \u0440\u0430\u0437)</label>\r\n' + ((stack1 = container.invokePartial(lookupProperty(partials, "input"), depth0, {
-            "name": "input",
-            "hash": {
-                "minlength": "2",
-                "type": "password",
-                "classNames": "form__input",
-                "name": "auth-password-more",
-                "id": "auth-password-more"
-            },
-            "data": data,
-            "indent": "        ",
-            "helpers": helpers,
-            "partials": partials,
-            "decorators": container.decorators
-        })) != null ? stack1 : "") + '        <span class="form__error hidden">\u041F\u0430\u0440\u043E\u043B\u0438 \u043D\u0435 \u0441\u043E\u0432\u043F\u0430\u0434\u0430\u044E\u0442</span>\r\n\r\n' + ((stack1 = container.invokePartial(lookupProperty(partials, "button"), depth0, {
-            "name": "button",
-            "hash": {
-                "label": "\u0417\u0430\u0440\u0435\u0433\u0438\u0441\u0442\u0440\u0438\u0440\u043E\u0432\u0430\u0442\u044C\u0441\u044F",
-                "type": "submit",
-                "classNames": "auth__submit",
-                "id": "auth-submit"
-            },
-            "data": data,
-            "indent": "        ",
-            "helpers": helpers,
-            "partials": partials,
-            "decorators": container.decorators
-        })) != null ? stack1 : "") + '        <a class="form__link" href="/login">\u0412\u043E\u0439\u0442\u0438</a>\r\n    </form>\r\n</div>';
-    },
-    "usePartial": true,
-    "useData": true
-});
-exports.default = templateFunction;
-
-},{"handlebars":"dH8Fg","@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"lah5m":[function() {},{}],"az4kH":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _handlebars = require("handlebars");
-var _handlebarsDefault = parcelHelpers.interopDefault(_handlebars);
-var _tplHbs = require("./tpl.hbs");
-var _tplHbsDefault = parcelHelpers.interopDefault(_tplHbs);
-var _styleScss = require("./style.scss");
-(0, _handlebarsDefault.default).registerPartial("inputMessage", (0, _tplHbsDefault.default));
-const inputMessage = (props = {})=>(0, _tplHbsDefault.default)(props);
-exports.default = inputMessage;
-
-},{"handlebars":"dH8Fg","./tpl.hbs":"gSOCC","./style.scss":"fspCa","@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"gSOCC":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _handlebars = require("handlebars");
-var _handlebarsDefault = parcelHelpers.interopDefault(_handlebars);
-const templateFunction = (0, _handlebarsDefault.default).template({
-    "compiler": [
-        8,
-        ">= 4.3.0"
-    ],
-    "main": function(container, depth0, helpers, partials, data) {
-        var stack1, lookupProperty = container.lookupProperty || function(parent, propertyName) {
-            if (Object.prototype.hasOwnProperty.call(parent, propertyName)) return parent[propertyName];
-            return undefined;
-        };
-        return '<div class="inputMessage">\r\n    <form class="inputMessage__form">\r\n\r\n        <label class="inputMessage__attach-file-wrapper ">\r\n            <input type="file" class="inputMessage__input-file">\r\n            <span class="inputMessage__input-file-icon material-icons ">attach_file</span>\r\n        </label>\r\n\r\n' + ((stack1 = container.invokePartial(lookupProperty(partials, "input"), depth0, {
-            "name": "input",
-            "hash": {
-                "classNames": "inputMessage__input-message",
-                "type": "text"
-            },
-            "data": data,
-            "indent": "    ",
-            "helpers": helpers,
-            "partials": partials,
-            "decorators": container.decorators
-        })) != null ? stack1 : "") + '\r\n    <button type="submit" class="inputMessage__button-submit">\r\n        <span class="inputMessage__button-submit-icon material-icons">send</span>\r\n    </button>\r\n    </form>\r\n</div>';
-    },
-    "usePartial": true,
-    "useData": true
-});
-exports.default = templateFunction;
-
-},{"handlebars":"dH8Fg","@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"fspCa":[function() {},{}],"lFCve":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _handlebars = require("handlebars");
-var _handlebarsDefault = parcelHelpers.interopDefault(_handlebars);
-var _tplHbs = require("./tpl.hbs");
-var _tplHbsDefault = parcelHelpers.interopDefault(_tplHbs);
-var _styleScss = require("./style.scss");
-var _chat = require("../chat");
-var _chatDefault = parcelHelpers.interopDefault(_chat);
-var _mockData = require("../../mock-data");
-(0, _handlebarsDefault.default).registerPartial("listChats", (0, _tplHbsDefault.default));
-const listChats = (props = {
-    chats: (0, _mockData.chats)
-})=>(0, _tplHbsDefault.default)(props);
-exports.default = listChats;
-
-},{"handlebars":"dH8Fg","./tpl.hbs":"9wPf0","./style.scss":"9Xr8Q","../chat":"lltMr","../../mock-data":"lIOBJ","@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"9wPf0":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _handlebars = require("handlebars");
-var _handlebarsDefault = parcelHelpers.interopDefault(_handlebars);
-const templateFunction = (0, _handlebarsDefault.default).template({
-    "1": function(container, depth0, helpers, partials, data) {
-        var stack1, lookupProperty = container.lookupProperty || function(parent, propertyName) {
-            if (Object.prototype.hasOwnProperty.call(parent, propertyName)) return parent[propertyName];
-            return undefined;
-        };
-        return (stack1 = container.invokePartial(lookupProperty(partials, "chat"), depth0, {
-            "name": "chat",
-            "hash": {
-                "avatar": depth0 != null ? lookupProperty(depth0, "avatar") : depth0,
-                "message": depth0 != null ? lookupProperty(depth0, "dataLastMessage") : depth0,
-                "name": depth0 != null ? lookupProperty(depth0, "name") : depth0
-            },
-            "data": data,
-            "indent": "       ",
-            "helpers": helpers,
-            "partials": partials,
-            "decorators": container.decorators
-        })) != null ? stack1 : "";
-    },
-    "compiler": [
-        8,
-        ">= 4.3.0"
-    ],
-    "main": function(container, depth0, helpers, partials, data) {
-        var stack1, lookupProperty = container.lookupProperty || function(parent, propertyName) {
-            if (Object.prototype.hasOwnProperty.call(parent, propertyName)) return parent[propertyName];
-            return undefined;
-        };
-        return '<div class="listChats  ">\r\n' + ((stack1 = lookupProperty(helpers, "each").call(depth0 != null ? depth0 : container.nullContext || {}, depth0 != null ? lookupProperty(depth0, "chats") : depth0, {
-            "name": "each",
-            "hash": {},
-            "fn": container.program(1, data, 0),
-            "inverse": container.noop,
             "data": data,
             "loc": {
                 "start": {
@@ -13287,18 +12734,75 @@ const templateFunction = (0, _handlebarsDefault.default).template({
                     "column": 4
                 },
                 "end": {
-                    "line": 4,
-                    "column": 13
+                    "line": 2,
+                    "column": 17
                 }
             }
-        })) != null ? stack1 : "") + "</div>";
+        }) : helper)) != null ? stack1 : "") + "\r\n</div>";
     },
-    "usePartial": true,
     "useData": true
 });
 exports.default = templateFunction;
 
-},{"handlebars":"dH8Fg","@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"9Xr8Q":[function() {},{}],"lltMr":[function(require,module,exports) {
+},{"handlebars":"dH8Fg","@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"8xQLq":[function() {},{}],"jvyHR":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _handlebars = require("handlebars");
+var _handlebarsDefault = parcelHelpers.interopDefault(_handlebars);
+var _tplHbs = require("./tpl.hbs");
+var _tplHbsDefault = parcelHelpers.interopDefault(_tplHbs);
+var _styleScss = require("./style.scss");
+(0, _handlebarsDefault.default).registerPartial("mainLayout", (0, _tplHbsDefault.default));
+const mainLayout = (props = {})=>(0, _tplHbsDefault.default)(props);
+exports.default = mainLayout;
+
+},{"handlebars":"dH8Fg","./tpl.hbs":"891B0","./style.scss":"5WfLr","@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"891B0":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _handlebars = require("handlebars");
+var _handlebarsDefault = parcelHelpers.interopDefault(_handlebars);
+const templateFunction = (0, _handlebarsDefault.default).template({
+    "compiler": [
+        8,
+        ">= 4.3.0"
+    ],
+    "main": function(container, depth0, helpers, partials, data) {
+        var stack1, helper, lookupProperty = container.lookupProperty || function(parent, propertyName) {
+            if (Object.prototype.hasOwnProperty.call(parent, propertyName)) return parent[propertyName];
+            return undefined;
+        };
+        return '<div class="main-layout">\r\n    ' + ((stack1 = (helper = (helper = lookupProperty(helpers, "content") || (depth0 != null ? lookupProperty(depth0, "content") : depth0)) != null ? helper : container.hooks.helperMissing, typeof helper === "function" ? helper.call(depth0 != null ? depth0 : container.nullContext || {}, {
+            "name": "content",
+            "hash": {},
+            "data": data,
+            "loc": {
+                "start": {
+                    "line": 2,
+                    "column": 4
+                },
+                "end": {
+                    "line": 2,
+                    "column": 17
+                }
+            }
+        }) : helper)) != null ? stack1 : "") + "\r\n</div>";
+    },
+    "useData": true
+});
+exports.default = templateFunction;
+
+},{"handlebars":"dH8Fg","@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"5WfLr":[function() {},{}],"9Mplm":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+function render(root, layout, element) {
+    const tempRoot = Object.assign(root);
+    tempRoot.innerHTML = layout({
+        content: element
+    });
+}
+exports.default = render;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"ljV2Z":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _handlebars = require("handlebars");
@@ -13310,7 +12814,7 @@ var _styleScss = require("./style.scss");
 const chat = (props = {})=>(0, _tplHbsDefault.default)(props);
 exports.default = chat;
 
-},{"handlebars":"dH8Fg","./tpl.hbs":"5Bagt","./style.scss":"dzcz8","@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"5Bagt":[function(require,module,exports) {
+},{"handlebars":"dH8Fg","./tpl.hbs":"fUO2A","./style.scss":"3T9SD","@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"fUO2A":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _handlebars = require("handlebars");
@@ -13467,205 +12971,38 @@ const templateFunction = (0, _handlebarsDefault.default).template({
 });
 exports.default = templateFunction;
 
-},{"handlebars":"dH8Fg","@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"dzcz8":[function() {},{}],"abrB9":[function(require,module,exports) {
+},{"handlebars":"dH8Fg","@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"3T9SD":[function() {},{}],"3F7Ox":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-var _handlebars = require("handlebars");
-var _handlebarsDefault = parcelHelpers.interopDefault(_handlebars);
-var _tplHbs = require("./tpl.hbs");
-var _tplHbsDefault = parcelHelpers.interopDefault(_tplHbs);
-var _styleScss = require("./style.scss");
-(0, _handlebarsDefault.default).registerPartial("listMessages", (0, _tplHbsDefault.default));
-(0, _handlebarsDefault.default).registerHelper("ifEqualsId", function(arg1, arg2, options) {
+function ifEqualsId(arg1, arg2, options) {
     return arg1 === arg2 ? options.fn(this) : options.inverse(this);
-});
-const listMessages = (props = {})=>(0, _tplHbsDefault.default)(props);
-exports.default = listMessages;
+}
+exports.default = ifEqualsId;
 
-},{"handlebars":"dH8Fg","./tpl.hbs":"7zDED","./style.scss":"6lmRK","@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"7zDED":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"2XEyu":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-var _handlebars = require("handlebars");
-var _handlebarsDefault = parcelHelpers.interopDefault(_handlebars);
-const templateFunction = (0, _handlebarsDefault.default).template({
-    "1": function(container, depth0, helpers, partials, data, blockParams, depths) {
-        var stack1, lookupProperty = container.lookupProperty || function(parent, propertyName) {
-            if (Object.prototype.hasOwnProperty.call(parent, propertyName)) return parent[propertyName];
-            return undefined;
-        };
-        return "        <div\r\n" + ((stack1 = (lookupProperty(helpers, "ifEqualsId") || depth0 && lookupProperty(depth0, "ifEqualsId") || container.hooks.helperMissing).call(depth0 != null ? depth0 : container.nullContext || {}, depths[1] != null ? lookupProperty(depths[1], "myId") : depths[1], (stack1 = depth0 != null ? lookupProperty(depth0, "author") : depth0) != null ? lookupProperty(stack1, "id") : stack1, {
-            "name": "ifEqualsId",
-            "hash": {},
-            "fn": container.program(2, data, 0, blockParams, depths),
-            "inverse": container.program(4, data, 0, blockParams, depths),
-            "data": data,
-            "loc": {
-                "start": {
-                    "line": 7,
-                    "column": 12
-                },
-                "end": {
-                    "line": 11,
-                    "column": 27
-                }
-            }
-        })) != null ? stack1 : "") + "        >\r\n" + ((stack1 = container.invokePartial(lookupProperty(partials, "message"), depth0, {
-            "name": "message",
-            "hash": {
-                "myId": depths[1] != null ? lookupProperty(depths[1], "myId") : depths[1],
-                "content": depth0
-            },
-            "data": data,
-            "indent": "            ",
-            "helpers": helpers,
-            "partials": partials,
-            "decorators": container.decorators
-        })) != null ? stack1 : "") + "        </div>\r\n";
-    },
-    "2": function(container, depth0, helpers, partials, data) {
-        return '            class=" listMessages__message listMessages__message_my "\r\n';
-    },
-    "4": function(container, depth0, helpers, partials, data) {
-        return '            class="listMessages__message "\r\n';
-    },
-    "compiler": [
-        8,
-        ">= 4.3.0"
-    ],
-    "main": function(container, depth0, helpers, partials, data, blockParams, depths) {
-        var stack1, helper, alias1 = depth0 != null ? depth0 : container.nullContext || {}, lookupProperty = container.lookupProperty || function(parent, propertyName) {
-            if (Object.prototype.hasOwnProperty.call(parent, propertyName)) return parent[propertyName];
-            return undefined;
-        };
-        return '<div class="listMessages ">\r\n    <p class="listMessages__date-title">\r\n        ' + container.escapeExpression((helper = (helper = lookupProperty(helpers, "dateMessage") || (depth0 != null ? lookupProperty(depth0, "dateMessage") : depth0)) != null ? helper : container.hooks.helperMissing, typeof helper === "function" ? helper.call(alias1, {
-            "name": "dateMessage",
-            "hash": {},
-            "data": data,
-            "loc": {
-                "start": {
-                    "line": 3,
-                    "column": 8
-                },
-                "end": {
-                    "line": 3,
-                    "column": 23
-                }
-            }
-        }) : helper)) + "\r\n    </p>\r\n" + ((stack1 = lookupProperty(helpers, "each").call(alias1, depth0 != null ? lookupProperty(depth0, "messages") : depth0, {
-            "name": "each",
-            "hash": {},
-            "fn": container.program(1, data, 0, blockParams, depths),
-            "inverse": container.noop,
-            "data": data,
-            "loc": {
-                "start": {
-                    "line": 5,
-                    "column": 4
-                },
-                "end": {
-                    "line": 15,
-                    "column": 13
-                }
-            }
-        })) != null ? stack1 : "") + "</div>";
-    },
-    "usePartial": true,
-    "useData": true,
-    "useDepths": true
-});
-exports.default = templateFunction;
+parcelHelpers.export(exports, "initialOptionsRouting", ()=>initialOptionsRouting);
+parcelHelpers.export(exports, "isOpenProfile", ()=>isOpenProfile);
+var _main = require("../pages/main");
+var _mainDefault = parcelHelpers.interopDefault(_main);
+var _login = require("../pages/login");
+var _loginDefault = parcelHelpers.interopDefault(_login);
+var _auth = require("../pages/auth");
+var _authDefault = parcelHelpers.interopDefault(_auth);
+var _notFound = require("../partials/not-found");
+var _notFoundDefault = parcelHelpers.interopDefault(_notFound);
+const initialOptionsRouting = {
+    main: (0, _mainDefault.default)(),
+    login: (0, _loginDefault.default)(),
+    auth: (0, _authDefault.default)(),
+    notFound: (0, _notFoundDefault.default)()
+};
+const isOpenProfile = {
+    value: false
+};
 
-},{"handlebars":"dH8Fg","@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"6lmRK":[function() {},{}],"ijY2Y":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _handlebars = require("handlebars");
-var _handlebarsDefault = parcelHelpers.interopDefault(_handlebars);
-var _tplHbs = require("./tpl.hbs");
-var _tplHbsDefault = parcelHelpers.interopDefault(_tplHbs);
-var _styleScss = require("./style.scss");
-(0, _handlebarsDefault.default).registerPartial("login", (0, _tplHbsDefault.default));
-const login = (props = {
-    label: "\u0412\u0445\u043E\u0434"
-})=>(0, _tplHbsDefault.default)(props);
-exports.default = login;
-
-},{"handlebars":"dH8Fg","./tpl.hbs":"8acqY","./style.scss":"b3YlF","@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"8acqY":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _handlebars = require("handlebars");
-var _handlebarsDefault = parcelHelpers.interopDefault(_handlebars);
-const templateFunction = (0, _handlebarsDefault.default).template({
-    "compiler": [
-        8,
-        ">= 4.3.0"
-    ],
-    "main": function(container, depth0, helpers, partials, data) {
-        var stack1, helper, lookupProperty = container.lookupProperty || function(parent, propertyName) {
-            if (Object.prototype.hasOwnProperty.call(parent, propertyName)) return parent[propertyName];
-            return undefined;
-        };
-        return '<div class="login popup">\r\n    <form class="login__form form">\r\n        <p class="form__title">' + container.escapeExpression((helper = (helper = lookupProperty(helpers, "label") || (depth0 != null ? lookupProperty(depth0, "label") : depth0)) != null ? helper : container.hooks.helperMissing, typeof helper === "function" ? helper.call(depth0 != null ? depth0 : container.nullContext || {}, {
-            "name": "label",
-            "hash": {},
-            "data": data,
-            "loc": {
-                "start": {
-                    "line": 3,
-                    "column": 31
-                },
-                "end": {
-                    "line": 3,
-                    "column": 40
-                }
-            }
-        }) : helper)) + '</p>\r\n\r\n        <label class="form__label" for="login">\u041B\u043E\u0433\u0438\u043D</label>\r\n' + ((stack1 = container.invokePartial(lookupProperty(partials, "input"), depth0, {
-            "name": "input",
-            "hash": {
-                "type": "text",
-                "classNames": "form__input",
-                "name": "login",
-                "id": "login-input"
-            },
-            "data": data,
-            "indent": "        ",
-            "helpers": helpers,
-            "partials": partials,
-            "decorators": container.decorators
-        })) != null ? stack1 : "") + '        <span class="error hidden ">\u041D\u0435\u0432\u0435\u0440\u043D\u044B\u0439 \u043B\u043E\u0433\u0438\u043D</span>\r\n\r\n        <label class="form__label" for="password">\u041F\u0430\u0440\u043E\u043B\u044C</label>\r\n' + ((stack1 = container.invokePartial(lookupProperty(partials, "input"), depth0, {
-            "name": "input",
-            "hash": {
-                "minlength": "2",
-                "type": "password",
-                "classNames": "form__input",
-                "name": "password",
-                "id": "password-input"
-            },
-            "data": data,
-            "indent": "        ",
-            "helpers": helpers,
-            "partials": partials,
-            "decorators": container.decorators
-        })) != null ? stack1 : "") + '        <span class="form__error hidden">\u041D\u0435\u0432\u0435\u0440\u043D\u044B\u0439 \u043F\u0430\u0440\u043E\u043B\u044C</span>\r\n\r\n' + ((stack1 = container.invokePartial(lookupProperty(partials, "button"), depth0, {
-            "name": "button",
-            "hash": {
-                "label": "\u0412\u043E\u0439\u0442\u0438",
-                "type": "submit",
-                "classNames": "login__submit",
-                "id": "login-submit"
-            },
-            "data": data,
-            "indent": "        ",
-            "helpers": helpers,
-            "partials": partials,
-            "decorators": container.decorators
-        })) != null ? stack1 : "") + '        <a class="form__link" href="/auth">\u0417\u0430\u0440\u0435\u0433\u0438\u0441\u0442\u0440\u0438\u0440\u043E\u0432\u0430\u0442\u044C\u0441\u044F</a>\r\n    </form>\r\n</div>';
-    },
-    "usePartial": true,
-    "useData": true
-});
-exports.default = templateFunction;
-
-},{"handlebars":"dH8Fg","@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"b3YlF":[function() {},{}],"3pXTa":[function(require,module,exports) {
+},{"../pages/main":"3pXTa","../pages/login":"ijY2Y","../pages/auth":"4Io2Q","../partials/not-found":"6IncN","@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"3pXTa":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _handlebars = require("handlebars");
@@ -13942,7 +13279,397 @@ const templateFunction = (0, _handlebarsDefault.default).template({
 });
 exports.default = templateFunction;
 
-},{"handlebars":"dH8Fg","@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"bCW8m":[function() {},{}],"a3XBs":[function(require,module,exports) {
+},{"handlebars":"dH8Fg","@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"bCW8m":[function() {},{}],"lFCve":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _handlebars = require("handlebars");
+var _handlebarsDefault = parcelHelpers.interopDefault(_handlebars);
+var _tplHbs = require("./tpl.hbs");
+var _tplHbsDefault = parcelHelpers.interopDefault(_tplHbs);
+var _styleScss = require("./style.scss");
+var _mockData = require("../../mock-data");
+(0, _handlebarsDefault.default).registerPartial("listChats", (0, _tplHbsDefault.default));
+const listChats = (props = {
+    chats: (0, _mockData.chats)
+})=>(0, _tplHbsDefault.default)(props);
+exports.default = listChats;
+
+},{"handlebars":"dH8Fg","./tpl.hbs":"9wPf0","./style.scss":"9Xr8Q","../../mock-data":"lIOBJ","@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"9wPf0":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _handlebars = require("handlebars");
+var _handlebarsDefault = parcelHelpers.interopDefault(_handlebars);
+const templateFunction = (0, _handlebarsDefault.default).template({
+    "1": function(container, depth0, helpers, partials, data) {
+        var stack1, lookupProperty = container.lookupProperty || function(parent, propertyName) {
+            if (Object.prototype.hasOwnProperty.call(parent, propertyName)) return parent[propertyName];
+            return undefined;
+        };
+        return (stack1 = container.invokePartial(lookupProperty(partials, "chat"), depth0, {
+            "name": "chat",
+            "hash": {
+                "avatar": depth0 != null ? lookupProperty(depth0, "avatar") : depth0,
+                "message": depth0 != null ? lookupProperty(depth0, "dataLastMessage") : depth0,
+                "name": depth0 != null ? lookupProperty(depth0, "name") : depth0
+            },
+            "data": data,
+            "indent": "       ",
+            "helpers": helpers,
+            "partials": partials,
+            "decorators": container.decorators
+        })) != null ? stack1 : "";
+    },
+    "compiler": [
+        8,
+        ">= 4.3.0"
+    ],
+    "main": function(container, depth0, helpers, partials, data) {
+        var stack1, lookupProperty = container.lookupProperty || function(parent, propertyName) {
+            if (Object.prototype.hasOwnProperty.call(parent, propertyName)) return parent[propertyName];
+            return undefined;
+        };
+        return '<div class="listChats  ">\r\n' + ((stack1 = lookupProperty(helpers, "each").call(depth0 != null ? depth0 : container.nullContext || {}, depth0 != null ? lookupProperty(depth0, "chats") : depth0, {
+            "name": "each",
+            "hash": {},
+            "fn": container.program(1, data, 0),
+            "inverse": container.noop,
+            "data": data,
+            "loc": {
+                "start": {
+                    "line": 2,
+                    "column": 4
+                },
+                "end": {
+                    "line": 4,
+                    "column": 13
+                }
+            }
+        })) != null ? stack1 : "") + "</div>";
+    },
+    "usePartial": true,
+    "useData": true
+});
+exports.default = templateFunction;
+
+},{"handlebars":"dH8Fg","@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"9Xr8Q":[function() {},{}],"ijY2Y":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _handlebars = require("handlebars");
+var _handlebarsDefault = parcelHelpers.interopDefault(_handlebars);
+var _tplHbs = require("./tpl.hbs");
+var _tplHbsDefault = parcelHelpers.interopDefault(_tplHbs);
+var _styleScss = require("./style.scss");
+(0, _handlebarsDefault.default).registerPartial("login", (0, _tplHbsDefault.default));
+const login = (props = {
+    label: "\u0412\u0445\u043E\u0434"
+})=>(0, _tplHbsDefault.default)(props);
+exports.default = login;
+
+},{"handlebars":"dH8Fg","./tpl.hbs":"8acqY","./style.scss":"b3YlF","@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"8acqY":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _handlebars = require("handlebars");
+var _handlebarsDefault = parcelHelpers.interopDefault(_handlebars);
+const templateFunction = (0, _handlebarsDefault.default).template({
+    "compiler": [
+        8,
+        ">= 4.3.0"
+    ],
+    "main": function(container, depth0, helpers, partials, data) {
+        var stack1, helper, lookupProperty = container.lookupProperty || function(parent, propertyName) {
+            if (Object.prototype.hasOwnProperty.call(parent, propertyName)) return parent[propertyName];
+            return undefined;
+        };
+        return '<div class="login popup">\r\n    <form class="login__form form">\r\n        <p class="form__title">' + container.escapeExpression((helper = (helper = lookupProperty(helpers, "label") || (depth0 != null ? lookupProperty(depth0, "label") : depth0)) != null ? helper : container.hooks.helperMissing, typeof helper === "function" ? helper.call(depth0 != null ? depth0 : container.nullContext || {}, {
+            "name": "label",
+            "hash": {},
+            "data": data,
+            "loc": {
+                "start": {
+                    "line": 3,
+                    "column": 31
+                },
+                "end": {
+                    "line": 3,
+                    "column": 40
+                }
+            }
+        }) : helper)) + '</p>\r\n\r\n        <label class="form__label" for="login">\u041B\u043E\u0433\u0438\u043D</label>\r\n' + ((stack1 = container.invokePartial(lookupProperty(partials, "input"), depth0, {
+            "name": "input",
+            "hash": {
+                "value": "anton",
+                "type": "text",
+                "classNames": "form__input",
+                "name": "login",
+                "id": "login-input"
+            },
+            "data": data,
+            "indent": "        ",
+            "helpers": helpers,
+            "partials": partials,
+            "decorators": container.decorators
+        })) != null ? stack1 : "") + '        <span class="error hidden ">\u041D\u0435\u0432\u0435\u0440\u043D\u044B\u0439 \u043B\u043E\u0433\u0438\u043D</span>\r\n\r\n        <label class="form__label" for="password">\u041F\u0430\u0440\u043E\u043B\u044C</label>\r\n' + ((stack1 = container.invokePartial(lookupProperty(partials, "input"), depth0, {
+            "name": "input",
+            "hash": {
+                "value": "123456",
+                "minlength": "2",
+                "type": "password",
+                "classNames": "form__input",
+                "name": "password",
+                "id": "password-input"
+            },
+            "data": data,
+            "indent": "        ",
+            "helpers": helpers,
+            "partials": partials,
+            "decorators": container.decorators
+        })) != null ? stack1 : "") + '        <span class="form__error hidden">\u041D\u0435\u0432\u0435\u0440\u043D\u044B\u0439 \u043F\u0430\u0440\u043E\u043B\u044C</span>\r\n\r\n' + ((stack1 = container.invokePartial(lookupProperty(partials, "button"), depth0, {
+            "name": "button",
+            "hash": {
+                "label": "\u0412\u043E\u0439\u0442\u0438",
+                "type": "submit",
+                "classNames": "login__submit",
+                "id": "login-submit"
+            },
+            "data": data,
+            "indent": "        ",
+            "helpers": helpers,
+            "partials": partials,
+            "decorators": container.decorators
+        })) != null ? stack1 : "") + '        <a class="form__link" href="/auth">\u0417\u0430\u0440\u0435\u0433\u0438\u0441\u0442\u0440\u0438\u0440\u043E\u0432\u0430\u0442\u044C\u0441\u044F</a>\r\n    </form>\r\n</div>';
+    },
+    "usePartial": true,
+    "useData": true
+});
+exports.default = templateFunction;
+
+},{"handlebars":"dH8Fg","@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"b3YlF":[function() {},{}],"4Io2Q":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _handlebars = require("handlebars");
+var _handlebarsDefault = parcelHelpers.interopDefault(_handlebars);
+var _tplHbs = require("./tpl.hbs");
+var _tplHbsDefault = parcelHelpers.interopDefault(_tplHbs);
+var _styleScss = require("./style.scss");
+(0, _handlebarsDefault.default).registerPartial("auth", (0, _tplHbsDefault.default));
+const auth = (props = {
+    label: "\u0420\u0435\u0433\u0438\u0441\u0442\u0440\u0430\u0446\u0438\u044F"
+})=>(0, _tplHbsDefault.default)(props);
+exports.default = auth;
+
+},{"handlebars":"dH8Fg","./tpl.hbs":"9TeBW","./style.scss":"lah5m","@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"9TeBW":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _handlebars = require("handlebars");
+var _handlebarsDefault = parcelHelpers.interopDefault(_handlebars);
+const templateFunction = (0, _handlebarsDefault.default).template({
+    "compiler": [
+        8,
+        ">= 4.3.0"
+    ],
+    "main": function(container, depth0, helpers, partials, data) {
+        var stack1, helper, lookupProperty = container.lookupProperty || function(parent, propertyName) {
+            if (Object.prototype.hasOwnProperty.call(parent, propertyName)) return parent[propertyName];
+            return undefined;
+        };
+        return '<div class="auth popup">\r\n    <form class="auth__form form">\r\n        <p class="form__title">' + container.escapeExpression((helper = (helper = lookupProperty(helpers, "label") || (depth0 != null ? lookupProperty(depth0, "label") : depth0)) != null ? helper : container.hooks.helperMissing, typeof helper === "function" ? helper.call(depth0 != null ? depth0 : container.nullContext || {}, {
+            "name": "label",
+            "hash": {},
+            "data": data,
+            "loc": {
+                "start": {
+                    "line": 3,
+                    "column": 31
+                },
+                "end": {
+                    "line": 3,
+                    "column": 40
+                }
+            }
+        }) : helper)) + '</p>\r\n\r\n        <label class="form__label" for="auth-email">\u041F\u043E\u0447\u0442\u0430</label>\r\n' + ((stack1 = container.invokePartial(lookupProperty(partials, "input"), depth0, {
+            "name": "input",
+            "hash": {
+                "type": "email",
+                "classNames": "form__input",
+                "name": "auth-email",
+                "id": "auth-email"
+            },
+            "data": data,
+            "indent": "        ",
+            "helpers": helpers,
+            "partials": partials,
+            "decorators": container.decorators
+        })) != null ? stack1 : "") + '\r\n        <label class="form__label" for="auth-login">\u041B\u043E\u0433\u0438\u043D</label>\r\n' + ((stack1 = container.invokePartial(lookupProperty(partials, "input"), depth0, {
+            "name": "input",
+            "hash": {
+                "minlength": "2",
+                "type": "text",
+                "classNames": "form__input",
+                "name": "auth-login",
+                "id": "auth-login"
+            },
+            "data": data,
+            "indent": "        ",
+            "helpers": helpers,
+            "partials": partials,
+            "decorators": container.decorators
+        })) != null ? stack1 : "") + '\r\n        <label class="form__label" for="auth-name">\u0418\u043C\u044F</label>\r\n' + ((stack1 = container.invokePartial(lookupProperty(partials, "input"), depth0, {
+            "name": "input",
+            "hash": {
+                "minlength": "2",
+                "type": "text",
+                "classNames": "form__input",
+                "name": "auth-name",
+                "id": "auth-name"
+            },
+            "data": data,
+            "indent": "        ",
+            "helpers": helpers,
+            "partials": partials,
+            "decorators": container.decorators
+        })) != null ? stack1 : "") + '\r\n         <label class="form__label" for="auth-surname">\u0424\u0430\u043C\u0438\u043B\u0438\u044F</label>\r\n' + ((stack1 = container.invokePartial(lookupProperty(partials, "input"), depth0, {
+            "name": "input",
+            "hash": {
+                "minlength": "2",
+                "type": "text",
+                "classNames": "form__input",
+                "name": "auth-surname",
+                "id": "auth-surname"
+            },
+            "data": data,
+            "indent": "        ",
+            "helpers": helpers,
+            "partials": partials,
+            "decorators": container.decorators
+        })) != null ? stack1 : "") + '\r\n        <label class="form__label" for="auth-phone">\u0422\u0435\u043B\u0435\u0444\u043E\u043D</label>\r\n' + ((stack1 = container.invokePartial(lookupProperty(partials, "input"), depth0, {
+            "name": "input",
+            "hash": {
+                "required": "required",
+                "type": "tel",
+                "classNames": "form__input",
+                "name": "auth-phone",
+                "id": "auth-phone"
+            },
+            "data": data,
+            "indent": "        ",
+            "helpers": helpers,
+            "partials": partials,
+            "decorators": container.decorators
+        })) != null ? stack1 : "") + '\r\n\r\n        <label class="form__label" for="auth-password">\u041F\u0430\u0440\u043E\u043B\u044C</label>\r\n' + ((stack1 = container.invokePartial(lookupProperty(partials, "input"), depth0, {
+            "name": "input",
+            "hash": {
+                "minlength": "2",
+                "type": "password",
+                "classNames": "form__input",
+                "name": "auth-password",
+                "id": "auth-password"
+            },
+            "data": data,
+            "indent": "        ",
+            "helpers": helpers,
+            "partials": partials,
+            "decorators": container.decorators
+        })) != null ? stack1 : "") + '\r\n        <label class="form__label" for="auth-password-more">\u041F\u0430\u0440\u043E\u043B\u044C (\u0435\u0449\u0435 \u0440\u0430\u0437)</label>\r\n' + ((stack1 = container.invokePartial(lookupProperty(partials, "input"), depth0, {
+            "name": "input",
+            "hash": {
+                "minlength": "2",
+                "type": "password",
+                "classNames": "form__input",
+                "name": "auth-password-more",
+                "id": "auth-password-more"
+            },
+            "data": data,
+            "indent": "        ",
+            "helpers": helpers,
+            "partials": partials,
+            "decorators": container.decorators
+        })) != null ? stack1 : "") + '        <span class="form__error hidden">\u041F\u0430\u0440\u043E\u043B\u0438 \u043D\u0435 \u0441\u043E\u0432\u043F\u0430\u0434\u0430\u044E\u0442</span>\r\n\r\n' + ((stack1 = container.invokePartial(lookupProperty(partials, "button"), depth0, {
+            "name": "button",
+            "hash": {
+                "label": "\u0417\u0430\u0440\u0435\u0433\u0438\u0441\u0442\u0440\u0438\u0440\u043E\u0432\u0430\u0442\u044C\u0441\u044F",
+                "type": "submit",
+                "classNames": "auth__submit",
+                "id": "auth-submit"
+            },
+            "data": data,
+            "indent": "        ",
+            "helpers": helpers,
+            "partials": partials,
+            "decorators": container.decorators
+        })) != null ? stack1 : "") + '        <a class="form__link" href="/login">\u0412\u043E\u0439\u0442\u0438</a>\r\n    </form>\r\n</div>';
+    },
+    "usePartial": true,
+    "useData": true
+});
+exports.default = templateFunction;
+
+},{"handlebars":"dH8Fg","@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"lah5m":[function() {},{}],"6IncN":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _handlebars = require("handlebars");
+var _handlebarsDefault = parcelHelpers.interopDefault(_handlebars);
+var _tplHbs = require("./tpl.hbs");
+var _tplHbsDefault = parcelHelpers.interopDefault(_tplHbs);
+var _styleScss = require("./style.scss");
+(0, _handlebarsDefault.default).registerPartial("notFound", (0, _tplHbsDefault.default));
+const notFound = (props = {
+    type: "text"
+})=>(0, _tplHbsDefault.default)(props);
+exports.default = notFound;
+
+},{"handlebars":"dH8Fg","./tpl.hbs":"7dwqg","./style.scss":"fa3K3","@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"7dwqg":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _handlebars = require("handlebars");
+var _handlebarsDefault = parcelHelpers.interopDefault(_handlebars);
+const templateFunction = (0, _handlebarsDefault.default).template({
+    "compiler": [
+        8,
+        ">= 4.3.0"
+    ],
+    "main": function(container, depth0, helpers, partials, data) {
+        return '<div class="notFound">\r\n    <h1 class="notFound__http-status ">404</h1>\r\n    <p class="notFound__description">\u0423\u043F\u0441, \u0442\u0430\u043A\u043E\u0439 \u0441\u0442\u0440\u0430\u043D\u0438\u0447\u043A\u0438 \u043D\u0435 \u0441\u0443\u0449\u0435\u0441\u0442\u0432\u0443\u0435\u0442</p>\r\n    <a href="/" class="notFound__link-back">\u041D\u0430\u0436\u043C\u0438 \u0438 \u044F \u043D\u0430\u043F\u0440\u0430\u0432\u043B\u044E \u0442\u0435\u0431\u044F</a>\r\n</div>';
+    },
+    "useData": true
+});
+exports.default = templateFunction;
+
+},{"handlebars":"dH8Fg","@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"fa3K3":[function() {},{}],"6l1xv":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _config = require("../../assets/config");
+var _processingRouting = require("../../utils/processingRouting");
+var _processingRoutingDefault = parcelHelpers.interopDefault(_processingRouting);
+var _mockData = require("../../mock-data");
+var _main = require("../../pages/main");
+var _mainDefault = parcelHelpers.interopDefault(_main);
+var _listChats = require("../../components/list-chats");
+var _listChatsDefault = parcelHelpers.interopDefault(_listChats);
+var _searchChat = require("../../components/search-chat");
+var _searchChatDefault = parcelHelpers.interopDefault(_searchChat);
+var _profile = require("../../components/profile");
+var _profileDefault = parcelHelpers.interopDefault(_profile);
+var _openProfile = require("../../components/open-profile");
+var _openProfileDefault = parcelHelpers.interopDefault(_openProfile);
+const clbOpenProfile = ()=>{
+    (0, _processingRoutingDefault.default)({
+        ...(0, _config.initialOptionsRouting),
+        main: (0, _mainDefault.default)({
+            isOpenProfile: !(0, _config.isOpenProfile).value,
+            openProfile: (0, _openProfileDefault.default)(),
+            searchChat: (0, _config.isOpenProfile).value ? (0, _searchChatDefault.default)() : null,
+            listChats: (0, _config.isOpenProfile).value ? (0, _listChatsDefault.default)() : null,
+            profile: (0, _profileDefault.default)({
+                ...(0, _mockData.myProfile),
+                isShow: true
+            })
+        })
+    });
+    (0, _config.isOpenProfile).value = !(0, _config.isOpenProfile).value;
+};
+exports.default = clbOpenProfile;
+
+},{"../../assets/config":"2XEyu","../../utils/processingRouting":"kAViS","../../mock-data":"lIOBJ","../../pages/main":"3pXTa","../../components/list-chats":"lFCve","../../components/search-chat":"6tWoC","../../components/profile":"a3XBs","../../components/open-profile":"7tXcl","@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"a3XBs":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _handlebars = require("handlebars");
@@ -14223,7 +13950,7 @@ const templateFunction = (0, _handlebarsDefault.default).template({
             if (Object.prototype.hasOwnProperty.call(parent, propertyName)) return parent[propertyName];
             return undefined;
         };
-        return '<div class="profile border">\r\n    <div class="profile__wrapper-avatar">\r\n        <img src="' + alias4((helper = (helper = lookupProperty(helpers, "avatar") || (depth0 != null ? lookupProperty(depth0, "avatar") : depth0)) != null ? helper : alias2, typeof helper === alias3 ? helper.call(alias1, {
+        return '<div class="profile">\r\n    <div class="profile__wrapper-avatar">\r\n        <img src="' + alias4((helper = (helper = lookupProperty(helpers, "avatar") || (depth0 != null ? lookupProperty(depth0, "avatar") : depth0)) != null ? helper : alias2, typeof helper === alias3 ? helper.call(alias1, {
             "name": "avatar",
             "hash": {},
             "data": data,
@@ -14290,164 +14017,251 @@ const templateFunction = (0, _handlebarsDefault.default).template({
 });
 exports.default = templateFunction;
 
-},{"handlebars":"dH8Fg","@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"3GHRH":[function() {},{}],"aUDy5":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _toggleClassList = require("../../utils/toggleClassList");
-var _toggleClassListDefault = parcelHelpers.interopDefault(_toggleClassList);
-var _constants = require("../../assets/constants");
-function toggleErrorAuth(form, addOrRemove, className) {
-    const $errors = form.querySelectorAll(".form__error");
-    $errors.forEach((error)=>(0, _toggleClassListDefault.default)(error, addOrRemove, className));
-}
-function checkedAuth(data) {
-    return data;
-}
-function compareString(left, right) {
-    return left === right;
-}
-function handlerAuth() {
-    const $form = document.querySelector(".auth__form");
-    if ($form) $form.addEventListener("submit", (e)=>{
-        e.preventDefault();
-        const form = e.target;
-        toggleErrorAuth(form, "add", "hidden");
-        const password = form["auth-password"].value;
-        const morePassword = form["auth-password-more"].value;
-        const isComparePassword = compareString(password, morePassword);
-        if (!isComparePassword) return toggleErrorAuth(form, "remove", "hidden");
-        const dataUser = {
-            email: form["auth-email"].value,
-            login: form["auth-login"].value,
-            name: form["auth-name"].value,
-            surname: form["auth-surname"].value,
-            phone: form["auth-phone"].value
-        };
-        checkedAuth(dataUser);
-        location.assign((0, _constants.localePaths).login);
-    });
-}
-exports.default = handlerAuth;
-
-},{"../../utils/toggleClassList":"k6FBt","../../assets/constants":"6cbiK","@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"k6FBt":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-function toggleClassList(element, addOrRemove, value) {
-    element.classList[addOrRemove](value);
-}
-exports.default = toggleClassList;
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"6cbiK":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "localePaths", ()=>localePaths);
-const localePaths = {
-    login: "/login",
-    auth: "/auth",
-    main: "/main",
-    empty: "/"
-};
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"ka3iV":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-function handlerChangeAvatar(clb) {
-    const $avatar = document.querySelector(".profile__wrapper-avatar");
-    if ($avatar) $avatar.addEventListener("click", ()=>{
-        clb();
-    });
-}
-exports.default = handlerChangeAvatar;
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"kwkcR":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-function handlerChangePassword(clb) {
-    const $changePassword = document.querySelector(".profile__button-change-password");
-    if ($changePassword) $changePassword.addEventListener("click", ()=>{
-        clb();
-    });
-}
-exports.default = handlerChangePassword;
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"b2rUt":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-function handlerChangeProfile(clb) {
-    const $changeProfile = document.querySelector(".profile__change-data");
-    if ($changeProfile) $changeProfile.addEventListener("click", ()=>{
-        clb();
-    });
-}
-exports.default = handlerChangeProfile;
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"lb0pM":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-function handlerChat(clb) {
-    const $activeChat = document.querySelectorAll(".chat__over-click");
-    if ($activeChat) $activeChat.forEach((item)=>{
-        item.addEventListener("click", (e)=>{
-            const { id  } = e.target;
-            const prefix = "-";
-            const indexPrefix = id.indexOf(prefix);
-            const activeChatId = id.slice(indexPrefix + 1);
-            clb(activeChatId);
-        });
-    });
-}
-exports.default = handlerChat;
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"dxUda":[function(require,module,exports) {
+},{"handlebars":"dH8Fg","@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"3GHRH":[function() {},{}],"lLuyM":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _mockData = require("../../mock-data");
-var _toggleClassList = require("../../utils/toggleClassList");
-var _toggleClassListDefault = parcelHelpers.interopDefault(_toggleClassList);
-var _constants = require("../../assets/constants");
-function isAuth(login, password) {
-    return (0, _mockData.existUsers).find((user)=>user.login.toLocaleLowerCase() === login.toLocaleLowerCase() && user.password.toLocaleLowerCase() === password.toLocaleLowerCase());
-}
-function toggleErrorAuth(form, addOrRemove, className) {
-    const $errors = form.querySelectorAll(".form__error");
-    $errors.forEach((error)=>(0, _toggleClassListDefault.default)(error, addOrRemove, className));
-}
-function handlerLogin() {
-    const $form = document.querySelector(".login__form");
-    if ($form) $form.addEventListener("submit", (e)=>{
-        e.preventDefault();
-        const form = e.target;
-        const login = form["login-input"].value;
-        const password = form["password-input"].value;
-        toggleErrorAuth(form, "add", "hidden");
-        isAuth(login, password) ? location.assign((0, _constants.localePaths).main) : toggleErrorAuth(form, "remove", "hidden");
+var _processingRouting = require("../../utils/processingRouting");
+var _processingRoutingDefault = parcelHelpers.interopDefault(_processingRouting);
+var _main = require("../../pages/main");
+var _mainDefault = parcelHelpers.interopDefault(_main);
+var _openProfile = require("../../components/open-profile");
+var _openProfileDefault = parcelHelpers.interopDefault(_openProfile);
+var _searchChat = require("../../components/search-chat");
+var _searchChatDefault = parcelHelpers.interopDefault(_searchChat);
+var _listChats = require("../../components/list-chats");
+var _listChatsDefault = parcelHelpers.interopDefault(_listChats);
+var _activeChat = require("../../components/active-chat");
+var _activeChatDefault = parcelHelpers.interopDefault(_activeChat);
+var _listMessages = require("../../components/list-messages");
+var _listMessagesDefault = parcelHelpers.interopDefault(_listMessages);
+var _parseDate = require("../../utils/parseDate");
+var _parseDateDefault = parcelHelpers.interopDefault(_parseDate);
+var _inputMessage = require("../../components/input-message");
+var _inputMessageDefault = parcelHelpers.interopDefault(_inputMessage);
+var _config = require("../../assets/config");
+const clbActiveChat = (chatId)=>{
+    const changeActiveChats = (0, _mockData.chats).map((chat)=>{
+        const tempChat = Object.assign(chat);
+        tempChat.active = chat.id === +chatId;
+        return tempChat;
     });
-}
-exports.default = handlerLogin;
+    const findChatsOptions = (0, _mockData.activeChatsOptions)().find((item)=>item.id === +chatId);
+    (0, _processingRoutingDefault.default)({
+        ...(0, _config.initialOptionsRouting),
+        main: (0, _mainDefault.default)({
+            openProfile: (0, _openProfileDefault.default)(),
+            searchChat: (0, _searchChatDefault.default)(),
+            listChats: (0, _listChatsDefault.default)({
+                chats: changeActiveChats
+            }),
+            activeChat: findChatsOptions ? (0, _activeChatDefault.default)({
+                linkUser: findChatsOptions.linkUser,
+                messages: (0, _listMessagesDefault.default)({
+                    messages: findChatsOptions.messages,
+                    myId: 1,
+                    dateMessage: (0, _parseDateDefault.default)(new Date(), "dayMonth")
+                }),
+                inputMessage: (0, _inputMessageDefault.default)()
+            }) : null
+        })
+    });
+};
+exports.default = clbActiveChat;
 
-},{"../../mock-data":"lIOBJ","../../utils/toggleClassList":"k6FBt","../../assets/constants":"6cbiK","@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"d8JSr":[function(require,module,exports) {
+},{"../../mock-data":"lIOBJ","../../utils/processingRouting":"kAViS","../../pages/main":"3pXTa","../../components/open-profile":"7tXcl","../../components/search-chat":"6tWoC","../../components/list-chats":"lFCve","../../components/active-chat":"9wGSb","../../components/list-messages":"abrB9","../../utils/parseDate":"4ZLZ4","../../components/input-message":"az4kH","../../assets/config":"2XEyu","@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"9wGSb":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-function handlerOpenProfile(clb) {
-    const $openProfile = document.querySelector(".openProfile__title");
-    if ($openProfile) $openProfile.addEventListener("click", ()=>{
-        clb();
-    });
-}
-exports.default = handlerOpenProfile;
+var _handlebars = require("handlebars");
+var _handlebarsDefault = parcelHelpers.interopDefault(_handlebars);
+var _tplHbs = require("./tpl.hbs");
+var _tplHbsDefault = parcelHelpers.interopDefault(_tplHbs);
+var _styleScss = require("./style.scss");
+(0, _handlebarsDefault.default).registerPartial("activeChat", (0, _tplHbsDefault.default));
+const activeChat = (props = {})=>(0, _tplHbsDefault.default)(props);
+exports.default = activeChat;
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"fU05V":[function(require,module,exports) {
+},{"handlebars":"dH8Fg","./tpl.hbs":"4trw0","./style.scss":"fgcZK","@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"4trw0":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-function handlerSearchProfile(clb) {
-    const $search = document.querySelector(".searchChat__input");
-    if ($search) $search.addEventListener("input", (e)=>{
-        clb(e.target.value);
-    });
-}
-exports.default = handlerSearchProfile;
+var _handlebars = require("handlebars");
+var _handlebarsDefault = parcelHelpers.interopDefault(_handlebars);
+const templateFunction = (0, _handlebarsDefault.default).template({
+    "1": function(container, depth0, helpers, partials, data) {
+        var stack1, lookupProperty = container.lookupProperty || function(parent, propertyName) {
+            if (Object.prototype.hasOwnProperty.call(parent, propertyName)) return parent[propertyName];
+            return undefined;
+        };
+        return '                <img class="activeChat__avatar_image" src="' + container.escapeExpression(container.lambda((stack1 = depth0 != null ? lookupProperty(depth0, "linkUser") : depth0) != null ? lookupProperty(stack1, "avatar") : stack1, depth0)) + '"/>\r\n';
+    },
+    "3": function(container, depth0, helpers, partials, data) {
+        return '                <div class="activeChat__avatar_image"></div>\r\n';
+    },
+    "compiler": [
+        8,
+        ">= 4.3.0"
+    ],
+    "main": function(container, depth0, helpers, partials, data) {
+        var stack1, helper, alias1 = depth0 != null ? depth0 : container.nullContext || {}, alias2 = container.hooks.helperMissing, alias3 = "function", lookupProperty = container.lookupProperty || function(parent, propertyName) {
+            if (Object.prototype.hasOwnProperty.call(parent, propertyName)) return parent[propertyName];
+            return undefined;
+        };
+        return '<div class="activeChat ">\r\n    <div class=" activeChat__header ">\r\n        <div class="activeChat__profile-wrapper">\r\n' + ((stack1 = lookupProperty(helpers, "if").call(alias1, (stack1 = depth0 != null ? lookupProperty(depth0, "linkUser") : depth0) != null ? lookupProperty(stack1, "avatar") : stack1, {
+            "name": "if",
+            "hash": {},
+            "fn": container.program(1, data, 0),
+            "inverse": container.program(3, data, 0),
+            "data": data,
+            "loc": {
+                "start": {
+                    "line": 4,
+                    "column": 12
+                },
+                "end": {
+                    "line": 8,
+                    "column": 19
+                }
+            }
+        })) != null ? stack1 : "") + '            <p class="activeChat__name-profile">' + container.escapeExpression(container.lambda((stack1 = depth0 != null ? lookupProperty(depth0, "linkUser") : depth0) != null ? lookupProperty(stack1, "name") : stack1, depth0)) + '</p>\r\n        </div>\r\n        <div class="activeChat__profile-menu">\r\n            <span class="material-icons">more_vert</span>\r\n        </div>\r\n    </div>\r\n\r\n    <div class="activeChat__messages scroll">\r\n        ' + ((stack1 = (helper = (helper = lookupProperty(helpers, "messages") || (depth0 != null ? lookupProperty(depth0, "messages") : depth0)) != null ? helper : alias2, typeof helper === alias3 ? helper.call(alias1, {
+            "name": "messages",
+            "hash": {},
+            "data": data,
+            "loc": {
+                "start": {
+                    "line": 17,
+                    "column": 8
+                },
+                "end": {
+                    "line": 17,
+                    "column": 22
+                }
+            }
+        }) : helper)) != null ? stack1 : "") + '\r\n    </div>\r\n\r\n    <div class="active__send-messages">\r\n        ' + ((stack1 = (helper = (helper = lookupProperty(helpers, "inputMessage") || (depth0 != null ? lookupProperty(depth0, "inputMessage") : depth0)) != null ? helper : alias2, typeof helper === alias3 ? helper.call(alias1, {
+            "name": "inputMessage",
+            "hash": {},
+            "data": data,
+            "loc": {
+                "start": {
+                    "line": 21,
+                    "column": 8
+                },
+                "end": {
+                    "line": 21,
+                    "column": 26
+                }
+            }
+        }) : helper)) != null ? stack1 : "") + "\r\n    </div>\r\n</div>";
+    },
+    "useData": true
+});
+exports.default = templateFunction;
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"4ZLZ4":[function(require,module,exports) {
+},{"handlebars":"dH8Fg","@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"fgcZK":[function() {},{}],"abrB9":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _handlebars = require("handlebars");
+var _handlebarsDefault = parcelHelpers.interopDefault(_handlebars);
+var _tplHbs = require("./tpl.hbs");
+var _tplHbsDefault = parcelHelpers.interopDefault(_tplHbs);
+var _styleScss = require("./style.scss");
+(0, _handlebarsDefault.default).registerPartial("listMessages", (0, _tplHbsDefault.default));
+const listMessages = (props = {})=>(0, _tplHbsDefault.default)(props);
+exports.default = listMessages;
+
+},{"handlebars":"dH8Fg","./tpl.hbs":"7zDED","./style.scss":"6lmRK","@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"7zDED":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _handlebars = require("handlebars");
+var _handlebarsDefault = parcelHelpers.interopDefault(_handlebars);
+const templateFunction = (0, _handlebarsDefault.default).template({
+    "1": function(container, depth0, helpers, partials, data, blockParams, depths) {
+        var stack1, lookupProperty = container.lookupProperty || function(parent, propertyName) {
+            if (Object.prototype.hasOwnProperty.call(parent, propertyName)) return parent[propertyName];
+            return undefined;
+        };
+        return "        <div\r\n" + ((stack1 = (lookupProperty(helpers, "ifEqualsId") || depth0 && lookupProperty(depth0, "ifEqualsId") || container.hooks.helperMissing).call(depth0 != null ? depth0 : container.nullContext || {}, depths[1] != null ? lookupProperty(depths[1], "myId") : depths[1], (stack1 = depth0 != null ? lookupProperty(depth0, "author") : depth0) != null ? lookupProperty(stack1, "id") : stack1, {
+            "name": "ifEqualsId",
+            "hash": {},
+            "fn": container.program(2, data, 0, blockParams, depths),
+            "inverse": container.program(4, data, 0, blockParams, depths),
+            "data": data,
+            "loc": {
+                "start": {
+                    "line": 7,
+                    "column": 12
+                },
+                "end": {
+                    "line": 11,
+                    "column": 27
+                }
+            }
+        })) != null ? stack1 : "") + "        >\r\n" + ((stack1 = container.invokePartial(lookupProperty(partials, "message"), depth0, {
+            "name": "message",
+            "hash": {
+                "myId": depths[1] != null ? lookupProperty(depths[1], "myId") : depths[1],
+                "content": depth0
+            },
+            "data": data,
+            "indent": "            ",
+            "helpers": helpers,
+            "partials": partials,
+            "decorators": container.decorators
+        })) != null ? stack1 : "") + "        </div>\r\n";
+    },
+    "2": function(container, depth0, helpers, partials, data) {
+        return '            class=" listMessages__message listMessages__message_my "\r\n';
+    },
+    "4": function(container, depth0, helpers, partials, data) {
+        return '            class="listMessages__message "\r\n';
+    },
+    "compiler": [
+        8,
+        ">= 4.3.0"
+    ],
+    "main": function(container, depth0, helpers, partials, data, blockParams, depths) {
+        var stack1, helper, alias1 = depth0 != null ? depth0 : container.nullContext || {}, lookupProperty = container.lookupProperty || function(parent, propertyName) {
+            if (Object.prototype.hasOwnProperty.call(parent, propertyName)) return parent[propertyName];
+            return undefined;
+        };
+        return '<div class="listMessages ">\r\n    <p class="listMessages__date-title">\r\n        ' + container.escapeExpression((helper = (helper = lookupProperty(helpers, "dateMessage") || (depth0 != null ? lookupProperty(depth0, "dateMessage") : depth0)) != null ? helper : container.hooks.helperMissing, typeof helper === "function" ? helper.call(alias1, {
+            "name": "dateMessage",
+            "hash": {},
+            "data": data,
+            "loc": {
+                "start": {
+                    "line": 3,
+                    "column": 8
+                },
+                "end": {
+                    "line": 3,
+                    "column": 23
+                }
+            }
+        }) : helper)) + "\r\n    </p>\r\n" + ((stack1 = lookupProperty(helpers, "each").call(alias1, depth0 != null ? lookupProperty(depth0, "messages") : depth0, {
+            "name": "each",
+            "hash": {},
+            "fn": container.program(1, data, 0, blockParams, depths),
+            "inverse": container.noop,
+            "data": data,
+            "loc": {
+                "start": {
+                    "line": 5,
+                    "column": 4
+                },
+                "end": {
+                    "line": 15,
+                    "column": 13
+                }
+            }
+        })) != null ? stack1 : "") + "</div>";
+    },
+    "usePartial": true,
+    "useData": true,
+    "useDepths": true
+});
+exports.default = templateFunction;
+
+},{"handlebars":"dH8Fg","@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"6lmRK":[function() {},{}],"4ZLZ4":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 const months = [
@@ -14474,145 +14288,419 @@ function parseDate(value, type = "dayMonth") {
 }
 exports.default = parseDate;
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"kAViS":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"az4kH":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-var _constants = require("../assets/constants");
-var _empty = require("../layouts/empty");
-var _emptyDefault = parcelHelpers.interopDefault(_empty);
-var _main = require("../layouts/main");
+var _handlebars = require("handlebars");
+var _handlebarsDefault = parcelHelpers.interopDefault(_handlebars);
+var _tplHbs = require("./tpl.hbs");
+var _tplHbsDefault = parcelHelpers.interopDefault(_tplHbs);
+var _styleScss = require("./style.scss");
+(0, _handlebarsDefault.default).registerPartial("inputMessage", (0, _tplHbsDefault.default));
+const inputMessage = (props = {})=>(0, _tplHbsDefault.default)(props);
+exports.default = inputMessage;
+
+},{"handlebars":"dH8Fg","./tpl.hbs":"gSOCC","./style.scss":"fspCa","@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"gSOCC":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _handlebars = require("handlebars");
+var _handlebarsDefault = parcelHelpers.interopDefault(_handlebars);
+const templateFunction = (0, _handlebarsDefault.default).template({
+    "compiler": [
+        8,
+        ">= 4.3.0"
+    ],
+    "main": function(container, depth0, helpers, partials, data) {
+        var stack1, lookupProperty = container.lookupProperty || function(parent, propertyName) {
+            if (Object.prototype.hasOwnProperty.call(parent, propertyName)) return parent[propertyName];
+            return undefined;
+        };
+        return '<div class="inputMessage">\r\n    <form class="inputMessage__form">\r\n\r\n        <label class="inputMessage__attach-file-wrapper ">\r\n            <input type="file" class="inputMessage__input-file">\r\n            <span class="inputMessage__input-file-icon material-icons ">attach_file</span>\r\n        </label>\r\n\r\n' + ((stack1 = container.invokePartial(lookupProperty(partials, "input"), depth0, {
+            "name": "input",
+            "hash": {
+                "classNames": "inputMessage__input-message",
+                "type": "text"
+            },
+            "data": data,
+            "indent": "    ",
+            "helpers": helpers,
+            "partials": partials,
+            "decorators": container.decorators
+        })) != null ? stack1 : "") + '\r\n    <button type="submit" class="inputMessage__button-submit">\r\n        <span class="inputMessage__button-submit-icon material-icons">send</span>\r\n    </button>\r\n    </form>\r\n</div>';
+    },
+    "usePartial": true,
+    "useData": true
+});
+exports.default = templateFunction;
+
+},{"handlebars":"dH8Fg","@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"fspCa":[function() {},{}],"25EwJ":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _openProfile = require("../../components/open-profile");
+var _openProfileDefault = parcelHelpers.interopDefault(_openProfile);
+var _searchChat = require("../../components/search-chat");
+var _searchChatDefault = parcelHelpers.interopDefault(_searchChat);
+var _listChats = require("../../components/list-chats");
+var _listChatsDefault = parcelHelpers.interopDefault(_listChats);
+var _main = require("../../pages/main");
 var _mainDefault = parcelHelpers.interopDefault(_main);
-var _render = require("./render");
-var _renderDefault = parcelHelpers.interopDefault(_render);
-const { pathname  } = window.location;
-const $root = document.getElementById("root");
-function processingRouting(pages) {
-    const { main , auth , login , notFound ,  } = pages;
-    switch(pathname){
-        case (0, _constants.localePaths).login:
-            (0, _renderDefault.default)($root, (0, _emptyDefault.default), login);
-            break;
-        case (0, _constants.localePaths).auth:
-            (0, _renderDefault.default)($root, (0, _emptyDefault.default), auth);
-            break;
-        case (0, _constants.localePaths).main:
-            (0, _renderDefault.default)($root, (0, _mainDefault.default), main);
-            break;
-        case (0, _constants.localePaths).empty:
-            (0, _renderDefault.default)($root, (0, _emptyDefault.default), login);
-            break;
-        default:
-            (0, _renderDefault.default)($root, (0, _emptyDefault.default), notFound);
-            break;
-    }
-}
-exports.default = processingRouting;
-
-},{"../assets/constants":"6cbiK","../layouts/empty":"k1VEM","../layouts/main":"jvyHR","./render":"9Mplm","@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"k1VEM":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _handlebars = require("handlebars");
-var _handlebarsDefault = parcelHelpers.interopDefault(_handlebars);
-var _tplHbs = require("./tpl.hbs");
-var _tplHbsDefault = parcelHelpers.interopDefault(_tplHbs);
-var _styleScss = require("./style.scss");
-(0, _handlebarsDefault.default).registerPartial("emptyLayout", (0, _tplHbsDefault.default));
-const emptyLayout = (props = {})=>(0, _tplHbsDefault.default)(props);
-exports.default = emptyLayout;
-
-},{"handlebars":"dH8Fg","./tpl.hbs":"g6li9","./style.scss":"8xQLq","@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"g6li9":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _handlebars = require("handlebars");
-var _handlebarsDefault = parcelHelpers.interopDefault(_handlebars);
-const templateFunction = (0, _handlebarsDefault.default).template({
-    "compiler": [
-        8,
-        ">= 4.3.0"
-    ],
-    "main": function(container, depth0, helpers, partials, data) {
-        var stack1, helper, lookupProperty = container.lookupProperty || function(parent, propertyName) {
-            if (Object.prototype.hasOwnProperty.call(parent, propertyName)) return parent[propertyName];
-            return undefined;
-        };
-        return '<div class="empty-layout">\r\n    ' + ((stack1 = (helper = (helper = lookupProperty(helpers, "content") || (depth0 != null ? lookupProperty(depth0, "content") : depth0)) != null ? helper : container.hooks.helperMissing, typeof helper === "function" ? helper.call(depth0 != null ? depth0 : container.nullContext || {}, {
-            "name": "content",
-            "hash": {},
-            "data": data,
-            "loc": {
-                "start": {
-                    "line": 2,
-                    "column": 4
-                },
-                "end": {
-                    "line": 2,
-                    "column": 17
-                }
-            }
-        }) : helper)) != null ? stack1 : "") + "\r\n</div>";
-    },
-    "useData": true
-});
-exports.default = templateFunction;
-
-},{"handlebars":"dH8Fg","@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"8xQLq":[function() {},{}],"jvyHR":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _handlebars = require("handlebars");
-var _handlebarsDefault = parcelHelpers.interopDefault(_handlebars);
-var _tplHbs = require("./tpl.hbs");
-var _tplHbsDefault = parcelHelpers.interopDefault(_tplHbs);
-var _styleScss = require("./style.scss");
-(0, _handlebarsDefault.default).registerPartial("mainLayout", (0, _tplHbsDefault.default));
-const mainLayout = (props = {})=>(0, _tplHbsDefault.default)(props);
-exports.default = mainLayout;
-
-},{"handlebars":"dH8Fg","./tpl.hbs":"891B0","./style.scss":"5WfLr","@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"891B0":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _handlebars = require("handlebars");
-var _handlebarsDefault = parcelHelpers.interopDefault(_handlebars);
-const templateFunction = (0, _handlebarsDefault.default).template({
-    "compiler": [
-        8,
-        ">= 4.3.0"
-    ],
-    "main": function(container, depth0, helpers, partials, data) {
-        var stack1, helper, lookupProperty = container.lookupProperty || function(parent, propertyName) {
-            if (Object.prototype.hasOwnProperty.call(parent, propertyName)) return parent[propertyName];
-            return undefined;
-        };
-        return '<div class="main-layout">\r\n    ' + ((stack1 = (helper = (helper = lookupProperty(helpers, "content") || (depth0 != null ? lookupProperty(depth0, "content") : depth0)) != null ? helper : container.hooks.helperMissing, typeof helper === "function" ? helper.call(depth0 != null ? depth0 : container.nullContext || {}, {
-            "name": "content",
-            "hash": {},
-            "data": data,
-            "loc": {
-                "start": {
-                    "line": 2,
-                    "column": 4
-                },
-                "end": {
-                    "line": 2,
-                    "column": 17
-                }
-            }
-        }) : helper)) != null ? stack1 : "") + "\r\n</div>";
-    },
-    "useData": true
-});
-exports.default = templateFunction;
-
-},{"handlebars":"dH8Fg","@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"5WfLr":[function() {},{}],"9Mplm":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-function render(root, layout, element) {
-    root.innerHTML = layout({
-        content: element
+var _processingRouting = require("../../utils/processingRouting");
+var _processingRoutingDefault = parcelHelpers.interopDefault(_processingRouting);
+var _config = require("../../assets/config");
+var _mockData = require("../../mock-data");
+const clbSearchChats = (searchText)=>{
+    const includesName = (chat)=>chat.name.toLowerCase().includes(searchText.toLowerCase());
+    const findChats = (0, _mockData.chats).filter(includesName);
+    (0, _processingRoutingDefault.default)({
+        ...(0, _config.initialOptionsRouting),
+        main: (0, _mainDefault.default)({
+            openProfile: (0, _openProfileDefault.default)(),
+            searchChat: (0, _searchChatDefault.default)({
+                currentValue: searchText
+            }),
+            listChats: (0, _listChatsDefault.default)({
+                chats: findChats
+            })
+        })
     });
-}
-exports.default = render;
+};
+exports.default = clbSearchChats;
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"6OnVz":[function(require,module,exports) {
+},{"../../components/open-profile":"7tXcl","../../components/search-chat":"6tWoC","../../components/list-chats":"lFCve","../../pages/main":"3pXTa","../../utils/processingRouting":"kAViS","../../assets/config":"2XEyu","../../mock-data":"lIOBJ","@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"01o0r":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _processingRouting = require("../../utils/processingRouting");
+var _processingRoutingDefault = parcelHelpers.interopDefault(_processingRouting);
+var _config = require("../../assets/config");
+var _main = require("../../pages/main");
+var _mainDefault = parcelHelpers.interopDefault(_main);
+var _openProfile = require("../../components/open-profile");
+var _openProfileDefault = parcelHelpers.interopDefault(_openProfile);
+var _profile = require("../../components/profile");
+var _profileDefault = parcelHelpers.interopDefault(_profile);
+var _mockData = require("../../mock-data");
+const clbChangeProfile = ()=>{
+    (0, _processingRoutingDefault.default)({
+        ...(0, _config.initialOptionsRouting),
+        main: (0, _mainDefault.default)({
+            isOpenProfile: true,
+            openProfile: (0, _openProfileDefault.default)(),
+            searchChat: null,
+            listChats: null,
+            profile: (0, _profileDefault.default)({
+                ...(0, _mockData.myProfile),
+                isShow: false
+            })
+        })
+    });
+};
+exports.default = clbChangeProfile;
+
+},{"../../utils/processingRouting":"kAViS","../../assets/config":"2XEyu","../../pages/main":"3pXTa","../../components/open-profile":"7tXcl","../../components/profile":"a3XBs","../../mock-data":"lIOBJ","@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"yvzGI":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _processingRouting = require("../../utils/processingRouting");
+var _processingRoutingDefault = parcelHelpers.interopDefault(_processingRouting);
+var _config = require("../../assets/config");
+var _main = require("../../pages/main");
+var _mainDefault = parcelHelpers.interopDefault(_main);
+var _openProfile = require("../../components/open-profile");
+var _openProfileDefault = parcelHelpers.interopDefault(_openProfile);
+var _profile = require("../../components/profile");
+var _profileDefault = parcelHelpers.interopDefault(_profile);
+var _mockData = require("../../mock-data");
+const clbChangePassword = ()=>{
+    (0, _processingRoutingDefault.default)({
+        ...(0, _config.initialOptionsRouting),
+        main: (0, _mainDefault.default)({
+            isOpenProfile: true,
+            openProfile: (0, _openProfileDefault.default)(),
+            searchChat: null,
+            listChats: null,
+            profile: (0, _profileDefault.default)({
+                ...(0, _mockData.myProfile),
+                isShow: false,
+                changePassword: true,
+                oldPassword: "12456"
+            })
+        })
+    });
+};
+exports.default = clbChangePassword;
+
+},{"../../utils/processingRouting":"kAViS","../../assets/config":"2XEyu","../../pages/main":"3pXTa","../../components/open-profile":"7tXcl","../../components/profile":"a3XBs","../../mock-data":"lIOBJ","@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"bJXU4":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _processingRouting = require("../../utils/processingRouting");
+var _processingRoutingDefault = parcelHelpers.interopDefault(_processingRouting);
+var _config = require("../../assets/config");
+var _main = require("../../pages/main");
+var _mainDefault = parcelHelpers.interopDefault(_main);
+var _openProfile = require("../../components/open-profile");
+var _openProfileDefault = parcelHelpers.interopDefault(_openProfile);
+var _profile = require("../../components/profile");
+var _profileDefault = parcelHelpers.interopDefault(_profile);
+var _mockData = require("../../mock-data");
+var _inputFile = require("../../partials/input-file");
+var _inputFileDefault = parcelHelpers.interopDefault(_inputFile);
+const clbChangeAvatar = ()=>{
+    (0, _processingRoutingDefault.default)({
+        ...(0, _config.initialOptionsRouting),
+        main: (0, _mainDefault.default)({
+            isOpenProfile: true,
+            openProfile: (0, _openProfileDefault.default)(),
+            searchChat: null,
+            listChats: null,
+            profile: (0, _profileDefault.default)({
+                ...(0, _mockData.myProfile),
+                isShow: true,
+                inputFile: (0, _inputFileDefault.default)({
+                    titleError: "\u041E\u0448\u0438\u0431\u043A\u0430, \u043F\u043E\u043F\u0440\u043E\u0431\u0443\u0439\u0442\u0435 \u0435\u0449\u0435 \u0440\u0430\u0437\u043E\u043A"
+                })
+            })
+        })
+    });
+};
+exports.default = clbChangeAvatar;
+
+},{"../../utils/processingRouting":"kAViS","../../assets/config":"2XEyu","../../pages/main":"3pXTa","../../components/open-profile":"7tXcl","../../components/profile":"a3XBs","../../mock-data":"lIOBJ","../../partials/input-file":"2Hbcv","@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"2Hbcv":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _handlebars = require("handlebars");
+var _handlebarsDefault = parcelHelpers.interopDefault(_handlebars);
+var _tplHbs = require("./tpl.hbs");
+var _tplHbsDefault = parcelHelpers.interopDefault(_tplHbs);
+var _styleScss = require("./style.scss");
+(0, _handlebarsDefault.default).registerPartial("inputFile", (0, _tplHbsDefault.default));
+const inputFile = (props = {
+    type: "text"
+})=>(0, _tplHbsDefault.default)(props);
+exports.default = inputFile;
+
+},{"handlebars":"dH8Fg","./tpl.hbs":"ddkme","./style.scss":"6Kqxf","@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"ddkme":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _handlebars = require("handlebars");
+var _handlebarsDefault = parcelHelpers.interopDefault(_handlebars);
+const templateFunction = (0, _handlebarsDefault.default).template({
+    "1": function(container, depth0, helpers, partials, data) {
+        return "input-file__title_error";
+    },
+    "3": function(container, depth0, helpers, partials, data) {
+        var helper, lookupProperty = container.lookupProperty || function(parent, propertyName) {
+            if (Object.prototype.hasOwnProperty.call(parent, propertyName)) return parent[propertyName];
+            return undefined;
+        };
+        return container.escapeExpression((helper = (helper = lookupProperty(helpers, "titleSuccess") || (depth0 != null ? lookupProperty(depth0, "titleSuccess") : depth0)) != null ? helper : container.hooks.helperMissing, typeof helper === "function" ? helper.call(depth0 != null ? depth0 : container.nullContext || {}, {
+            "name": "titleSuccess",
+            "hash": {},
+            "data": data,
+            "loc": {
+                "start": {
+                    "line": 4,
+                    "column": 32
+                },
+                "end": {
+                    "line": 4,
+                    "column": 48
+                }
+            }
+        }) : helper));
+    },
+    "5": function(container, depth0, helpers, partials, data) {
+        var helper, lookupProperty = container.lookupProperty || function(parent, propertyName) {
+            if (Object.prototype.hasOwnProperty.call(parent, propertyName)) return parent[propertyName];
+            return undefined;
+        };
+        return container.escapeExpression((helper = (helper = lookupProperty(helpers, "titlePutFile") || (depth0 != null ? lookupProperty(depth0, "titlePutFile") : depth0)) != null ? helper : container.hooks.helperMissing, typeof helper === "function" ? helper.call(depth0 != null ? depth0 : container.nullContext || {}, {
+            "name": "titlePutFile",
+            "hash": {},
+            "data": data,
+            "loc": {
+                "start": {
+                    "line": 5,
+                    "column": 32
+                },
+                "end": {
+                    "line": 5,
+                    "column": 48
+                }
+            }
+        }) : helper));
+    },
+    "7": function(container, depth0, helpers, partials, data) {
+        var helper, lookupProperty = container.lookupProperty || function(parent, propertyName) {
+            if (Object.prototype.hasOwnProperty.call(parent, propertyName)) return parent[propertyName];
+            return undefined;
+        };
+        return container.escapeExpression((helper = (helper = lookupProperty(helpers, "titleError") || (depth0 != null ? lookupProperty(depth0, "titleError") : depth0)) != null ? helper : container.hooks.helperMissing, typeof helper === "function" ? helper.call(depth0 != null ? depth0 : container.nullContext || {}, {
+            "name": "titleError",
+            "hash": {},
+            "data": data,
+            "loc": {
+                "start": {
+                    "line": 6,
+                    "column": 30
+                },
+                "end": {
+                    "line": 6,
+                    "column": 44
+                }
+            }
+        }) : helper));
+    },
+    "9": function(container, depth0, helpers, partials, data) {
+        var helper, lookupProperty = container.lookupProperty || function(parent, propertyName) {
+            if (Object.prototype.hasOwnProperty.call(parent, propertyName)) return parent[propertyName];
+            return undefined;
+        };
+        return '        <p class="input-file__name-file>\r\n            ' + container.escapeExpression((helper = (helper = lookupProperty(helpers, "nameFile") || (depth0 != null ? lookupProperty(depth0, "nameFile") : depth0)) != null ? helper : container.hooks.helperMissing, typeof helper === "function" ? helper.call(depth0 != null ? depth0 : container.nullContext || {}, {
+            "name": "nameFile",
+            "hash": {},
+            "data": data,
+            "loc": {
+                "start": {
+                    "line": 11,
+                    "column": 12
+                },
+                "end": {
+                    "line": 11,
+                    "column": 24
+                }
+            }
+        }) : helper)) + "\r\n            </p>\r\n";
+    },
+    "11": function(container, depth0, helpers, partials, data) {
+        return '            <div class=" input-file__input-wrapper">\r\n            <label for="input-file" class="input-file__label">\r\n                <span class="input-file__button-text ">\u0412\u044B\u0431\u0440\u0430\u0442\u044C \u0444\u0430\u0439\u043B \u043D\u0430 \u043A\u043E\u043C\u043F\u044C\u044E\u0442\u0435\u0440\u0435</span></label>\r\n            <input type="file" id="input-file" name="input-file" class="input-file__input-file">\r\n';
+    },
+    "13": function(container, depth0, helpers, partials, data) {
+        return "";
+    },
+    "compiler": [
+        8,
+        ">= 4.3.0"
+    ],
+    "main": function(container, depth0, helpers, partials, data) {
+        var stack1, alias1 = depth0 != null ? depth0 : container.nullContext || {}, lookupProperty = container.lookupProperty || function(parent, propertyName) {
+            if (Object.prototype.hasOwnProperty.call(parent, propertyName)) return parent[propertyName];
+            return undefined;
+        };
+        return '<div class="input-file">\r\n    <div class="input-file__card">\r\n        <p class="input-file__title ' + ((stack1 = lookupProperty(helpers, "if").call(alias1, depth0 != null ? lookupProperty(depth0, "titleError") : depth0, {
+            "name": "if",
+            "hash": {},
+            "fn": container.program(1, data, 0),
+            "inverse": container.noop,
+            "data": data,
+            "loc": {
+                "start": {
+                    "line": 3,
+                    "column": 36
+                },
+                "end": {
+                    "line": 3,
+                    "column": 84
+                }
+            }
+        })) != null ? stack1 : "") + '">\r\n            ' + ((stack1 = lookupProperty(helpers, "if").call(alias1, depth0 != null ? lookupProperty(depth0, "titleSuccess") : depth0, {
+            "name": "if",
+            "hash": {},
+            "fn": container.program(3, data, 0),
+            "inverse": container.noop,
+            "data": data,
+            "loc": {
+                "start": {
+                    "line": 4,
+                    "column": 12
+                },
+                "end": {
+                    "line": 4,
+                    "column": 55
+                }
+            }
+        })) != null ? stack1 : "") + "\r\n            " + ((stack1 = lookupProperty(helpers, "if").call(alias1, depth0 != null ? lookupProperty(depth0, "titlePutFile") : depth0, {
+            "name": "if",
+            "hash": {},
+            "fn": container.program(5, data, 0),
+            "inverse": container.noop,
+            "data": data,
+            "loc": {
+                "start": {
+                    "line": 5,
+                    "column": 12
+                },
+                "end": {
+                    "line": 5,
+                    "column": 55
+                }
+            }
+        })) != null ? stack1 : "") + "\r\n            " + ((stack1 = lookupProperty(helpers, "if").call(alias1, depth0 != null ? lookupProperty(depth0, "titleError") : depth0, {
+            "name": "if",
+            "hash": {},
+            "fn": container.program(7, data, 0),
+            "inverse": container.noop,
+            "data": data,
+            "loc": {
+                "start": {
+                    "line": 6,
+                    "column": 12
+                },
+                "end": {
+                    "line": 6,
+                    "column": 51
+                }
+            }
+        })) != null ? stack1 : "") + "\r\n        </p>\r\n\r\n" + ((stack1 = lookupProperty(helpers, "if").call(alias1, depth0 != null ? lookupProperty(depth0, "titleSuccess") : depth0, {
+            "name": "if",
+            "hash": {},
+            "fn": container.program(9, data, 0),
+            "inverse": container.program(11, data, 0),
+            "data": data,
+            "loc": {
+                "start": {
+                    "line": 9,
+                    "column": 8
+                },
+                "end": {
+                    "line": 18,
+                    "column": 15
+                }
+            }
+        })) != null ? stack1 : "") + "    </div>\r\n\r\n" + ((stack1 = container.invokePartial(lookupProperty(partials, "button"), depth0, {
+            "name": "button",
+            "hash": {
+                "label": "\u041F\u043E\u043C\u0435\u043D\u044F\u0442\u044C",
+                "type": "button",
+                "classNames": "input-file__button-change"
+            },
+            "data": data,
+            "indent": "    ",
+            "helpers": helpers,
+            "partials": partials,
+            "decorators": container.decorators
+        })) != null ? stack1 : "") + "\r\n    " + ((stack1 = lookupProperty(helpers, "if").call(alias1, depth0 != null ? lookupProperty(depth0, "errorNotSelect") : depth0, {
+            "name": "if",
+            "hash": {},
+            "fn": container.program(13, data, 0),
+            "inverse": container.noop,
+            "data": data,
+            "loc": {
+                "start": {
+                    "line": 23,
+                    "column": 4
+                },
+                "end": {
+                    "line": 23,
+                    "column": 33
+                }
+            }
+        })) != null ? stack1 : "") + "\r\n</div>\r\n</div>\r\n";
+    },
+    "usePartial": true,
+    "useData": true
+});
+exports.default = templateFunction;
+
+},{"handlebars":"dH8Fg","@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"6Kqxf":[function() {},{}],"6OnVz":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _render = require("./render");
@@ -14625,5 +14713,54 @@ function renderServerError(serverError) {
 }
 exports.default = renderServerError;
 
-},{"./render":"9Mplm","../layouts/empty":"k1VEM","@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}]},["8TWO2","b9BDZ"], "b9BDZ", "parcelRequire0866")
+},{"./render":"9Mplm","../layouts/empty":"k1VEM","@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"1WN8x":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _handlebars = require("handlebars");
+var _handlebarsDefault = parcelHelpers.interopDefault(_handlebars);
+var _tplHbs = require("./tpl.hbs");
+var _tplHbsDefault = parcelHelpers.interopDefault(_tplHbs);
+var _styleScss = require("./style.scss");
+(0, _handlebarsDefault.default).registerPartial("serverError", (0, _tplHbsDefault.default));
+const serverError = (props = {
+    type: "text"
+})=>(0, _tplHbsDefault.default)(props);
+exports.default = serverError;
+
+},{"handlebars":"dH8Fg","./tpl.hbs":"CsB7l","./style.scss":"gLVBJ","@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"CsB7l":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _handlebars = require("handlebars");
+var _handlebarsDefault = parcelHelpers.interopDefault(_handlebars);
+const templateFunction = (0, _handlebarsDefault.default).template({
+    "compiler": [
+        8,
+        ">= 4.3.0"
+    ],
+    "main": function(container, depth0, helpers, partials, data) {
+        var helper, lookupProperty = container.lookupProperty || function(parent, propertyName) {
+            if (Object.prototype.hasOwnProperty.call(parent, propertyName)) return parent[propertyName];
+            return undefined;
+        };
+        return '<div class="server-error">\r\n    <h1 class="server-error__http-status ">' + container.escapeExpression((helper = (helper = lookupProperty(helpers, "httpStatus") || (depth0 != null ? lookupProperty(depth0, "httpStatus") : depth0)) != null ? helper : container.hooks.helperMissing, typeof helper === "function" ? helper.call(depth0 != null ? depth0 : container.nullContext || {}, {
+            "name": "httpStatus",
+            "hash": {},
+            "data": data,
+            "loc": {
+                "start": {
+                    "line": 2,
+                    "column": 43
+                },
+                "end": {
+                    "line": 2,
+                    "column": 57
+                }
+            }
+        }) : helper)) + '</h1>\r\n    <p class="server-error__description">\u0411\u044B\u0432\u0430\u0435\u0442...</p>\r\n    <a href="/" class="server-error__link-back">\u041D\u0430\u0436\u043C\u0438 \u0438 \u044F \u043D\u0430\u043F\u0440\u0430\u0432\u043B\u044E \u0442\u0435\u0431\u044F</a>\r\n</div>';
+    },
+    "useData": true
+});
+exports.default = templateFunction;
+
+},{"handlebars":"dH8Fg","@parcel/transformer-js/src/esmodule-helpers.js":"j7FRh"}],"gLVBJ":[function() {},{}]},["8TWO2","b9BDZ"], "b9BDZ", "parcelRequire0866")
 

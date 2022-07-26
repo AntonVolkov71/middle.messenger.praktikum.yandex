@@ -1,4 +1,4 @@
-import { localePaths } from '../assets/constants';
+import localePaths from '../assets/constants';
 import emptyLayout from '../layouts/empty';
 import mainLayout from '../layouts/main';
 import render from './render';

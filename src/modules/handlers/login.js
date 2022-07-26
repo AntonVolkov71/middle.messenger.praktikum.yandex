@@ -1,6 +1,6 @@
 import { existUsers } from '../../mock-data';
 import toggleClassList from '../../utils/toggleClassList';
-import { localePaths } from '../../assets/constants';
+import localePaths from '../../assets/constants';
 
 function isAuth(login, password) {
   return existUsers.find((user) => user.login.toLocaleLowerCase() === login.toLocaleLowerCase()
@@ -25,9 +25,11 @@ function handlerLogin() {
 
       toggleErrorAuth(form, 'add', 'hidden');
 
-      isAuth(login, password)
-        ? location.assign(localePaths.main)
-        : toggleErrorAuth(form, 'remove', 'hidden');
+      if (isAuth(login, password)) {
+        window.location.assign(localePaths.main);
+      } else {
+        toggleErrorAuth(form, 'remove', 'hidden');
+      }
     });
   }
 }

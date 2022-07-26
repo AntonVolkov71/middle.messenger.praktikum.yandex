@@ -1,5 +1,5 @@
 import toggleClassList from '../../utils/toggleClassList';
-import { localePaths } from '../../assets/constants';
+import localePaths from '../../assets/constants';
 
 function toggleErrorAuth(form, addOrRemove, className) {
   const $errors = form.querySelectorAll('.form__error');
@@ -29,18 +29,19 @@ function handlerAuth() {
       const isComparePassword = compareString(password, morePassword);
 
       if (!isComparePassword) {
-        return toggleErrorAuth(form, 'remove', 'hidden');
-      }
-      const dataUser = {
-        email: form['auth-email'].value,
-        login: form['auth-login'].value,
-        name: form['auth-name'].value,
-        surname: form['auth-surname'].value,
-        phone: form['auth-phone'].value,
-      };
+        toggleErrorAuth(form, 'remove', 'hidden');
+      } else {
+        const dataUser = {
+          email: form['auth-email'].value,
+          login: form['auth-login'].value,
+          name: form['auth-name'].value,
+          surname: form['auth-surname'].value,
+          phone: form['auth-phone'].value,
+        };
 
-      checkedAuth(dataUser);
-      location.assign(localePaths.login);
+        checkedAuth(dataUser);
+        window.location.assign(localePaths.login);
+      }
     });
   }
 }
