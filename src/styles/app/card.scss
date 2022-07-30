@@ -1,0 +1,10 @@
+@import "../variables";
+
+.popup {
+  min-width: 340px;
+  padding: 30px;
+
+  border-radius: $borderRadius;
+  background: $colorLight;
+  box-shadow: $boxShadow;
+}

@@ -1,0 +1,35 @@
+@import "../variables";
+
+.form {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+
+  .form__label {
+    margin: 30px 0 0;
+    color: gray;
+    font-size: $fontXl;
+  }
+
+
+  .form__input {
+    border-bottom: 1px solid #3369F3;
+    outline: none;
+  }
+
+  .form__title {
+    margin: 50px auto 40px;
+  }
+
+  .form__link {
+    text-align: center;
+    font-size: $fontXl;
+  }
+
+  .form__error {
+    font-size: $fontXs;
+    color: red;
+
+    margin: 5px 0;
+  }
+}

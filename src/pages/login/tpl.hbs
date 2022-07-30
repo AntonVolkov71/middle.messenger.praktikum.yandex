@@ -1,0 +1,16 @@
+<div class="login popup">
+    <form class="login__form form">
+        <p class="form__title">{{label}}</p>
+
+        <label class="form__label" for="login">Логин</label>
+        {{> input id="login-input" name="login" classNames="form__input" type="text" value="anton" }}
+        <span class="error hidden ">Неверный логин</span>
+
+        <label class="form__label" for="password">Пароль</label>
+        {{> input id="password-input"  name="password" classNames="form__input" type="password"  minlength="2" value="123456" }}
+        <span class="form__error hidden">Неверный пароль</span>
+
+        {{> button id="login-submit" classNames="login__submit" type="submit" label="Войти" }}
+        <a class="form__link" href="/auth">Зарегистрироваться</a>
+    </form>
+</div>
