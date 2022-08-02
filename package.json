@@ -8,18 +8,24 @@
     "build": "parcel build ",
     "start": "nodemon src/app.js",
     "eslint": "eslint src/**.js",
-    "fix": "eslint src/**/**.js --fix"
+    "fix": "eslint src/**/**.ts --fix"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@parcel/transformer-inline-string": "~2.4.1",
     "@parcel/transformer-sass": "~2.6.2",
+    "@typescript-eslint/eslint-plugin": "~5.31.0",
+    "@typescript-eslint/parser": "~5.31.0",
     "eslint": "~8.20.0",
     "eslint-config-airbnb-base": "~15.0.0",
     "eslint-plugin-import": "~2.26.0",
     "parcel": "^2.4.1",
-    "parcel-transformer-hbs": "~1.0.4"
+    "parcel-transformer-hbs": "~1.0.4",
+    "stylelint": "^14.9.1",
+    "ts-node": "^10.9.1",
+    "typescript": "~4.7.4",
+    "typescript-hbs-plugin": "^0.1.1"
   },
   "targets": {
     "web": {
@@ -32,8 +38,10 @@
     }
   },
   "dependencies": {
+    "@types/hbs": "^4.0.1",
     "express": "~4.18.1",
     "handlebars": "~4.7.7",
-    "nodemon": "~2.0.19"
+    "nodemon": "~2.0.19",
+    "uuid": "^8.3.2"
   }
 }

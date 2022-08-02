@@ -4,8 +4,12 @@ import './style.scss';
 
 Handlebars.registerPartial('serverError', tpl);
 
-const serverError = (props = {
-  type: 'text',
+interface ServerErrorProps {
+    httpStatus: number;
+}
+
+const serverError = (props: ServerErrorProps = {
+  httpStatus: 500,
 }) => tpl(props);
 
 export default serverError;

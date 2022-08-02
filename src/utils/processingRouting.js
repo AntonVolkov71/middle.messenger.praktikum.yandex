@@ -2,6 +2,7 @@ import localePaths from '../assets/constants';
 import emptyLayout from '../layouts/empty';
 import mainLayout from '../layouts/main';
 import render from './render';
+import test from "../components/test";
 
 const { pathname } = window.location;
 const $root = document.getElementById('root');
@@ -12,6 +13,9 @@ function processingRouting(pages) {
   } = pages;
 
   switch (pathname) {
+		case '/test':
+			render($root, emptyLayout, test)
+			break;
     case localePaths.login:
       render($root, emptyLayout, login);
       break;
