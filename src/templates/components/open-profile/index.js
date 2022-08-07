@@ -1,16 +1,16 @@
 import tpl from './tpl';
 import './style.scss';
-import Component from "../../../services/Component";
+import Component from '../../../services/Component';
 
 class OpenProfile extends Component {
-	addEvents() {
-		this._element.querySelector('.openProfile__title')
-			.addEventListener('click', this._props.events.click);
-	}
+  addEvents() {
+    this._element.querySelector('.openProfile__title')
+      .addEventListener('click', this._props.events.click);
+  }
 
-	render() {
-		return this.compile(tpl);
-	}
+  render() {
+    return this.compile(tpl);
+  }
 }
 
-export default OpenProfile
+export default OpenProfile;

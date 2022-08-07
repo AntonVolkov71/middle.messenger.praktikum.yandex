@@ -18,5 +18,5 @@ const tpl = `<div
         <p class="message__time">{{content.time}}</p>
     </div>
 </div>
-`
-export default tpl
+`;
+export default tpl;

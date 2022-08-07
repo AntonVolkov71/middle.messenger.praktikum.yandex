@@ -14,6 +14,6 @@ const tpl = `
     <section class="main__content">
         {{{content}}}
     </section>
-`
+`;
 
-export default tpl
+export default tpl;

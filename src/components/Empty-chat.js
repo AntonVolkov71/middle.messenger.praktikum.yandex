@@ -1,15 +1,12 @@
-import EmptyChats from "../templates/partials/empty-chats";
+import EmptyChats from '../templates/partials/empty-chats';
 
+const emptyChat = () => new EmptyChats(
+  'div',
+  {
+    attr: {
+      class: 'emptyChat',
+    },
+  },
+);
 
-const emptyChat = () => {
-	return new EmptyChats(
-		'div',
-		{
-			attr: {
-				'class': 'emptyChat'
-			}
-		}
-	)
-}
-
-export default emptyChat
+export default emptyChat;

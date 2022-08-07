@@ -14,6 +14,6 @@ const tpl = `<div class="listMessages ">
         </div>
     {{/each}}
 </div>
-`
+`;
 
-export default tpl
+export default tpl;

@@ -29,6 +29,6 @@ const tpl = `
  </div>
 </div>
 
-`
+`;
 
-export default tpl
+export default tpl;

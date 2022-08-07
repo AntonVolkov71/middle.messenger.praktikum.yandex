@@ -11,6 +11,6 @@ const tpl = 	`
     {{#if disabled}} disabled{{/if}}
         name="{{name}}"
 >
-`
+`;
 
-export default tpl
+export default tpl;

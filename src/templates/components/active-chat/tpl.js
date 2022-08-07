@@ -20,6 +20,6 @@ const tpl = `
     <div class="active__send-messages">
         {{{inputMessage}}}
     </div>
-`
+`;
 
-export default tpl
+export default tpl;

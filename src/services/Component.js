@@ -30,7 +30,6 @@ export default class Component {
 
     this._eventBus = new EventBus();
     this._id = makeUUID();
-    // this._children = children;
     this._children = this.makePropsProxy(children);
     this._props = this.makePropsProxy({ ...props, __id: this._id });
     this._meta = { tag, props };
@@ -168,44 +167,6 @@ export default class Component {
   componentDidUpdate(oldProps, newProps) {
     return true;
   }
-
-  /*
-  setProps(newProps) {
-    if (!newProps) {
-      return;
-    }
-
-    const { children, props } = this.getChildren(newProps);
-
-    if (Object.values(children).length) {
-      Object.assign(this._children, children);
-    }
-
-    if (Object.values(props).length) {
-      Object.assign(this._props, props);
-    }
-  }
-
-  makePropsProxy(props) {
-    const self = this;
-
-    return new Proxy(props, {
-      get(target, prop) {
-        const value = target[prop];
-
-        return typeof value === 'function' ? value.bind(target) : value;
-      },
-
-      set(target, prop, value) {
-        const oldValue = { ...target };
-        target[prop] = value;
-        self._eventBus.emit(Component.EVENT_FLOW_CDU, oldValue, target);
-
-        return true;
-      },
-    });
-  }
-	*/
 
   show() {
     this.getContent().style.display = 'block';

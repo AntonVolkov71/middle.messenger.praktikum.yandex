@@ -17,7 +17,6 @@ class Auth extends Component {
   }
 
   render() {
-		console.log('Auth render',);
     return this.compile(tpl);
   }
 }

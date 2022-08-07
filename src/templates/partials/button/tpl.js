@@ -6,6 +6,6 @@ const tpl = `
 >
     {{label}}
 </button>
-`
+`;
 
-export default tpl
+export default tpl;

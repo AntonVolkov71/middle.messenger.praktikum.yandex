@@ -17,7 +17,6 @@ class Login extends Component {
   }
 
   render() {
-		console.log('Login',);
     return this.compile(tpl);
   }
 }

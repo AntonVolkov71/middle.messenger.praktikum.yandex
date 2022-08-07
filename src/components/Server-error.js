@@ -1,15 +1,13 @@
-import ServerError from "../templates/partials/server-error";
+import ServerError from '../templates/partials/server-error';
 
-const serverError = (props) => {
-	return new ServerError(
-		'div',
-		{
-			...props,
-			attr: {
-				'class': 'server-error'
-			}
-		}
-	)
-}
+const serverError = (props) => new ServerError(
+  'div',
+  {
+    ...props,
+    attr: {
+      class: 'server-error',
+    },
+  },
+);
 
-export default serverError
+export default serverError;

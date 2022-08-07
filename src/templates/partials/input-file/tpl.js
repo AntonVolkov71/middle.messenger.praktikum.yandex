@@ -23,6 +23,6 @@ const tpl = `
     {{#if errorNotSelect}}{{/if}}
 </div>
 </div>
-`
+`;
 
-export default tpl
+export default tpl;

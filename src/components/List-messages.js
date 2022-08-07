@@ -1,13 +1,10 @@
-import ListMessages from "../templates/components/list-messages";
+import ListMessages from '../templates/components/list-messages';
 
+const listMessages = (props) => new ListMessages(
+  'div',
+  {
+    ...props,
+  },
+);
 
-const listMessages = (props)=>{
-	return new ListMessages(
-		'div',
-		{
-			...props
-		}
-	)
-}
-
-export default listMessages
+export default listMessages;
