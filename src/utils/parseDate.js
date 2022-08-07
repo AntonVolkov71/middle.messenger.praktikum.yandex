@@ -16,7 +16,7 @@ const months = [
 function parseDate(value, type = 'dayMonth') {
   switch (type) {
     case 'dayMonth':
-      return `${value.getDate()} ${months[value.getMonth() + 1]}`;
+      return `${value.getDate()} ${months[value.getMonth() ]}`;
     default:
       return value;
   }

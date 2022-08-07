@@ -1,0 +1,72 @@
+@import '../../../assets/styles/variables';
+
+.input-file {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: rgba(108, 117, 125, 0.7);
+
+  .input-file__card {
+    min-width: 340px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    background-color: $colorLight;
+    border-radius: $borderRadius;
+
+    padding: $containerPadding;
+
+    .input-file__title {
+      margin: 40px 0;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .input-file__title_error {
+      color: $colorDanger;
+    }
+
+    .input-file__name-file {
+      color: $colorActive;
+    }
+
+    .input-file__input-wrapper {
+      width: 100%;
+      position: relative;
+      margin: 15px 0;
+      text-align: center;
+
+      .input-file__label {
+        width: 100%;
+
+        .input-file__button-text {
+          color: $colorPrimary;
+          text-decoration: underline $colorPrimary;
+        }
+      }
+
+      .input-file__input-file {
+        color: $colorPrimary;
+
+        opacity: 0;
+        visibility: hidden;
+        position: absolute;
+      }
+    }
+
+    .input-file__button-change {
+      width: 80%;
+      margin-bottom: 30px;
+    }
+  }
+}

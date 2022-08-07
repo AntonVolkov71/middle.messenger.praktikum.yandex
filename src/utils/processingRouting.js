@@ -1,37 +1,31 @@
 import localePaths from '../assets/constants';
-import emptyLayout from '../layouts/empty';
-import mainLayout from '../layouts/main';
-import render from './render';
-import test from "../components/test";
+import renderer from './renderer';
 
-const { pathname } = window.location;
-const $root = document.getElementById('root');
+const {pathname} = window.location;
+const rootSelector = '#root';
 
 function processingRouting(pages) {
-  const {
-    main, auth, login, notFound,
-  } = pages;
+	const {
+	  main, auth, login, notFound,
+	} = pages;
 
-  switch (pathname) {
-		case '/test':
-			render($root, emptyLayout, test)
+	switch (pathname) {
+		case localePaths.login:
+			renderer(rootSelector, login());
 			break;
-    case localePaths.login:
-      render($root, emptyLayout, login);
-      break;
-    case localePaths.auth:
-      render($root, emptyLayout, auth);
-      break;
-    case localePaths.main:
-      render($root, mainLayout, main);
-      break;
-    case localePaths.empty:
-      render($root, emptyLayout, login);
-      break;
-    default:
-      render($root, emptyLayout, notFound);
-      break;
-  }
+		case localePaths.auth:
+			renderer(rootSelector, auth());
+			break;
+		case localePaths.main:
+			renderer(rootSelector, main());
+			break;
+		case localePaths.empty:
+			renderer(rootSelector, login());
+			break;
+		default:
+			renderer(rootSelector, notFound());
+			break;
+	}
 }
 
 export default processingRouting;

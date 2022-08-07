@@ -1,0 +1,30 @@
+@import "../../../assets/styles/variables";
+
+.openProfile {
+  margin: 0;
+  padding: 0;
+  vertical-align: center;
+
+  .openProfile__title {
+    margin: 0;
+    padding: 0;
+
+    color: $colorInfo;
+    font-size: $fontXl;
+
+    display: flex;
+    justify-content: end;
+    align-items: center;
+
+    .openProfile__icon {
+      color: $colorInfo;
+      margin: 0;
+      padding: 0;
+      display: inline-block;
+    }
+  }
+
+  .openProfile__title:hover {
+    cursor: pointer;
+  }
+}

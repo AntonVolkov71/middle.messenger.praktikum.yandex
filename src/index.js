@@ -1,119 +1,193 @@
-// import Handlebars from 'handlebars';
-//
-// import './styles/style.scss';
-//
-// import './partials/button';
-// import './partials/empty-chats';
-// import './partials/input';
-// import './partials/message';
-// import './partials/chat';
-// import serverError from './partials/server-error';
-//
-// import { initialOptionsRouting } from './assets/config';
-//
-// import handlerAuth from './modules/handlers/auth';
-// import handlerChangeAvatar from './modules/handlers/changeAvatar';
-// import handlerChangePassword from './modules/handlers/change-password';
-// import handlerChangeProfile from './modules/handlers/change-profile';
-// import handlerChat from './modules/handlers/chat';
-// import handlerLogin from './modules/handlers/login';
-// import handlerOpenProfile from './modules/handlers/openProfile';
-// import handlerSearchProfile from './modules/handlers/search-profile';
-//
-// import clbActiveChat from './modules/callbacks/activeChat';
-// import clbChangeAvatar from './modules/callbacks/changeAvatar';
-// import clbChangePassword from './modules/callbacks/changePassword';
-// import clbChangeProfile from './modules/callbacks/changeProfile';
-// import clbOpenProfile from './modules/callbacks/openProfile';
-// import clbSearchChats from './modules/callbacks/searchChats';
-//
-// import processingRouting from './utils/processingRouting';
-// import ifEqualsId from './utils/helpers/ifEqualsId';
-// import renderServerError from './utils/renderServerError';
+import Handlebars from 'handlebars';
 
-import {default as renderDOM} from './utils/testRender'
-const test = new Test(
-	'div',
-	{
-		items: [{url: '/', title: 'Main'}],
+import './assets/styles/style.scss';
 
-		events: {
-			click: e=> {
-				const t = e.target
-				console.log('Nav link clicked', t);
-			}
+import './templates/partials/button';
+import "./templates/partials/chat";
+import './templates/partials/empty-chats';
+import './templates/partials/input';
+import './templates/partials/message';
+
+import processingRouting from './utils/processingRouting';
+import ifEqualsId from './utils/helpers/ifEqualsId';
+import renderServerError from './utils/renderServerError';
+import layout from "./layout/Layout";
+import login from "./pages/Login";
+import auth from "./pages/Auth";
+import openProfile from "./components/Open-profile";
+import searchChat from "./components/Search-chat";
+import listChats from "./components/List-chats";
+import notFound from "./components/Not-found";
+import activeChat from "./components/Active-chat";
+import inputMessage from "./components/Input-message";
+import emptyChat from "./components/Empty-chat";
+import profile from "./components/Profile";
+import {chats, myProfile} from "./assets/mock-data";
+import inputFile from "./components/Input-file";
+import main from "./pages/Main";
+import listMessages from "./components/List-messages";
+
+// import renderDOM from './utils/testRender';
+// import Nav from './components/tests/Nav';
+// import Page from './components/tests/Page';
+// import Layout from './components/tests/Layout';
+//
+// const nav = new Nav(
+//   'ul',
+//   {
+//     items: [
+//       { url: '/', title: 'Main' },
+//       { url: '/form', title: 'Form' },
+//     ],
+//
+//     events: {
+//       click: (e) => {
+//         e.preventDefault();
+//         e.stopPropagation();
+//         console.log('clear logic');
+//         console.log('href', e.target.href);
+//         /*
+// 				const t = e.target
+// 				if (t && t.getAttribute('href')) {
+// 					console.log('Nav link clicked',);
+// 					e.preventDefault()
+// 					e.stopPropagation()
+// 				} else {
+// 					console.log('No linked clicked');
+// 				}
+// 				 */
+//       },
+//     },
+//     attr: {
+//       class: 'nav',
+//     },
+//   },
+// );
+//
+// const content = new Page(
+//   'div',
+//   {
+//     text: 'First text',
+//     attr: {
+//       class: 'content',
+//     },
+//   },
+// );
+//
+// const page = new Layout(
+//   'div',
+//   {
+//     nav,
+//     title: 'Title',
+//     content,
+//     attr: {
+//       class: 'page',
+//     },
+//   },
+// );
+
+// window.page = page;
+// window.content = content;
+//
+// window.changePageContent = () => {
+//   const newContent = new Page(
+//     'div',
+//     {
+//       text: 'Other OTHER text 11111',
+//     },
+//   );
+//
+//   page.setProps({ content: newContent });
+// };
+
+// renderDOM('#root', page);
+try {
+	Handlebars.registerHelper('ifEqualsId', ifEqualsId);
+
+	const emptyLayout = layout({attr: {'class': 'empty-layout'},})
+	const mainLayout = layout({attr: {'class': 'main-layout'},})
+
+	const componentListChats = listChats(
+		{chats}, {getMain, getListChats, getActiveChat, getInputMessage, getListMessages}
+	)
+	const componentListMessages = listMessages()
+	const componentActiveChat = activeChat();
+	const componentInputMessage = inputMessage();
+	const componentOpenProfile = openProfile(getMain, getSearchChat, getListChats, getProfile)
+	const componentSearchChat = searchChat(getListChats)
+	const componentEmptyChat = emptyChat()
+	const componentProfile = profile(
+		{...myProfile, isShow: true}, {getProfile, getInputFile}
+	)
+
+	const componentInputFile = inputFile()
+
+	const componentMain = main({
+		openProfile: componentOpenProfile,
+		searchChat: componentSearchChat,
+		listChats: getListChats(),
+		content: getEmptyChat(),
+	})
+
+	let pages = {
+		login() {
+			emptyLayout.setProps({content: login({})})
+			return emptyLayout
+		},
+		auth() {
+			emptyLayout.setProps({content: auth({})})
+			return emptyLayout
+		},
+		main() {
+			mainLayout.setProps({
+				content: componentMain
+			})
+			return mainLayout
+		},
+		notFound() {
+			emptyLayout.setProps({content: notFound()})
+			return emptyLayout
 		}
 	}
-)
 
-const content = new Page(
-	'div',
-	{
-		text: 'First text'
+	function getMain() {
+		return componentMain
 	}
-)
 
-const page = new Layout(
-	'div',
-	{
-		test: test,
-		title: 'Title',
-		content: content
+	function getSearchChat() {
+		return componentSearchChat
 	}
-)
 
-window.page = page
-window.content = content
+	function getListChats() {
+		return componentListChats
+	}
 
-window.changePageContent=()=>{
-	let newContent = new Page(
-		'div',
-		{
-			text: 'Other text'
-		}
-	);
-	
-	page.setProps({content: newContent})
+	function getListMessages() {
+		return componentListMessages
+	}
+
+	function getActiveChat() {
+		return componentActiveChat
+	}
+
+	function getProfile() {
+		return componentProfile
+	}
+
+	function getInputFile() {
+		return componentInputFile
+	}
+
+	function getInputMessage() {
+		return componentInputMessage
+	}
+
+	function getEmptyChat() {
+		return componentEmptyChat
+	}
+
+	processingRouting(pages);
+
+} catch (e) {
+	renderServerError()
 }
-
-renderDOM('.app', page)
-// try {
-//   Handlebars.registerHelper('ifEqualsId', ifEqualsId);
-//
-//   processingRouting(initialOptionsRouting);
-//
-//   const handlers = () => {
-//     handlerLogin();
-//     handlerAuth();
-//     handlerOpenProfile(() => {
-//       clbOpenProfile();
-//       handlers();
-//     });
-//     handlerChat((chatId) => {
-//       clbActiveChat(chatId);
-//       handlers();
-//     });
-//     handlerSearchProfile((searchText) => {
-//       clbSearchChats(searchText);
-//       handlers();
-//     });
-//     handlerChangeProfile(() => {
-//       clbChangeProfile();
-//       handlers();
-//     });
-//     handlerChangePassword(() => {
-//       clbChangePassword();
-//       handlers();
-//     });
-//     handlerChangeAvatar(() => {
-//       clbChangeAvatar();
-//       handlers();
-//     });
-//   };
-//
-//   handlers();
-// } catch (e) {
-//   renderServerError(serverError({
-//     httpStatus: 500,
-//   }));
-// }
