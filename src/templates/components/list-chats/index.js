@@ -4,9 +4,9 @@ import tpl from './tpl';
 
 class ListChats extends Component {
   addEvents() {
-    this._element.querySelectorAll('.chat__over-click').forEach((chat) => {
+    this.element.querySelectorAll('.chat__over-click').forEach((chat) => {
       chat.addEventListener('click', (e) => {
-        this._props.events.activeChat(e, this);
+        this.props.events.activeChat(e, this);
       });
     });
   }

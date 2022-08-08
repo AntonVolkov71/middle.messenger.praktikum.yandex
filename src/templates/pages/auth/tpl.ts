@@ -1,4 +1,4 @@
-const tpl = `
+const tpl: string = `
 <form class="auth__form form">
 <p class="form__title">{{label}}</p>
 

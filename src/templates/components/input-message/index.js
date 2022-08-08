@@ -4,8 +4,8 @@ import Component from '../../../services/Component';
 
 class InputMessage extends Component {
   addEvents() {
-    this._element.querySelector('.inputMessage__form')
-      .addEventListener('submit', this._props.events.sendMessage);
+    this.element.querySelector('.inputMessage__form')
+      .addEventListener('submit', this.props.events.sendMessage);
   }
 
   render() {

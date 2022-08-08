@@ -1,3 +1,4 @@
+// @ts-ignore
 import Handlebars from 'handlebars';
 
 import './assets/styles/style.scss';
@@ -29,6 +30,7 @@ import inputFile from './components/Input-file';
 import main from './pages/Main';
 import listMessages from './components/List-messages';
 import parseDate from './utils/parseDate';
+import Component from "./services/Component";
 
 try {
 	Handlebars.registerHelper('ifEqualsId', ifEqualsId);
@@ -36,20 +38,25 @@ try {
 	const emptyLayout = layout({attr: {class: 'empty-layout'}});
 	const mainLayout = layout({attr: {class: 'main-layout'}});
 
-	const components = {
-		main: {},
-		listChats: {},
-		listMessages: {},
-		activeChat: {},
-		inputMessage: {},
-		openProfile: {},
-		searchChat: {},
-		emptyChat: {},
-		profile: {},
-		inputFile: {},
+	
+	interface Test  {
+		[key: string]: Component
+	}
+	
+	const components:Test = {
+		main: {} as Component,
+		listChats: {} as Component,
+		listMessages: {} as Component,
+		activeChat: {} as Component,
+		inputMessage: {} as Component,
+		openProfile: {} as Component,
+		searchChat: {} as Component,
+		emptyChat: {} as Component,
+		profile: {} as Component,
+		inputFile: {} as Component,
 	};
 
-	const clbOpenProfile = (isOpenProfile) => {
+	const clbOpenProfile = (isOpenProfile: boolean): void => {
 		if (isOpenProfile) {
 			components.searchChat.show();
 			components.listChats.show();
