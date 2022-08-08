@@ -1,48 +1,43 @@
 import Login from '../templates/pages/login';
 import localePaths from '../assets/constants';
-import isValidation from '../utils/isValidation';
-import ValidationTypes from '../types/validation';
-import parseValidationTypes from "../utils/parseValidationTypes";
+import isValidation from '../utils/validations/isValidation';
+import {ValidationTypes} from '../types/utils';
+import parseValidationTypes from "../utils/validations/parseValidationTypes";
+import isValidFocusBlur from "../utils/validations/isValidFocusBlur";
+import toggleHideElement from "../utils/toggleHideElement";
+import {Props} from "../types/component";
+import Component from "../services/Component";
 
-const isValidFocusBlur = (type: ValidationTypes, value): boolean => isValidation(type, value)
-const toggleError = (element: HTMLElement, isHidden: boolean) => {
-	if (isHidden) {
-		element.classList.add('hidden')
-	} else {
-		element.classList.remove('hidden');
-	}
-}
-
-const parseFocusBlur = (e: FocusEvent) => {
+const parseFocusBlur = (e: FocusEvent): void => {
 	const {value, name} = e.target as HTMLTextAreaElement;
-
 	const typeValidate: ValidationTypes | null = parseValidationTypes(name)
 
 	if (typeValidate) {
-		const isValid = isValidFocusBlur(typeValidate, value);
-		const $form = (<HTMLElement>(<HTMLElement>e.target).parentNode);
+		const isValid: boolean = isValidFocusBlur(typeValidate, value);
+		const $form: HTMLElement = (<HTMLElement>(<HTMLElement>e.target).parentNode);
 
 		if ($form) {
 			const $errorText: HTMLElement | null = $form.querySelector(`.form__error_${name}`);
 			if ($errorText) {
-				toggleError($errorText, isValid)
+				toggleHideElement($errorText, isValid)
 			}
 		}
 	}
 }
 
-const login = (props = {}) => new Login('div', {
+const login = (props: Props = {}): Component => new Login('div', {
 	...props,
 	events: {
-		linkToAuth: (e) => {
+		linkToAuth: (e: PointerEvent) => {
 			e.preventDefault();
 			e.stopPropagation();
 
-			const {href} = e.target;
+			const {href} = e.target as HTMLLinkElement;
 			window.location.href = href;
 		},
 		submit: (e: SubmitEvent) => {
 			e.preventDefault();
+
 			const form: EventTarget | null = e.target;
 
 			if (form && form instanceof HTMLElement) {
@@ -55,7 +50,7 @@ const login = (props = {}) => new Login('div', {
 				const $errorText: HTMLElement | null = form.querySelector('.form__error_form');
 
 				if ($errorText) {
-					toggleError($errorText, isValidForm)
+					toggleHideElement($errorText, isValidForm)
 				}
 				if (isValidForm) {
 					window.location.href = localePaths.main
@@ -70,7 +65,7 @@ const login = (props = {}) => new Login('div', {
 		},
 	},
 	attr: {
-		class: 'login popup',
+		'class': 'login popup',
 	},
 });
 

@@ -44,16 +44,15 @@ class Component {
 
 	init(): void {
 		this.element = this.createDocumentElement(this.meta?.tag);
-		console.log('this.element', this.element);
 		this.eventBus.emit(Component.EVENT_FLOW_RENDER);
 	}
 
 	createDocumentElement(tag: string) {
 		const element: HTMLElement = document.createElement(tag);
-			if (this.props.settings && 'withInternalID' in this.props.settings) {
-				element.setAttribute('data-id', this.id);
-			}
-		
+		if (this.props.settings && 'withInternalID' in this.props.settings) {
+			element.setAttribute('data-id', this.id);
+		}
+
 
 		return element;
 	}
@@ -110,7 +109,6 @@ class Component {
 	}
 
 	getChildren(propsAndChilds: PropsAndChilds) {
-		console.log('getChildren', propsAndChilds);
 		const children = {};
 		const props: Props = {};
 
@@ -125,8 +123,7 @@ class Component {
 		return {children, props};
 	}
 
-	compile(template, props) {
-		console.log('compile',);
+	compile(template: string, props?: Props) {
 
 		if (typeof (props) === 'undefined') {
 			props = this.props;
@@ -146,7 +143,7 @@ class Component {
 
 			if (stub) {
 				const content = child.getContent();
-				if(content){
+				if (content) {
 					stub.replaceWith(content);
 				}
 			}
@@ -189,14 +186,14 @@ class Component {
 
 	show(): void {
 		const content = this.getContent();
-		if(content){
+		if (content) {
 			content.style.display = 'block';
 		}
 	}
 
 	hide(): void {
 		const content = this.getContent();
-		if(content){
+		if (content) {
 			content.style.display = 'none';
 		}
 	}

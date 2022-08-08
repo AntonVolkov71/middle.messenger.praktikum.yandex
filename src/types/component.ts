@@ -16,9 +16,7 @@ interface Events {
 	[key: string]: () => void
 }
 
-
 type PropsTypes = Events  | Children | any // object | number | boolean | Component | string
-
 
 export interface Props {
 	[key: string]: PropsTypes

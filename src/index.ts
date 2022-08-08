@@ -1,5 +1,4 @@
-// @ts-ignore
-import Handlebars from 'handlebars';
+import * as Handlebars from "handlebars";
 
 import './assets/styles/style.scss';
 
@@ -31,19 +30,22 @@ import main from './pages/Main';
 import listMessages from './components/List-messages';
 import parseDate from './utils/parseDate';
 import Component from "./services/Component";
+import Pages from "./types/main";
+import {ParseDateTypes} from "./types/utils";
+import {LinkUser, Message} from "./types/mock-data";
 
 try {
 	Handlebars.registerHelper('ifEqualsId', ifEqualsId);
 
-	const emptyLayout = layout({attr: {class: 'empty-layout'}});
+	const emptyLayout: Component = layout({attr: {class: 'empty-layout'}});
 	const mainLayout = layout({attr: {class: 'main-layout'}});
 
-	
-	interface Test  {
+
+	interface Test {
 		[key: string]: Component
 	}
-	
-	const components:Test = {
+
+	const components: Test = {
 		main: {} as Component,
 		listChats: {} as Component,
 		listMessages: {} as Component,
@@ -80,11 +82,11 @@ try {
 	const clbListChats = (activeChatId) => {
 		const findChatsOptions = activeChatsOptions()
 			.find((item) => item.id === +activeChatId);
-		let linkUser = {};
-		let messages = [];
+		let linkUser: LinkUser = {} as LinkUser;
+		let messages: Message[] = [];
 
 		if (findChatsOptions) {
-			messages = findChatsOptions.messages;
+			messages = [...findChatsOptions.messages];
 			linkUser = findChatsOptions.linkUser;
 		} else {
 			linkUser = {
@@ -97,7 +99,7 @@ try {
 		components.listMessages.setProps({
 			messages,
 			myId: 1,
-			dateMessage: parseDate(new Date(), 'dayMonth'),
+			dateMessage: parseDate(new Date(), ParseDateTypes.DAY_MONTH),
 		});
 
 		components.activeChat.setProps({
@@ -111,21 +113,21 @@ try {
 		});
 	};
 
-	const clbOpenChangeProfile = () => {
+	const clbOpenChangeProfile = (): void => {
 		components.profile.setProps({
 			isShow: false,
 		});
 	};
 
-	const clbSavePassword = (passwords) => {
+	const clbSavePassword = (passwords): void => {
 		console.info('save password', passwords);
 	};
 
-	const clbSaveProfileData = (profileData) => {
+	const clbSaveProfileData = (profileData): void => {
 		console.info('change profile data', profileData);
 	};
 
-	const clbChangeAvatar = () => {
+	const clbChangeAvatar = (): void => {
 		components.inputFile.setProps({
 			titleError: 'Ошибка, попробуйте еще разок',
 		});
@@ -135,7 +137,7 @@ try {
 		});
 	};
 
-	const clbOpenChangePassword = () => {
+	const clbOpenChangePassword = (): void => {
 		components.profile.setProps({
 			isShow: false,
 			changePassword: true,
@@ -143,20 +145,20 @@ try {
 		});
 	};
 
-	const clbInputMessage = (message) => {
+	const clbInputMessage = (message: string): void => {
 		console.info('message', message);
 	};
 
-	const pages = {
-		login() {
+	const pages: Pages = {
+		login(): Component {
 			emptyLayout.setProps({content: login({})});
 			return emptyLayout;
 		},
-		auth() {
+		auth(): Component {
 			emptyLayout.setProps({content: auth({})});
 			return emptyLayout;
 		},
-		main() {
+		main(): Component {
 			components.searchChat = searchChat({}, clbSearchChat);
 			components.openProfile = openProfile({}, clbOpenProfile);
 			components.listChats = listChats({chats}, clbListChats);
@@ -183,7 +185,7 @@ try {
 
 			return mainLayout;
 		},
-		notFound() {
+		notFound(): Component {
 			emptyLayout.setProps({content: notFound()});
 			return emptyLayout;
 		},
