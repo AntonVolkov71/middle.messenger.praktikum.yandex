@@ -108,93 +108,91 @@ const isValidFormSaveData = (fields) => {
 		&& isValidation(ValidationTypes.phone, phone);
 };
 
-const profile = (props, elements) => new Profile('div', {
-  ...props,
-  events: {
-    changeProfile: (e) => {
-      const profileElement = elements.getProfile();
-      profileElement.setProps({ isShow: false });
-    },
-    changePassword: (e) => {
-      const profileElement = elements.getProfile();
-      profileElement.setProps({
-        isShow: false,
-        changePassword: true,
-        oldPassword: 'A1245678',
-      });
-    },
-    exitProfile: (e) => {
-      e.preventDefault();
-      console.info('exitProfile');
-    },
-    savePassword: (e) => {
-      e.preventDefault();
-      const $form = e.target.parentNode.parentNode;
-      const fields = {
-        passwordOld: existUsers[0].password,
-        passwordNew: $form.querySelector('#profile-password_new').value,
-        passwordRepeat: $form.querySelector('#profile-password_new').value,
-      };
+const profile = (
+  props = {},
+								 {
+    clbOpenChangeProfile, clbOpenChangePassword, clbSavePassword, clbSaveProfileData,
+									 clbChangeAvatar,
+								 },
+) => new Profile(
+  'div',
+  {
+    ...props,
+    events: {
+      changeProfile: (e) => {
+        e.preventDefault();
+        clbOpenChangeProfile();
+      },
+      changePassword: (e) => {
+        e.preventDefault();
+        clbOpenChangePassword();
+      },
+      exitProfile: (e) => {
+        e.preventDefault();
+        console.info('exitProfile');
+      },
+      savePassword: (e) => {
+        e.preventDefault();
+        const $form = e.target.parentNode.parentNode;
+        const fields = {
+					  passwordOld: existUsers[0].password,
+					  passwordNew: $form.querySelector('#profile-password_new').value,
+					  passwordRepeat: $form.querySelector('#profile-password_new').value,
+        };
 
-      const isValidAllFields = isValidFormSavePassword(fields);
-      const $errorText = $form.querySelector('.form__error_change-password');
-      let errorText = '';
+        const isValidAllFields = isValidFormSavePassword(fields);
+        const $errorText = $form.querySelector('.form__error_change-password');
+        let errorText = '';
 
-      if (isValidAllFields) {
-        errorText = '';
-        console.info('savePassword', fields);
-      } else {
-        errorText = 'Ничего не угадал';
-      }
+        if (isValidAllFields) {
+					  errorText = '';
+          clbSavePassword(fields);
+        } else {
+					  errorText = 'Ничего не угадал';
+        }
 
-      $errorText.textContent = errorText;
+        $errorText.textContent = errorText;
+      },
+      saveProfileData: (e) => {
+        e.preventDefault();
+        const $form = e.target;
+        const fields = {
+					  email: $form[ValidationTypes.email].value,
+					  login: $form[ValidationTypes.login].value,
+					  firstName: $form[ValidationTypes.first_name].value,
+					  secondName: $form[ValidationTypes.second_name].value,
+					  nameInChat: $form[ValidationTypes.name_in_chat].value,
+					  phone: $form[ValidationTypes.phone].value,
+        };
+
+        const isValidAllFields = isValidFormSaveData(fields);
+        const $errorText = $form.querySelector('.form__error_change-password');
+        let errorText = '';
+
+        if (isValidAllFields) {
+					  errorText = '';
+          clbSaveProfileData(fields);
+        } else {
+					  errorText = 'Некорректные заполненные поля';
+        }
+
+        $errorText.textContent = errorText;
+      },
+      changeAvatar: (e) => {
+        e.preventDefault();
+        clbChangeAvatar();
+      },
+      focus: (e) => {
+        parseValidFocusBlur(e);
+      },
+      blur: (e) => {
+        parseValidFocusBlur(e);
+      },
     },
-    saveProfileData: (e) => {
-      e.preventDefault();
-      const $form = e.target;
-      const fields = {
-        email: $form[ValidationTypes.email].value,
-        login: $form[ValidationTypes.login].value,
-        firstName: $form[ValidationTypes.first_name].value,
-        secondName: $form[ValidationTypes.second_name].value,
-        nameInChat: $form[ValidationTypes.name_in_chat].value,
-        phone: $form[ValidationTypes.phone].value,
-      };
-
-      const isValidAllFields = isValidFormSaveData(fields);
-      const $errorText = $form.querySelector('.form__error_change-password');
-      let errorText = '';
-
-      if (isValidAllFields) {
-        errorText = '';
-        console.info('changeProfileData', fields);
-      } else {
-        errorText = 'Некорректные заполненные поля';
-      }
-
-      $errorText.textContent = errorText;
-    },
-    changeAvatar: (e) => {
-      const profileElement = elements.getProfile();
-      const inputFileElement = elements.getInputFile();
-      inputFileElement.setProps({
-        titleError: 'Ошибка, попробуйте еще разок',
-      });
-      profileElement.setProps({
-        isShow: true,
-        inputFile: inputFileElement,
-      });
-    },
-    focus: (e) => {
-      parseValidFocusBlur(e);
-    },
-    blur: (e) => {
-      parseValidFocusBlur(e);
+    attr: {
+      class: 'profile',
     },
   },
-  attr: {
-    class: 'profile',
-  },
-});
+);
 
 export default profile;

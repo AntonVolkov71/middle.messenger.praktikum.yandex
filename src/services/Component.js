@@ -2,7 +2,7 @@ import { v4 as makeUUID } from 'uuid';
 import Handlebars from 'handlebars';
 import EventBus from './EventBus';
 
-export default class Component {
+class Component {
   static EVENT_INIT = 'init';
 
   static EVENT_FLOW_CDM = 'flow:component-did-mount';
@@ -225,3 +225,5 @@ export default class Component {
     });
   }
 }
+
+export default Component;

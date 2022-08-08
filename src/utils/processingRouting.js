@@ -6,7 +6,7 @@ const rootSelector = '#root';
 
 function processingRouting(pages) {
   const {
-	  main, auth, login, notFound,
+    main, auth, login, notFound,
   } = pages;
 
   switch (pathname) {

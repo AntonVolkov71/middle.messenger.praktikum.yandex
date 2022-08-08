@@ -1,6 +1,6 @@
 import InputMessage from '../templates/components/input-message';
 
-const inputMessage = (props) => new InputMessage(
+const inputMessage = (props = {}, clb) => new InputMessage(
   'div',
   {
     ...props,
@@ -8,8 +8,11 @@ const inputMessage = (props) => new InputMessage(
       sendMessage: (e) => {
         e.preventDefault();
         const $form = e.target;
-        const message = ($form.message).value;
-        console.info('message', message);
+        const $message = $form.message;
+        const message = $message.value;
+        clb(message);
+
+        $message.value = '';
       },
     },
     attr: {

@@ -1,17 +1,13 @@
 import SearchChat from '../templates/components/search-chat';
-import { chats } from '../assets/mock-data';
 
-const searchChat = (getListChats) => new SearchChat(
+const searchChat = (props = {}, clb) => new SearchChat(
   'div',
   {
+    ...props,
     events: {
       input: (e) => {
         const searchText = e.target.value;
-        const includesName = (chat) => (chat.name).toLowerCase().includes(searchText.toLowerCase());
-        const findChats = chats.filter(includesName);
-
-        const elementListChats = getListChats();
-        elementListChats.setProps({ chats: findChats });
+        clb(searchText);
       },
     },
     attr: {

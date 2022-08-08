@@ -1,4 +1,4 @@
-const tpl = 	`
+const tpl = `
 <input
         id="{{id}}"
         class="input {{classNames}}"

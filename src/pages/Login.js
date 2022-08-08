@@ -13,7 +13,7 @@ const parseValidFocusBlur = (e) => {
     : $errorText.classList.remove('hidden');
 };
 
-const login = (props) => new Login('div', {
+const login = (props = {}) => new Login('div', {
   ...props,
   events: {
     linkToAuth: (e) => {
@@ -27,16 +27,17 @@ const login = (props) => new Login('div', {
       e.preventDefault();
       const form = e.target;
       const password = form[ValidationTypes.password].value;
-      const login = form[ValidationTypes.login].value;
+      const loginValue = form[ValidationTypes.login].value;
       const isValidForm = isValidation(ValidationTypes.password, password)
-					&& isValidation(ValidationTypes.login, login);
+				&& isValidation(ValidationTypes.login, loginValue);
 
       const $errorText = e.target.querySelector('.form__error_form');
 
       if (isValidForm) {
         $errorText.classList.add('hidden');
-        console.info('login', { login, password });
-        window.location.href = localePaths.main;
+        console.info('login', { login: loginValue, password });
+
+       window.location.href = localePaths.main;
       } else {
         $errorText.classList.remove('hidden');
       }

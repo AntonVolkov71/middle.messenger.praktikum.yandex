@@ -22,95 +22,167 @@ import activeChat from './components/Active-chat';
 import inputMessage from './components/Input-message';
 import emptyChat from './components/Empty-chat';
 import profile from './components/Profile';
-import { chats, myProfile } from './assets/mock-data';
+import {
+	activeChatsOptions, chats, myProfile, urlAvatars,
+} from './assets/mock-data';
 import inputFile from './components/Input-file';
 import main from './pages/Main';
 import listMessages from './components/List-messages';
+import parseDate from './utils/parseDate';
 
 try {
-  Handlebars.registerHelper('ifEqualsId', ifEqualsId);
+	Handlebars.registerHelper('ifEqualsId', ifEqualsId);
 
-  const emptyLayout = layout({ attr: { class: 'empty-layout' } });
-  const mainLayout = layout({ attr: { class: 'main-layout' } });
+	const emptyLayout = layout({attr: {class: 'empty-layout'}});
+	const mainLayout = layout({attr: {class: 'main-layout'}});
 
-  const componentListChats = listChats({ chats }, {
-    getMain, getListChats, getActiveChat, getInputMessage, getListMessages,
-  });
-  const componentListMessages = listMessages();
-  const componentActiveChat = activeChat();
-  const componentInputMessage = inputMessage();
-  const componentOpenProfile = openProfile(getMain, getSearchChat, getListChats, getProfile);
-  const componentSearchChat = searchChat(getListChats);
-  const componentEmptyChat = emptyChat();
-  const componentProfile = profile({ ...myProfile, isShow: true }, { getProfile, getInputFile });
+	const components = {
+		main: {},
+		listChats: {},
+		listMessages: {},
+		activeChat: {},
+		inputMessage: {},
+		openProfile: {},
+		searchChat: {},
+		emptyChat: {},
+		profile: {},
+		inputFile: {},
+	};
 
-  const componentInputFile = inputFile();
+	const clbOpenProfile = (isOpenProfile) => {
+		if (isOpenProfile) {
+			components.searchChat.show();
+			components.listChats.show();
+			components.main.setProps({content: components.emptyChat});
+		} else {
+			components.searchChat.hide();
+			components.listChats.hide();
+			components.main.setProps({content: components.profile});
+		}
+	};
 
-  const componentMain = main({
-    openProfile: componentOpenProfile,
-    searchChat: componentSearchChat,
-    listChats: getListChats(),
-    content: getEmptyChat(),
-  });
+	const clbSearchChat = (searchText) => {
+		const includesName = (chat) => (chat.name).toLowerCase().includes(searchText.toLowerCase());
+		const findChats = chats.filter(includesName);
 
-  const pages = {
-    login() {
-      emptyLayout.setProps({ content: login({}) });
-      return emptyLayout;
-    },
-    auth() {
-      emptyLayout.setProps({ content: auth({}) });
-      return emptyLayout;
-    },
-    main() {
-      mainLayout.setProps({
-        content: componentMain,
-      });
-      return mainLayout;
-    },
-    notFound() {
-      emptyLayout.setProps({ content: notFound() });
-      return emptyLayout;
-    },
-  };
+		components.listChats.setProps({
+			chats: findChats,
+		});
+	};
 
-  function getMain() {
-    return componentMain;
-  }
+	const clbListChats = (activeChatId) => {
+		const findChatsOptions = activeChatsOptions()
+			.find((item) => item.id === +activeChatId);
+		let linkUser = {};
+		let messages = [];
 
-  function getSearchChat() {
-    return componentSearchChat;
-  }
+		if (findChatsOptions) {
+			messages = findChatsOptions.messages;
+			linkUser = findChatsOptions.linkUser;
+		} else {
+			linkUser = {
+				id: 2,
+				name: `Name is ${activeChatId}`,
+				avatar: urlAvatars[activeChatId],
+			};
+		}
 
-  function getListChats() {
-    return componentListChats;
-  }
+		components.listMessages.setProps({
+			messages,
+			myId: 1,
+			dateMessage: parseDate(new Date(), 'dayMonth'),
+		});
 
-  function getListMessages() {
-    return componentListMessages;
-  }
+		components.activeChat.setProps({
+			linkUser,
+			messages: components.listMessages,
+			inputMessage: components.inputMessage,
+		});
 
-  function getActiveChat() {
-    return componentActiveChat;
-  }
+		components.main.setProps({
+			content: components.activeChat,
+		});
+	};
 
-  function getProfile() {
-    return componentProfile;
-  }
+	const clbOpenChangeProfile = () => {
+		components.profile.setProps({
+			isShow: false,
+		});
+	};
 
-  function getInputFile() {
-    return componentInputFile;
-  }
+	const clbSavePassword = (passwords) => {
+		console.info('save password', passwords);
+	};
 
-  function getInputMessage() {
-    return componentInputMessage;
-  }
+	const clbSaveProfileData = (profileData) => {
+		console.info('change profile data', profileData);
+	};
 
-  function getEmptyChat() {
-    return componentEmptyChat;
-  }
+	const clbChangeAvatar = () => {
+		components.inputFile.setProps({
+			titleError: 'Ошибка, попробуйте еще разок',
+		});
+		components.profile.setProps({
+			isShow: true,
+			inputFile: components.inputFile,
+		});
+	};
 
-  processingRouting(pages);
+	const clbOpenChangePassword = () => {
+		components.profile.setProps({
+			isShow: false,
+			changePassword: true,
+			oldPassword: 'A1245678',
+		});
+	};
+
+	const clbInputMessage = (message) => {
+		console.info('message', message);
+	};
+
+	const pages = {
+		login() {
+			emptyLayout.setProps({content: login({})});
+			return emptyLayout;
+		},
+		auth() {
+			emptyLayout.setProps({content: auth({})});
+			return emptyLayout;
+		},
+		main() {
+			components.searchChat = searchChat({}, clbSearchChat);
+			components.openProfile = openProfile({}, clbOpenProfile);
+			components.listChats = listChats({chats}, clbListChats);
+			components.emptyChat = emptyChat();
+			components.profile = profile({...myProfile, isShow: true},
+				{
+					clbOpenChangeProfile, clbOpenChangePassword, clbSavePassword, clbSaveProfileData, clbChangeAvatar,
+				});
+			components.listMessages = listMessages();
+			components.activeChat = activeChat();
+			components.inputMessage = inputMessage({}, clbInputMessage);
+			components.inputFile = inputFile({});
+
+			components.main = main({
+				openProfile: components.openProfile,
+				searchChat: components.searchChat,
+				listChats: components.listChats,
+				content: components.emptyChat,
+			});
+
+			mainLayout.setProps({
+				content: components.main,
+			});
+
+			return mainLayout;
+		},
+		notFound() {
+			emptyLayout.setProps({content: notFound()});
+			return emptyLayout;
+		},
+	};
+
+	processingRouting(pages);
 } catch (e) {
-  renderServerError();
+	renderServerError();
 }
