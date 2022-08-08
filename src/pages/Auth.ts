@@ -67,7 +67,7 @@ const auth = (props: Props = {}): Component => new Auth('div', {
 
 			if (form && form instanceof HTMLElement) {
 				
-				const fields: {[key: string]: string} = {
+				const fields: {[key: string]: string } = {
 					password: form['password'].value,
 					passwordRepeat: form['password_repeat'].value,
 					login: form['login'].value,
