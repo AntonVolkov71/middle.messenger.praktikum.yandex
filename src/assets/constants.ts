@@ -1,4 +1,4 @@
-import LocalePaths from "../types/constants";
+import LocalePaths from '../types/constants';
 
 const localePaths: LocalePaths = {
 	login: '/login',

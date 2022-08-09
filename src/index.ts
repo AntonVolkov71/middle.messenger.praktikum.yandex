@@ -1,4 +1,4 @@
-import * as Handlebars from "handlebars";
+import * as Handlebars from 'handlebars';
 
 import './assets/styles/style.scss';
 
@@ -29,16 +29,16 @@ import inputFile from './components/Input-file';
 import main from './pages/Main';
 import listMessages from './components/List-messages';
 import parseDate from './utils/parseDate';
-import Component from "./services/Component";
-import Pages from "./types/main";
-import {ParseDateTypes} from "./types/utils";
-import {Chat, LinkUser, Message} from "./types/mock-data";
+import Component from './services/Component';
+import Pages from './types/main';
+import { ParseDateTypes } from './types/utils';
+import { Chat, LinkUser, Message } from './types/mock-data';
 
 try {
 	Handlebars.registerHelper('ifEqualsId', ifEqualsId);
 
-	const emptyLayout: Component = layout({attr: {class: 'empty-layout'}});
-	const mainLayout = layout({attr: {class: 'main-layout'}});
+	const emptyLayout: Component = layout({ attr: { class: 'empty-layout' } });
+	const mainLayout = layout({ attr: { class: 'main-layout' } });
 
 	const components: { [key: string]: Component } = {
 		main: {} as Component,
@@ -56,23 +56,22 @@ try {
 	const clbOpenProfile = (isOpenProfile: boolean): void => {
 		if (components) {
 			if (isOpenProfile) {
-				components['searchChat']?.show();
-				components['listChats']?.show();
-				components['main']?.setProps({content: components['emptyChat']});
+				components.searchChat?.show();
+				components.listChats?.show();
+				components.main?.setProps({ content: components.emptyChat });
 			} else {
-				components['searchChat']?.hide();
-				components['listChats']?.hide();
-				components['main']?.setProps({content: components['profile']});
+				components.searchChat?.hide();
+				components.listChats?.hide();
+				components.main?.setProps({ content: components.profile });
 			}
 		}
-
 	};
 
 	const clbSearchChat = (searchText: string) => {
 		const includesName = (chat: Chat) => (chat.name).toLowerCase().includes(searchText.toLowerCase());
 		const findChats = chats.filter(includesName);
 
-		components['listChats']?.setProps({
+		components.listChats?.setProps({
 			chats: findChats,
 		});
 	};
@@ -94,25 +93,25 @@ try {
 			};
 		}
 
-		components['listMessages']?.setProps({
+		components.listMessages?.setProps({
 			messages,
 			myId: 1,
 			dateMessage: parseDate(new Date(), ParseDateTypes.DAY_MONTH),
 		});
 
-		components['activeChat']?.setProps({
+		components.activeChat?.setProps({
 			linkUser,
-			messages: components['listMessages'],
-			inputMessage: components['inputMessage'],
+			messages: components.listMessages,
+			inputMessage: components.inputMessage,
 		});
 
-		components['main']?.setProps({
-			content: components['activeChat'],
+		components.main?.setProps({
+			content: components.activeChat,
 		});
 	};
 
 	const clbOpenChangeProfile = (): void => {
-		components['profile']?.setProps({
+		components.profile?.setProps({
 			isShow: false,
 		});
 	};
@@ -121,22 +120,22 @@ try {
 		console.info('save password', passwords);
 	};
 
-	const clbSaveProfileData = (profileData: {[key: string]: string}): void => {
+	const clbSaveProfileData = (profileData: { [key: string]: string }): void => {
 		console.info('change profile data', profileData);
 	};
 
 	const clbChangeAvatar = (): void => {
-		components['inputFile']?.setProps({
+		components.inputFile?.setProps({
 			titleError: 'Ошибка, попробуйте еще разок',
 		});
-		components['profile']?.setProps({
+		components.profile?.setProps({
 			isShow: true,
-			inputFile: components['inputFile'],
+			inputFile: components.inputFile,
 		});
 	};
 
 	const clbOpenChangePassword = (): void => {
-		components['profile']?.setProps({
+		components.profile?.setProps({
 			isShow: false,
 			changePassword: true,
 			oldPassword: 'A12345678',
@@ -149,43 +148,44 @@ try {
 
 	const pages: Pages = {
 		login(): Component {
-			emptyLayout.setProps({content: login({})});
+			emptyLayout.setProps({ content: login({}) });
 			return emptyLayout;
 		},
 		auth(): Component {
-			emptyLayout.setProps({content: auth({})});
+			emptyLayout.setProps({ content: auth({}) });
 			return emptyLayout;
 		},
 		main(): Component {
-			components['searchChat'] = searchChat({}, clbSearchChat);
-			components['openProfile'] = openProfile({}, clbOpenProfile);
-			components['listChats'] = listChats({chats}, clbListChats);
-			components['emptyChat'] = emptyChat();
-			components['profile'] = profile({...myProfile, isShow: true},
+			components.searchChat = searchChat(clbSearchChat, {});
+			components.openProfile = openProfile(clbOpenProfile, {});
+			components.listChats = listChats(clbListChats, { chats });
+			components.emptyChat = emptyChat();
+			components.profile = profile(
 				{
 					clbOpenChangeProfile, clbOpenChangePassword, clbSavePassword, clbSaveProfileData, clbChangeAvatar,
-				});
-			components['listMessages'] = listMessages();
-			components['activeChat'] = activeChat();
-			components['inputMessage'] = inputMessage({}, clbInputMessage);
-			components['inputFile'] = inputFile({});
-			// clbOpenChangeProfile() //TODO delete
-			clbOpenChangePassword() //TODO delete
-			components['main'] = main({
-				openProfile: components['openProfile'],
-				searchChat: components['searchChat'],
-				listChats: components['listChats'],
-				content: components['emptyChat'],
+				},
+				{ ...myProfile, isShow: true },
+			);
+			components.listMessages = listMessages();
+			components.activeChat = activeChat();
+			components.inputMessage = inputMessage(clbInputMessage, {});
+			components.inputFile = inputFile({});
+
+			components.main = main({
+				openProfile: components.openProfile,
+				searchChat: components.searchChat,
+				listChats: components.listChats,
+				content: components.emptyChat,
 			});
 
 			mainLayout.setProps({
-				content: components['main'],
+				content: components.main,
 			});
 
 			return mainLayout;
 		},
 		notFound(): Component {
-			emptyLayout.setProps({content: notFound()});
+			emptyLayout.setProps({ content: notFound() });
 			return emptyLayout;
 		},
 	};

@@ -1,4 +1,4 @@
-import Component from "../services/Component";
+import Component from '../services/Component';
 
 const renderer = (query: string, element: Component) => {
 	const root: HTMLElement | null = document.querySelector(query);

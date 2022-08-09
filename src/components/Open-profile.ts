@@ -1,8 +1,8 @@
 import OpenProfile from '../templates/components/open-profile';
-import {Props} from "../types/component";
-import Component from "../services/Component";
+import { Props } from '../types/component';
+import Component from '../services/Component';
 
-const openProfile = (props: Props = {}, clb: { (isOpenProfile: boolean): void }): Component => {
+const openProfile = (clb: { (isOpenProfile: boolean): void }, props: Props = {}): Component => {
 	let isOpenProfile: boolean = false;
 
 	return new OpenProfile(
@@ -18,7 +18,7 @@ const openProfile = (props: Props = {}, clb: { (isOpenProfile: boolean): void })
 				},
 			},
 			attr: {
-				'class': 'openProfile',
+				class: 'openProfile',
 			},
 		},
 	);

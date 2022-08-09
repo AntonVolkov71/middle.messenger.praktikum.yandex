@@ -21,7 +21,6 @@
 		"strictBindCallApply": true,
 		"noImplicitThis": true,
 		"useUnknownInCatchVariables": true,
-		"noPropertyAccessFromIndexSignature": true,
 		// noPropertyAccessFromIndexSignature проверяет обращение к обьекту через точку, но не запрещает через object['method']
 		"noUncheckedIndexedAccess": true, // как обеъекты так и массивы
 		"noImplicitReturns": true, // обязательное возвращение чтобы всех веток функций результата

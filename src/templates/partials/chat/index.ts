@@ -6,9 +6,9 @@ import Component from '../../../services/Component';
 Handlebars.registerPartial('chat', tpl);
 
 class Chat extends Component {
-  render() {
-    return this.compile(tpl);
-  }
+	render() {
+		return this.compile(tpl);
+	}
 }
 
 export default Chat;

@@ -1,4 +1,4 @@
-enum ValidationTypes {
+export enum ValidationTypes {
 	FIRST_NAME = 'FIRST_NAME',
 	SECOND_NAME = 'SECOND_NAME',
 	LOGIN = 'LOGIN',
@@ -11,8 +11,6 @@ enum ValidationTypes {
 	NAME_IN_CHAT = 'NAME_IN_CHAT',
 }
 
-enum ParseDateTypes {
+export enum ParseDateTypes {
 	DAY_MONTH=	'DAY_MONTH'
 }
-
-export  { ValidationTypes, ParseDateTypes}

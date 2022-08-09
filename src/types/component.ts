@@ -1,4 +1,4 @@
-import Component from "../services/Component";
+import Component from '../services/Component';
 
 export enum EventsEnum {
 	EVENT_INIT = 'init',
@@ -6,7 +6,6 @@ export enum EventsEnum {
 	EVENT_FLOW_CDU = 'flow:component-did-update',
 	EVENT_FLOW_RENDER = 'flow:render',
 }
-
 
 export interface Children {
 	[key: string]: Component
@@ -16,7 +15,7 @@ interface Events {
 	[key: string]: () => void
 }
 
-type PropsTypes = Events  | Children | any // object | number | boolean | Component | string
+type PropsTypes = Events | Children | any
 
 export interface Props {
 	[key: string]: PropsTypes
@@ -25,6 +24,6 @@ export interface Props {
 export type PropsAndChilds = Children | Props
 
 export interface Meta {
-	tag: string; 
+	tag: string;
 	props: Props
 }

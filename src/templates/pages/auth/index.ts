@@ -5,10 +5,10 @@ import tpl from './tpl';
 class Auth extends Component {
 	addEvents() {
 		if (this.element !== null) {
-			const $link: HTMLElement | null = this.element.querySelector('.form__link')
+			const $link: HTMLElement | null = this.element.querySelector('.form__link');
 			$link?.addEventListener('click', this.props.events.linkToLogin);
 
-			const $form: HTMLFormElement | null = this.element.querySelector('.auth__form')
+			const $form: HTMLFormElement | null = this.element.querySelector('.auth__form');
 			$form?.addEventListener('submit', this.props.events.submit);
 
 			this.element.querySelectorAll('.form__input').forEach((input: Element) => {

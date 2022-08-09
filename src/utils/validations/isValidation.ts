@@ -1,8 +1,8 @@
-import {ValidationTypes} from '../../types/utils';
-import {maxLengthPassword, minLengthPassword} from '../../assets/config';
+import { ValidationTypes } from '../../types/utils';
+import { maxLengthPassword, minLengthPassword } from '../../assets/config';
 
 function isValidName(value: string): boolean {
-	const regex = /^[А-ЯЁA-Z]([а-яёa-z\-])+$/;
+	const regex = /^[А-ЯЁA-Z]([а-яёa-z-])+$/;
 	return regex.test(value);
 }
 
@@ -33,34 +33,34 @@ function isOnlyDigit(value: string): boolean {
 
 const isValidation = (type: ValidationTypes, value: string = ''): boolean => {
 	switch (type) {
-		case ValidationTypes.FIRST_NAME:
-			return isValidName(value);
+	case ValidationTypes.FIRST_NAME:
+		return isValidName(value);
 
-		case ValidationTypes.SECOND_NAME:
-			return isValidName(value);
+	case ValidationTypes.SECOND_NAME:
+		return isValidName(value);
 
-		case ValidationTypes.LOGIN:
-			if (isOnlyDigit(value)) {
-				return false;
-			}
-
-			return isValidLogin(value);
-
-		case ValidationTypes.EMAIL:
-			return isValidEmail(value);
-
-		case ValidationTypes.PASSWORD:
-			if (value.length < minLengthPassword || value.length > maxLengthPassword) {
-				return false;
-			}
-
-			return isValidPassword(value);
-
-		case ValidationTypes.PHONE:
-			return isValidPhone(value);
-
-		default:
+	case ValidationTypes.LOGIN:
+		if (isOnlyDigit(value)) {
 			return false;
+		}
+
+		return isValidLogin(value);
+
+	case ValidationTypes.EMAIL:
+		return isValidEmail(value);
+
+	case ValidationTypes.PASSWORD:
+		if (value.length < minLengthPassword || value.length > maxLengthPassword) {
+			return false;
+		}
+
+		return isValidPassword(value);
+
+	case ValidationTypes.PHONE:
+		return isValidPhone(value);
+
+	default:
+		return false;
 	}
 };
 

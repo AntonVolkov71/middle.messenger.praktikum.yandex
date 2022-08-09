@@ -1,10 +1,7 @@
-import {Callback, Listeners} from "../types/event-bus";
+import { Callback, Listeners } from '../types/event-bus';
 
 class EventBus {
-	constructor(
-		private listeners: Listeners = {}
-	) {
-	}
+	private listeners: Listeners = {};
 
 	on(event: string, callback: Callback): void {
 		if (!this.listeners[event]) {
@@ -21,7 +18,7 @@ class EventBus {
 
 		this.listeners[event] = this.listeners[event]?.filter(
 			(listener) => listener !== callback,
-		) || []
+		) || [];
 	}
 
 	emit(event: string, ...args: any[]): void {
@@ -33,7 +30,6 @@ class EventBus {
 			listener(...args);
 		});
 	}
-		
 }
 
-export default EventBus
+export default EventBus;

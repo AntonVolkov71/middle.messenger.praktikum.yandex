@@ -1,4 +1,4 @@
-import Component from "../services/Component";
+import Component from '../services/Component';
 
 interface Pages {
 	[key:string]: ()=> Component

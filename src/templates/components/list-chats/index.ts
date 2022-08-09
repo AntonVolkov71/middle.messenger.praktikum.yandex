@@ -3,7 +3,7 @@ import Component from '../../../services/Component';
 import tpl from './tpl';
 
 class ListChats extends Component {
-  addEvents() {
+	addEvents() {
 		if (this.element !== null) {
 			this.element.querySelectorAll('.chat__over-click').forEach((chat) => {
 				chat.addEventListener('click', (e) => {
@@ -11,11 +11,11 @@ class ListChats extends Component {
 				});
 			});
 		}
-  }
+	}
 
-  render() {
-    return this.compile(tpl );
-  }
+	render() {
+		return this.compile(tpl);
+	}
 }
 
 export default ListChats;

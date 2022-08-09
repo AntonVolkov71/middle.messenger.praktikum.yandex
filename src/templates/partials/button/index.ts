@@ -6,9 +6,9 @@ import Component from '../../../services/Component';
 Handlebars.registerPartial('button', tpl);
 
 class Button extends Component {
-  render() {
-    return this.compile(tpl);
-  }
+	render() {
+		return this.compile(tpl);
+	}
 }
 
 export default Button;

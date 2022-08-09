@@ -7,8 +7,8 @@
     "dev": "parcel src/index.html --no-source-maps --target default --dist-dir ./build --port 3000",
     "build": "parcel build ",
     "start": "nodemon src/app.ts",
-    "eslint": "eslint src/**.js",
-    "fix": "eslint src/**/**.js --fix"
+    "eslint": "eslint src/**/**.ts",
+    "fix": "eslint src/**/**.ts --fix"
   },
   "author": "",
   "license": "ISC",

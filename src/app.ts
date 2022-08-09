@@ -1,4 +1,4 @@
-import * as express from "express";
+import * as express from 'express';
 import * as path from 'path';
 
 const defaultPort: number = 3000;

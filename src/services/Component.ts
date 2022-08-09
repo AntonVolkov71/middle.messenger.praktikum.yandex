@@ -1,30 +1,40 @@
-import {v4 as makeUUID} from 'uuid';
-import *as Handlebars from 'handlebars';
+import { v4 as makeUUID } from 'uuid';
+import * as Handlebars from 'handlebars';
 import EventBus from './Event-bus';
-import {Children, EventsEnum, Meta, Props, PropsAndChilds} from "../types/component";
+import {
+	Children, EventsEnum, Meta, Props, PropsAndChilds,
+} from '../types/component';
 
 class Component {
 	static EVENT_INIT: EventsEnum = EventsEnum.EVENT_INIT;
+
 	static EVENT_FLOW_CDM: EventsEnum = EventsEnum.EVENT_FLOW_CDM;
+
 	static EVENT_FLOW_CDU: EventsEnum = EventsEnum.EVENT_FLOW_CDU;
+
 	static EVENT_FLOW_RENDER: EventsEnum = EventsEnum.EVENT_FLOW_RENDER;
 
 	private setUpdate: boolean = false;
+
 	private eventBus: EventBus;
+
 	private id: string = makeUUID();
 
 	protected element: HTMLElement | null;
+
 	protected props: Props;
+
 	private readonly children: Children;
+
 	private meta: Meta;
 
 	constructor(tag: string = 'div', propsAndChilds: PropsAndChilds = {}) {
-		const {children, props} = this.getChildren(propsAndChilds);
+		const { children, props } = this.getChildren(propsAndChilds);
 
 		this.eventBus = new EventBus();
 		this.children = this.makePropsProxy(children);
-		this.props = this.makePropsProxy({...props, __id: this.id});
-		this.meta = {tag, props};
+		this.props = this.makePropsProxy({ ...props, __id: this.id });
+		this.meta = { tag, props };
 
 		this.registerEvents();
 		this.eventBus.emit(Component.EVENT_INIT);
@@ -44,10 +54,9 @@ class Component {
 
 	createDocumentElement(tag: string) {
 		const element: HTMLElement = document.createElement(tag);
-		if (this.props['settings'] && 'withInternalID' in this.props['settings']) {
+		if (this.props.settings && 'withInternalID' in this.props.settings) {
 			element.setAttribute('data-id', this.id);
 		}
-
 
 		return element;
 	}
@@ -70,11 +79,11 @@ class Component {
 	}
 
 	render() {
-		return null
+		return null;
 	}
 
 	addEvents() {
-		const {events = {}} = this.props;
+		const { events = {} } = this.props;
 
 		Object.keys(events).forEach((eventName) => {
 			if (this.element) {
@@ -84,7 +93,7 @@ class Component {
 	}
 
 	removeEvents(): void {
-		const {events = {}} = this.props;
+		const { events = {} } = this.props;
 
 		Object.keys(events).forEach((eventName) => {
 			if (this.element) {
@@ -94,9 +103,7 @@ class Component {
 	}
 
 	addAttribute() {
-
-		let attr: Props;
-		({attr = {}} = this.props);
+		const attr: Props = this.props.attr || {};
 
 		Object.entries(attr).forEach(([key, value]: [key: string, value: string]) => {
 			if (this.element) {
@@ -105,7 +112,7 @@ class Component {
 		});
 	}
 
-	getChildren(propsAndChilds: PropsAndChilds) {
+	private getChildren(propsAndChilds: PropsAndChilds) {
 		const children: Children = {};
 		const props: Props = {};
 
@@ -117,16 +124,17 @@ class Component {
 			}
 		});
 
-		return {children, props};
+		return { children, props };
 	}
 
 	compile(template: string, props?: Props) {
-
+		let tempProps: Props = {} as Props;
 		if (typeof (props) === 'undefined') {
-			props = this.props;
+			tempProps = this.props;
+			// props = this.props;
 		}
 
-		const propsAndStubs: Props = {...props};
+		const propsAndStubs: Props = Object.keys(tempProps).length > 0 ? { ...props, ...tempProps } : { ...props };
 
 		Object.entries(this.children).forEach(([key, child]: [key: string, child: Component]) => {
 			propsAndStubs[key] = `<div data-id="${child.id}"></div>`;
@@ -136,7 +144,7 @@ class Component {
 		fragment.innerHTML = Handlebars.compile(template)(propsAndStubs);
 
 		Object.values(this.children).forEach((child: Component) => {
-			const stub = fragment['content'].querySelector(`[data-id="${child.id}"]`);
+			const stub = fragment.content.querySelector(`[data-id="${child.id}"]`);
 
 			if (stub) {
 				const content = child.getContent();
@@ -146,10 +154,10 @@ class Component {
 			}
 		});
 
-		return fragment['content'];
+		return fragment.content;
 	}
 
-	_componentDidMount() {
+	private _componentDidMount() {
 		this.componentDidMount();
 
 		Object.values(this.children).forEach((child: Component) => {
@@ -169,7 +177,7 @@ class Component {
 		}
 	}
 
-	_componentDidUpdate(oldProps: Props, newProps: Props) {
+	private _componentDidUpdate(oldProps: Props, newProps: Props) {
 		const isRenderer = this.componentDidUpdate(oldProps, newProps);
 
 		if (isRenderer) {
@@ -177,8 +185,8 @@ class Component {
 		}
 	}
 
-	componentDidUpdate(_: Props, __: Props) {
-		return true;
+	componentDidUpdate(oldProps: Props, newProps: Props) {
+		return oldProps !== newProps;
 	}
 
 	show(): void {
@@ -205,9 +213,9 @@ class Component {
 		}
 
 		this.setUpdate = false;
-		const oldValue: Props = {...this.props};
+		const oldValue: Props = { ...this.props };
 
-		const {children, props} = this.getChildren(newProps);
+		const { children, props } = this.getChildren(newProps);
 
 		if (Object.values(children).length) {
 			Object.assign(this.children, children);

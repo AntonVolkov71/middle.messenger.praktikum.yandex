@@ -1,6 +1,6 @@
 import NotFound from '../templates/components/not-found';
-import {Props} from "../types/component";
-import Component from "../services/Component";
+import { Props } from '../types/component';
+import Component from '../services/Component';
 
 const notFound = (props: Props = {}): Component => new NotFound(
 	'div',
@@ -10,12 +10,12 @@ const notFound = (props: Props = {}): Component => new NotFound(
 			linkToLogin: (e: PointerEvent) => {
 				e.preventDefault();
 				e.stopPropagation();
-				const {href}:{href: string} = e.target as HTMLLinkElement;
+				const { href }:{href: string} = e.target as HTMLLinkElement;
 				window.location.href = href;
 			},
 		},
 		attr: {
-			'class': 'notFound',
+			class: 'notFound',
 		},
 	},
 );

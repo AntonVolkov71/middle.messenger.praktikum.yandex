@@ -50,4 +50,6 @@ interface User {
 
 }
 
-export {Chat, ActiveChatsOptions,User, LinkUser, Message}
+export {
+	Chat, ActiveChatsOptions, User, LinkUser, Message,
+};

@@ -1,8 +1,8 @@
 import localePaths from '../assets/constants';
 import renderer from './renderer';
-import Pages from "../types/main";
+import Pages from '../types/main';
 
-const {pathname} = window.location;
+const { pathname } = window.location;
 const rootSelector = '#root';
 
 const processingRouting = (pages: Pages): void => {
@@ -11,22 +11,32 @@ const processingRouting = (pages: Pages): void => {
 	} = pages;
 
 	switch (pathname) {
-		case localePaths['login']:
-			login ? renderer(rootSelector, login()) : null;
-			break;
-		case localePaths['auth']:
-			auth ? renderer(rootSelector, auth()) : null;
-			break;
-		case localePaths['main']:
-			main ? renderer(rootSelector, main()) : null;
-			break;
-		case localePaths['empty']:
-			login ? renderer(rootSelector, login()) : null;
-			break;
-		default:
-			notFound ? renderer(rootSelector, notFound()) : null;
-			break;
+	case localePaths.login:
+		if (login) {
+			renderer(rootSelector, login());
+		}
+		break;
+	case localePaths.auth:
+		if (auth) {
+			renderer(rootSelector, auth());
+		}
+		break;
+	case localePaths.main:
+		if (main) {
+			renderer(rootSelector, main());
+		}
+		break;
+	case localePaths.empty:
+		if (login) {
+			renderer(rootSelector, login());
+		}
+		break;
+	default:
+		if (notFound) {
+			renderer(rootSelector, notFound());
+		}
+		break;
 	}
-}
+};
 
 export default processingRouting;
