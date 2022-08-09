@@ -43,6 +43,7 @@ class Component {
 	registerEvents(): void {
 		this.eventBus.on(Component.EVENT_INIT, this.init.bind(this));
 		this.eventBus.on(Component.EVENT_FLOW_CDM, this._componentDidMount.bind(this));
+		// @ts-ignore
 		this.eventBus.on(Component.EVENT_FLOW_CDU, this._componentDidUpdate.bind(this));
 		this.eventBus.on(Component.EVENT_FLOW_RENDER, this._render.bind(this));
 	}
@@ -144,6 +145,7 @@ class Component {
 		fragment.innerHTML = Handlebars.compile(template)(propsAndStubs);
 
 		Object.values(this.children).forEach((child: Component) => {
+			// @ts-ignore
 			const stub = fragment.content.querySelector(`[data-id="${child.id}"]`);
 
 			if (stub) {
@@ -153,7 +155,7 @@ class Component {
 				}
 			}
 		});
-
+		// @ts-ignore
 		return fragment.content;
 	}
 
