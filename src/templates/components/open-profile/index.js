@@ -4,8 +4,8 @@ import Component from '../../../services/Component';
 
 class OpenProfile extends Component {
   addEvents() {
-    this._element.querySelector('.openProfile__title')
-      .addEventListener('click', this._props.events.click);
+    this.element.querySelector('.openProfile__title')
+      .addEventListener('click', this.props.events.click);
   }
 
   render() {

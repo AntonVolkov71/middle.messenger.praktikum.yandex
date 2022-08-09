@@ -4,8 +4,8 @@ import Component from '../../../services/Component';
 
 class SearchChat extends Component {
   addEvents() {
-    this._element.querySelector('.searchChat__input')
-      .addEventListener('input', this._props.events.input);
+    this.element.querySelector('.searchChat__input')
+      .addEventListener('input', this.props.events.input);
   }
 
   render() {

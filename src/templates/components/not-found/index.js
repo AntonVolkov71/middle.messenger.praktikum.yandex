@@ -4,8 +4,8 @@ import tpl from './tpl';
 
 class NotFound extends Component {
   addEvents() {
-    this._element.querySelector('.notFound__link-back')
-      .addEventListener('click', this._props.events.linkToLogin);
+    this.element.querySelector('.notFound__link-back')
+      .addEventListener('click', this.props.events.linkToLogin);
   }
 
   render() {
