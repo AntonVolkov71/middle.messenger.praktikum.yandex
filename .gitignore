@@ -3,3 +3,5 @@
 /build
 .parcel-cache
 .github
+/dist
+/.idea
