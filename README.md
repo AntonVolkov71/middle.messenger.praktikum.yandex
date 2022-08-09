@@ -5,7 +5,7 @@
 [ссылка на pullrequest](https://github.com/AntonVolkov71/middle.messenger.praktikum.yandex/pulls)
 
 ### Ссылка на хостинг
-[ссылка на hosting](https://62f273a4dcd47c00ad507ad8--super-puper-messanger.netlify.app/)
+[ссылка на hosting](https://deploy--super-puper-messanger.netlify.app/)
 
 ## README
 ## Вашему вниманию представляю необыкновенный чат
