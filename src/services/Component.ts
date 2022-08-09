@@ -132,7 +132,6 @@ class Component {
 		let tempProps: Props = {} as Props;
 		if (typeof (props) === 'undefined') {
 			tempProps = this.props;
-			// props = this.props;
 		}
 
 		const propsAndStubs: Props = Object.keys(tempProps).length > 0 ? { ...props, ...tempProps } : { ...props };

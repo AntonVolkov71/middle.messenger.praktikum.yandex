@@ -1,14 +1,11 @@
-#### Макет сего чуда
+#### Макет сего чуда (Figma)
 [открыть_макет](https://www.figma.com/file/jF5fFFzgGOxQeB4CmKWTiE/Chat_external_link?node-id=0%3A1)
 
 ### Ссылка на пулреквест
 [ссылка на pullrequest](https://github.com/AntonVolkov71/middle.messenger.praktikum.yandex/pulls)
 
 ### Ссылка на хостинг
-[ссылка на hosting](https://62ded4986771c856f505c978--sprightly-narwhal-73bd97.netlify.app/)
-
-### Ссылка на макет Figma
-[ссылка на макет](https://www.figma.com/file/jF5fFFzgGOxQeB4CmKWTiE/Chat_external_link?node-id=0%3A1)
+[ссылка на hosting](https://62f273a4dcd47c00ad507ad8--super-puper-messanger.netlify.app/)
 
 ## README
 ## Вашему вниманию представляю необыкновенный чат
