@@ -78,7 +78,6 @@ const profile = (callbacks: { [key: string]: Callback }, props: Props = {}): Com
 						const isValidAllFields: boolean = isValidFormSavePassword(fields);
 
 						const $errorText: HTMLElement | null = $form.querySelector('.form__error_form');
-						console.log('$errorText', $errorText);
 						if ($errorText) {
 							toggleHideElement($errorText, isValidAllFields);
 						}
@@ -86,7 +85,7 @@ const profile = (callbacks: { [key: string]: Callback }, props: Props = {}): Com
 						if (isValidAllFields) {
 							const clb: Callback | undefined = callbacks.clbSavePassword;
 							if (clb) {
-								clb();
+								clb(fields);
 							}
 						}
 					}
@@ -117,7 +116,7 @@ const profile = (callbacks: { [key: string]: Callback }, props: Props = {}): Com
 					if (isValidAllFields) {
 						const clb: Callback | undefined = callbacks.clbSaveProfileData;
 						if (clb) {
-							clb();
+							clb(fields);
 						}
 					}
 				}
