@@ -11,20 +11,20 @@ const processingRouting = (pages: Pages): void => {
 	} = pages;
 
 	switch (pathname) {
-		case localePaths.login:
-			renderer(rootSelector, login());
+		case localePaths['login']:
+			login ? renderer(rootSelector, login()) : null;
 			break;
-		case localePaths.auth:
-			renderer(rootSelector, auth());
+		case localePaths['auth']:
+			auth ? renderer(rootSelector, auth()) : null;
 			break;
-		case localePaths.main:
-			renderer(rootSelector, main());
+		case localePaths['main']:
+			main ? renderer(rootSelector, main()) : null;
 			break;
-		case localePaths.empty:
-			renderer(rootSelector, login());
+		case localePaths['empty']:
+			login ? renderer(rootSelector, login()) : null;
 			break;
 		default:
-			renderer(rootSelector, notFound());
+			notFound ? renderer(rootSelector, notFound()) : null;
 			break;
 	}
 }

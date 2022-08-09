@@ -1,81 +1,71 @@
 @import '../../../assets/styles/variables';
 
 .profile {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
 
-  height: 100%;
+	height: 100%;
 
-  .profile__data, .profile__change-password {
-    min-width: 500px;
+	.profile__data, .profile__change-password {
+		min-width: 500px;
+		
+		.profile__button-save, .profile__button-save-password {
+			width: 100%;
+			margin-top: 30px;
+		}
+	}
 
-    .profile__field {
-      margin: 10px auto;
+	.profile__change-data, .profile__button-change-password, {
+		min-width: 500px;
+		color: $colorInfo;
+	}
 
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+	.profile__change-data:hover, .profile__change-password:hover {
+		cursor: pointer;
+		color: $colorPrimary;
+	}
 
-      border-bottom: 1px solid $colorSecondary;
-    }
+	.profile__image:hover {
+		cursor: pointer;
+	}
 
-    .profile__button-save, .profile__button-save-password {
-      width: 100%;
-      margin-top: 30px;
-    }
-  }
+	$sizeAvatar: 50px;
+	$sizeChangeAvatar: 130px;
+	$shiftChangeAvatar: calc((50px - 130px) / 2);
 
-  .profile__change-data, .profile__button-change-password, {
-    min-width: 500px;
-    color: $colorInfo;
-  }
+	.profile__wrapper-avatar {
+		position: relative;
+		width: $sizeAvatar;
 
-  .profile__change-data:hover, .profile__change-password:hover {
-    cursor: pointer;
-    color: $colorPrimary;
-  }
+		.profile__image {
+			border-radius: 50%;
+			width: $sizeAvatar;
+			height: $sizeAvatar;
+		}
 
-  .profile__image:hover {
-    cursor: pointer;
-  }
+		.profile__change-avatar {
+			display: none;
+			position: absolute;
+			top: $shiftChangeAvatar;
+			left: $shiftChangeAvatar;
 
-  $sizeAvatar: 50px;
-  $sizeChangeAvatar: 130px;
+			width: $sizeChangeAvatar;
+			height: $sizeChangeAvatar;
+			line-height: $sizeChangeAvatar;
+			text-align: center;
 
-  .profile__wrapper-avatar {
-    position: relative;
-    margin-bottom: 30px;
-    width: $sizeAvatar;
+			border-radius: 50%;
+			background: $colorSecondary;
+			opacity: 0.7;
 
-    .profile__image {
-      border-radius: 50%;
-      width: $sizeAvatar;
-      height: $sizeAvatar;
-    }
+			font-size: $fontXl;
+			color: white;
+		}
+	}
 
-    .profile__change-avatar {
-      display: none;
-      position: absolute;
-      top: calc(($sizeAvatar - $sizeChangeAvatar) / 2);
-      left: calc(($sizeAvatar - $sizeChangeAvatar) / 2);
-
-      width: $sizeChangeAvatar;
-      height: $sizeChangeAvatar;
-      line-height: $sizeChangeAvatar;
-      text-align: center;
-
-      border-radius: 50%;
-      background: $colorSecondary;
-      opacity: 0.7;
-
-      font-size: $fontXl;
-      color: white;
-    }
-  }
-
-  .profile__wrapper-avatar:hover .profile__change-avatar {
-    display: block;
-  }
+	.profile__wrapper-avatar:hover .profile__change-avatar {
+		display: block;
+	}
 }

@@ -54,8 +54,9 @@ function createMockChats(sizeChatsCurrent: number): Chat[] {
 				content: i % 2 ? randomString() : 'Изображение',
 				time: getHoursMinutes(),
 				ofUnread: Math.floor(Math.random() * 10),
+				
 			},
-			avatar: urlAvatars[i],
+			avatar: urlAvatars[i] || '',
 			active: false,
 		}
 	));
@@ -69,7 +70,7 @@ function activeChatsOptions(): ActiveChatsOptions[] {
 			linkUser: {
 				id: 2,
 				name: 'Vasya',
-				avatar: urlAvatars[1],
+				avatar: urlAvatars[1] || '',
 			},
 			messages: [
 				{
@@ -99,7 +100,7 @@ function activeChatsOptions(): ActiveChatsOptions[] {
 					id: 3,
 					content: {
 						text: null,
-						image: urlAvatars[5],
+						image: urlAvatars[5] || '',
 					},
 					time: getHoursMinutes(),
 					author: {
@@ -125,7 +126,7 @@ function activeChatsOptions(): ActiveChatsOptions[] {
 			linkUser: {
 				id: 2,
 				name: 'Vasya',
-				avatar: urlAvatars[1],
+				avatar: urlAvatars[1] || '',
 			},
 			messages: [
 				{
@@ -167,7 +168,7 @@ function activeChatsOptions(): ActiveChatsOptions[] {
 					id: 4,
 					content: {
 						text: null,
-						image: urlAvatars[5],
+						image: urlAvatars[5] || '',
 					},
 					time: getHoursMinutes(),
 					author: {

@@ -1,36 +1,12 @@
 import Auth from '../templates/pages/auth';
 import isValidation from '../utils/validations/isValidation';
 import {ValidationTypes} from '../types/utils';
-import parseValidationTypes from "../utils/validations/parseValidationTypes";
-import isValidFocusBlur from "../utils/validations/isValidFocusBlur";
 import toggleHideElement from "../utils/toggleHideElement";
 import {Props} from "../types/component";
 import Component from "../services/Component";
+import parseFocusBlur from "../utils/validations/parseFocusBlur";
 
-const parseFocusBlur = (e: FocusEvent): void => {
-	const {value, name} = e.target as HTMLTextAreaElement;
-	const typeValidate: ValidationTypes | null = parseValidationTypes(name)
-
-	if (typeValidate) {
-		const isValid: boolean = isValidFocusBlur(typeValidate, value);
-		const $form: HTMLElement = (<HTMLElement>(<HTMLElement>e.target).parentNode);
-
-		if ($form) {
-			const $errorText: HTMLElement | null = $form.querySelector(`.form__error_${name}`);
-			if ($errorText) {
-				if (name === 'password_repeat') {
-					const password: string = $form['password'].value
-
-					toggleHideElement($errorText, password === value)
-				} else {
-					toggleHideElement($errorText, isValid)
-				}
-			}
-		}
-	}
-}
-
-const isValidForm = (fields: { [key: string]: string }): boolean => {
+const isValidForm = (fields: { [key: string]: string | undefined }): boolean => {
 	const {
 		password,
 		passwordRepeat,
@@ -54,7 +30,7 @@ const isValidForm = (fields: { [key: string]: string }): boolean => {
 const auth = (props: Props = {}): Component => new Auth('div', {
 	...props,
 	events: {
-		linkToLogin: (e) => {
+		linkToLogin: (e: PointerEvent) => {
 			e.preventDefault();
 			e.stopPropagation();
 
@@ -63,25 +39,29 @@ const auth = (props: Props = {}): Component => new Auth('div', {
 		},
 		submit: (e: SubmitEvent) => {
 			e.preventDefault();
-			const form: EventTarget | null = e.target;
+			const $form: HTMLFormElement | null = <HTMLFormElement>e.target;
 
-			if (form && form instanceof HTMLElement) {
+			if ($form && $form instanceof HTMLElement) {
 				
-				const fields: {[key: string]: string} = {
-					password: form['password'].value,
-					passwordRepeat: form['password_repeat'].value,
-					login: form['login'].value,
-					phone: form['phone'].value,
-					email: form['email'].value,
-					firstName: form['first_name'].value,
-					secondName: form['second_name'].value,
+				const fields: {[key: string]: string | undefined} = {
+					password: $form['password']?.value,
+					passwordRepeat: $form['password_repeat']?.value,
+					login: $form['login']?.value,
+					phone: $form['phone']?.value,
+					email: $form['email']?.value,
+					firstName: $form['first_name']?.value,
+					secondName: $form['second_name']?.value,
 				};
 
 				const isValidAllFields: boolean = isValidForm(fields);
-				const $errorText: HTMLElement | null = form.querySelector('.form__error_form');
+				const $errorText: HTMLElement | null = $form.querySelector('.form__error_form');
 
 				if ($errorText) {
 					toggleHideElement($errorText, isValidAllFields)
+				}
+				
+				if(isValidAllFields){
+					console.info('auth',fields);
 				}
 			}
 

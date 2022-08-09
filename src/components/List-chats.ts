@@ -14,7 +14,7 @@ const listChats = (props: Props = {}, clb: { (activeChatId: string): void }): Co
 				const indexPrefix: number = id.indexOf(prefix);
 				const activeChatId: string = id.slice(indexPrefix + 1);
 
-				const changeActiveChats: Chat[] = props.chats.map((chat: Chat): Chat => {
+				const changeActiveChats: Chat[] = props['chats'].map((chat: Chat): Chat => {
 					const tempChat: Chat = Object.assign(chat);
 					tempChat.active = chat.id === +activeChatId;
 					

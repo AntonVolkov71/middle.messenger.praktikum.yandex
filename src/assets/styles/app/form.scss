@@ -10,8 +10,7 @@
     color: gray;
     font-size: $fontXl;
   }
-
-
+	
   .form__input {
     border-bottom: 1px solid #3369F3;
     outline: none;
@@ -32,4 +31,8 @@
 
     margin: 5px 0;
   }
+	
+	.form__error_form{
+		text-align: center;
+	}
 }

@@ -1,12 +1,7 @@
 import {v4 as makeUUID} from 'uuid';
-// @ts-ignore
-import Handlebars from 'handlebars';
+import *as Handlebars from 'handlebars';
 import EventBus from './Event-bus';
-import {EventsEnum, Meta, Props, PropsAndChilds} from "../types/component";
-
-
-// TODO ignore Handlebars
-
+import {Children, EventsEnum, Meta, Props, PropsAndChilds} from "../types/component";
 
 class Component {
 	static EVENT_INIT: EventsEnum = EventsEnum.EVENT_INIT;
@@ -20,7 +15,7 @@ class Component {
 
 	protected element: HTMLElement | null;
 	protected props: Props;
-	private readonly children: Component;
+	private readonly children: Children;
 	private meta: Meta;
 
 	constructor(tag: string = 'div', propsAndChilds: PropsAndChilds = {}) {
@@ -49,7 +44,7 @@ class Component {
 
 	createDocumentElement(tag: string) {
 		const element: HTMLElement = document.createElement(tag);
-		if (this.props.settings && 'withInternalID' in this.props.settings) {
+		if (this.props['settings'] && 'withInternalID' in this.props['settings']) {
 			element.setAttribute('data-id', this.id);
 		}
 
@@ -99,7 +94,9 @@ class Component {
 	}
 
 	addAttribute() {
-		const {attr = {}} = this.props;
+
+		let attr: Props;
+		({attr = {}} = this.props);
 
 		Object.entries(attr).forEach(([key, value]: [key: string, value: string]) => {
 			if (this.element) {
@@ -109,7 +106,7 @@ class Component {
 	}
 
 	getChildren(propsAndChilds: PropsAndChilds) {
-		const children = {};
+		const children: Children = {};
 		const props: Props = {};
 
 		Object.keys(propsAndChilds).forEach((key: string) => {
@@ -129,7 +126,7 @@ class Component {
 			props = this.props;
 		}
 
-		const propsAndStubs = {...props};
+		const propsAndStubs: Props = {...props};
 
 		Object.entries(this.children).forEach(([key, child]: [key: string, child: Component]) => {
 			propsAndStubs[key] = `<div data-id="${child.id}"></div>`;
@@ -172,7 +169,7 @@ class Component {
 		}
 	}
 
-	_componentDidUpdate(oldProps, newProps) {
+	_componentDidUpdate(oldProps: Props, newProps: Props) {
 		const isRenderer = this.componentDidUpdate(oldProps, newProps);
 
 		if (isRenderer) {
@@ -180,7 +177,7 @@ class Component {
 		}
 	}
 
-	componentDidUpdate(oldProps, newProps) {
+	componentDidUpdate(_: Props, __: Props) {
 		return true;
 	}
 
@@ -226,17 +223,17 @@ class Component {
 		}
 	}
 
-	makePropsProxy(props) {
+	makePropsProxy(props: Props | Children) {
 		const self = this;
 
 		return new Proxy(props, {
-			get(target, prop: keyof typeof props) {
+			get(target, prop: string) {
 				const value = target[prop];
 
 				return typeof value === 'function' ? value.bind(target) : value;
 			},
 
-			set(target, prop: keyof typeof props, value): boolean {
+			set(target: Props, prop: string, value: string | number): boolean {
 				if (target[prop] !== value) {
 					target[prop] = value;
 					self.setUpdate = true;

@@ -1,196 +1,141 @@
 import Profile from '../templates/components/profile';
 import isValidation from '../utils/validations/isValidation';
 import {ValidationTypes} from '../types/utils';
-import { existUsers } from '../assets/mock-data';
+import {existUsers} from '../assets/mock-data';
 import Component from "../services/Component";
 import {Props} from "../types/component";
+import parseFocusBlur from "../utils/validations/parseFocusBlur";
+import toggleHideElement from "../utils/toggleHideElement";
+import {Callback} from "../types/event-bus";
 
-const parseValidFocusBlur = (e) => {
-  const { name, value } = e.target;
-  const $form = e.target.parentNode.parentNode;
-  const $errorText = $form.querySelector('.form__error_change-password');
-  let errorText = '';
+const isValidFormSavePassword = (fields: { [key: string]: string | undefined }) => {
+	const {
+		passwordOld,
+		passwordNew,
+		passwordRepeat,
+	} = fields;
 
-  if (name === ValidationTypes.password_repeat) {
-    const $firstPassword = $form.querySelector('#profile-password_new');
-    value === $firstPassword.value
-      ? errorText = ''
-      : errorText = 'Пароли не совпадают';
-  }
-
-  if (name === ValidationTypes.password_old) {
-    const isValid = isValidation(ValidationTypes.password, value);
-    const isEqualPassword = existUsers[0].password === value;
-
-    isValid && isEqualPassword
-      ? errorText = ''
-      : errorText = 'Старый пароль не такой как был вчера';
-  }
-
-  if (name === ValidationTypes.password_new) {
-    const isValid = isValidation(ValidationTypes.password, value);
-    isValid
-      ? errorText = ''
-      : errorText = 'Пароль должен состоять из одной заглавной буквы и цифры, длина от 8 до 40 символов';
-  }
-
-  if (name === ValidationTypes.email) {
-    const isValid = isValidation(ValidationTypes.email, value);
-    isValid
-      ? errorText = ''
-      : errorText = 'Email не настоящий';
-  }
-
-  if (name === ValidationTypes.login) {
-    const isValid = isValidation(ValidationTypes.login, value);
-    isValid
-      ? errorText = ''
-      : errorText = 'Логин должен содержать цифры (но полностью не состоять из них), буквы, длина от 3 до 20 символов';
-  }
-
-  if (name === ValidationTypes.first_name) {
-    const isValid = isValidation(ValidationTypes.first_name, value);
-    isValid
-      ? errorText = ''
-      : errorText = 'Первая заглавная, без пробелов и без цифр, можно добавить дефис';
-  }
-
-  if (name === ValidationTypes.second_name) {
-    const isValid = isValidation(ValidationTypes.second_name, value);
-    isValid
-      ? errorText = ''
-      : errorText = 'Первая заглавная, без пробелов и без цифр, можно добавить дефис';
-  }
-
-  if (name === ValidationTypes.name_in_chat) {
-    const isValid = isValidation(ValidationTypes.login, value);
-    isValid
-      ? errorText = ''
-      : errorText = 'Первая заглавная, без пробелов и без цифр, можно добавить дефис';
-  }
-
-  if (name === ValidationTypes.phone) {
-    const isValid = isValidation(ValidationTypes.phone, value);
-    isValid
-      ? errorText = ''
-      : errorText = 'Начинаться должен с + либо 8, от 10 до 15 цифр, без скобок';
-  }
-
-  $errorText.textContent = errorText;
-};
-
-const isValidFormSavePassword = (fields) => {
-  const {
-    passwordOld,
-    passwordNew,
-    passwordRepeat,
-  } = fields;
-
-  return isValidation(ValidationTypes.password, passwordNew)
-		&& isValidation(ValidationTypes.password, passwordRepeat)
+	return isValidation(ValidationTypes.PASSWORD, passwordNew)
+		&& isValidation(ValidationTypes.PASSWORD, passwordRepeat)
 		&& passwordNew === passwordRepeat
-		&& passwordOld !== passwordNew;
+		&& passwordNew !== existUsers[0]?.password
+		&& passwordOld === existUsers[0]?.password
 };
 
-const isValidFormSaveData = (fields) => {
-  const {
-    email,
-    login,
-    firstName,
-    secondName,
-    nameInChat,
-    phone,
-  } = fields;
+const isValidFormSaveData = (fields: { [key: string]: string | undefined }): boolean => {
+	const {
+		email,
+		login,
+		firstName,
+		secondName,
+		nameInChat,
+		phone,
+	} = fields;
 
-  return isValidation(ValidationTypes.email, email)
-		&& isValidation(ValidationTypes.first_name, firstName)
-		&& isValidation(ValidationTypes.login, login)
-		&& isValidation(ValidationTypes.second_name, secondName)
-		&& isValidation(ValidationTypes.login, nameInChat)
-		&& isValidation(ValidationTypes.phone, phone);
+	return isValidation(ValidationTypes.EMAIL, email)
+		&& isValidation(ValidationTypes.FIRST_NAME, firstName)
+		&& isValidation(ValidationTypes.LOGIN, login)
+		&& isValidation(ValidationTypes.SECOND_NAME, secondName)
+		&& isValidation(ValidationTypes.LOGIN, nameInChat)
+		&& isValidation(ValidationTypes.PHONE, phone);
 };
 
-const profile = (props:Props = {}, {clbOpenChangeProfile, clbOpenChangePassword, clbSavePassword, clbSaveProfileData,
-									 clbChangeAvatar },
-):Component => new Profile(
-  'div',
-  {
-    ...props,
-    events: {
-      changeProfile: (e) => {
-        e.preventDefault();
-        clbOpenChangeProfile();
-      },
-      changePassword: (e) => {
-        e.preventDefault();
-        clbOpenChangePassword();
-      },
-      exitProfile: (e) => {
-        e.preventDefault();
-        console.info('exitProfile');
-      },
-      savePassword: (e) => {
-        e.preventDefault();
-        const $form = e.target.parentNode.parentNode;
-        const fields = {
-					  passwordOld: existUsers[0].password,
-					  passwordNew: $form.querySelector('#profile-password_new').value,
-					  passwordRepeat: $form.querySelector('#profile-password_new').value,
-        };
+// {
+// 	clbOpenChangeProfile, clbOpenChangePassword, clbSavePassword, clbSaveProfileData,
+// 		clbChangeAvatar
+// }
 
-        const isValidAllFields = isValidFormSavePassword(fields);
-        const $errorText = $form.querySelector('.form__error_change-password');
-        let errorText = '';
+const profile = (props: Props = {}, callbacks: {[key:string]: Callback},
+): Component => new Profile(
+	'div',
+	{
+		...props,
+		events: {
+			changeProfile: (e: PointerEvent): void => {
+				e.preventDefault();
+				const clb: Callback | undefined = callbacks['clbOpenChangeProfile']
+				clb ? clb() : null;
+			},
+			changePassword: (e: PointerEvent): void => {
+				e.preventDefault();
+				const clb: Callback | undefined = callbacks['clbOpenChangePassword']
+				clb ? clb() : null;
+			},
+			exitProfile: (e: PointerEvent) => {
+				e.preventDefault();
+				console.info('exitProfile');
+			},
+			savePassword: (e: SubmitEvent) => {
+				e.preventDefault();
+				const $form: HTMLFormElement | null = e.target as HTMLFormElement;
 
-        if (isValidAllFields) {
-					  errorText = '';
-          clbSavePassword(fields);
-        } else {
-					  errorText = 'Ничего не угадал';
-        }
+				if ($form !== null && $form instanceof HTMLElement) {
+					if ('password_old' in $form && 'password' in $form && 'password_repeat' in $form) {
+						const fields: { [key: string]: string | undefined } = {
+							passwordOld: $form['password_old']['value'],
+							passwordNew: $form['password']['value'],
+							passwordRepeat: $form['password_repeat']['value'],
+						};
 
-        $errorText.textContent = errorText;
-      },
-      saveProfileData: (e) => {
-        e.preventDefault();
-        const $form = e.target;
-        const fields = {
-					  email: $form[ValidationTypes.email].value,
-					  login: $form[ValidationTypes.login].value,
-					  firstName: $form[ValidationTypes.first_name].value,
-					  secondName: $form[ValidationTypes.second_name].value,
-					  nameInChat: $form[ValidationTypes.name_in_chat].value,
-					  phone: $form[ValidationTypes.phone].value,
-        };
+						const isValidAllFields: boolean = isValidFormSavePassword(fields);
 
-        const isValidAllFields = isValidFormSaveData(fields);
-        const $errorText = $form.querySelector('.form__error_change-password');
-        let errorText = '';
+						const $errorText: HTMLElement | null = $form.querySelector('.form__error_form');
+						console.log('$errorText',$errorText);
+						if ($errorText) {
+							toggleHideElement($errorText, isValidAllFields)
+						}
 
-        if (isValidAllFields) {
-					  errorText = '';
-          clbSaveProfileData(fields);
-        } else {
-					  errorText = 'Некорректные заполненные поля';
-        }
+						if (isValidAllFields) {
+							const clb: Callback | undefined = callbacks['clbSavePassword']
+							clb ? clb() : null;
+						}
+					}
+				}
+			},
 
-        $errorText.textContent = errorText;
-      },
-      changeAvatar: (e) => {
-        e.preventDefault();
-        clbChangeAvatar();
-      },
-      focus: (e) => {
-        parseValidFocusBlur(e);
-      },
-      blur: (e) => {
-        parseValidFocusBlur(e);
-      },
-    },
-    attr: {
-      class: 'profile',
-    },
-  },
+			saveProfileData: (e: SubmitEvent) => {
+				e.preventDefault();
+				const $form: HTMLFormElement | null = e.target as HTMLFormElement;
+
+				if ($form && $form instanceof HTMLElement) {
+					const fields = {
+						login: $form['login']?.value,
+						phone: $form['phone']?.value,
+						email: $form['email']?.value,
+						firstName: $form['first_name']?.value,
+						secondName: $form['second_name']?.value,
+						nameInChat: $form['name_in_chat']?.value,
+					};
+
+					const isValidAllFields: boolean = isValidFormSaveData(fields);
+					const $errorText: HTMLElement | null = $form.querySelector('.form__error_form');
+
+					if ($errorText) {
+						toggleHideElement($errorText, isValidAllFields)
+					}
+
+					if (isValidAllFields) {
+						const clb: Callback | undefined = callbacks['clbSaveProfileData']
+						clb ? clb() : null;
+					}
+				}
+			},
+			changeAvatar: (e: FocusEvent) => {
+				e.preventDefault();
+				const clb: Callback | undefined = callbacks['clbChangeAvatar']
+				clb ? clb() : null;
+			},
+			focus: (e: FocusEvent): void => {
+				parseFocusBlur(e)
+			},
+			blur: (e: FocusEvent): void => {
+				parseFocusBlur(e)
+			},
+		},
+		attr: {
+			class: 'profile',
+		},
+	},
 );
 
 export default profile;

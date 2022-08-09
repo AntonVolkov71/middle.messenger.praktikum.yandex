@@ -10,7 +10,7 @@ const openProfile = (props: Props = {}, clb: { (isOpenProfile: boolean): void })
 		{
 			...props,
 			events: {
-				click: (e) => {
+				click: (e: PointerEvent) => {
 					e.preventDefault();
 					clb(isOpenProfile);
 

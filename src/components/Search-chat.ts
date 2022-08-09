@@ -7,7 +7,7 @@ const searchChat = (props: Props = {}, clb: { (searchText: string): void }): Com
 	{
 		...props,
 		events: {
-			input: (e:InputEvent ) => {
+			input: (e:InputEvent) => {
 				const {value}:{value: string} = e.target as HTMLInputElement;
 				clb(value);
 			},
