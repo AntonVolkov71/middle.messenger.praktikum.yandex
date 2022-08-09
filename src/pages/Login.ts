@@ -1,5 +1,4 @@
 import Login from '../templates/pages/login';
-import localePaths from '../assets/constants';
 import isValidation from '../utils/validations/isValidation';
 import { ValidationTypes } from '../types/utils';
 import toggleHideElement from '../utils/toggleHideElement';
@@ -35,7 +34,7 @@ const login = (props: Props = {}): Component => new Login('div', {
 					toggleHideElement($errorText, isValidForm);
 				}
 				if (isValidForm) {
-					window.location.href = localePaths.main || '/';
+					console.info('login data', { password, login: loginValue });
 				}
 			}
 		},

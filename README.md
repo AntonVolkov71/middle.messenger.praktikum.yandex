@@ -5,8 +5,16 @@
 [ссылка на pullrequest](https://github.com/AntonVolkov71/middle.messenger.praktikum.yandex/pulls)
 
 ### Ссылка на хостинг
-[ссылка на hosting](https://62f273a4dcd47c00ad507ad8--super-puper-messanger.netlify.app/)
+[ссылка на hosting](https://deploy--super-puper-messanger.netlify.app/)
 
+## Внимание
+В связи с тем, что по заданию необходимо консолить данные форм, переход по кнопке ВОЙТИ не переходит на страницу чата
+
+## Страницы приложения
+ - /main
+ - /auth
+ - /login
+ 
 ## README
 ## Вашему вниманию представляю необыкновенный чат
 # 'Super puper messanger'
