@@ -2,12 +2,13 @@ const tpl: string = `
     <div class=" activeChat__header ">
         <div class="activeChat__profile-wrapper">
             {{#if linkUser.avatar}}
-                <img class="activeChat__avatar_image" src="{{linkUser.avatar}}"/>
+                <img class="activeChat__avatar_image" src="{{linkUser.avatar}} alt="avatar user"/>
             {{else}}
                 <div class="activeChat__avatar_image"></div>
             {{/if}}
             <p class="activeChat__name-profile">{{linkUser.name}}</p>
         </div>
+        
         <div class="activeChat__profile-menu">
             <span class="material-icons">more_vert</span>
         </div>

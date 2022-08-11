@@ -1,8 +1,8 @@
 import tpl from './tpl';
 import './style.scss';
 import Component from '../../services/Component';
-import { Attribute } from '../../types/component';
-import { LinkUser } from '../../types/mock-data';
+import {Attribute} from '../../types/component';
+import {LinkUser} from '../../types/mock-data';
 import InputMessage from '../Input-message';
 
 interface ActiveChatProps extends Attribute {

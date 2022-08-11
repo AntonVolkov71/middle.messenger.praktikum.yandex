@@ -1,5 +1,5 @@
 const tpl: string = `
-{{{content}}}
+	{{{content}}}
 `;
 
 export default tpl;

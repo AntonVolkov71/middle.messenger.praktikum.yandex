@@ -7,12 +7,12 @@
 
 	.form__label {
 		margin: 30px 0 0;
-		color: gray;
+		color: $colorSecondary;
 		font-size: $fontXl;
 	}
 
 	.form__input {
-		border-bottom: 1px solid #3369F3;
+		border-bottom: 1px solid $colorPrimary;
 		outline: none;
 	}
 

@@ -18,6 +18,7 @@ const tpl: string = `
 		
 			{{#unless  isShow}}
 			{{> button type='submit' classNames='profile__button-save-password' label='Сохранить' }}
+			
 			<span  class="form__error form__error_form hidden" name="form__error_form"">Вообще не попал...</span>
 			{{/unless }}
 		</form>
@@ -36,6 +37,7 @@ const tpl: string = `
 			{{#unless  isShow}}
 			{{> button type='submit' classNames='profile__button-save' label='Сохранить' }}
 			{{/unless }}
+		
 			<span  class="form__error form__error_form hidden ">А ты хорошо подумал...</span>
 			
 		</form>
