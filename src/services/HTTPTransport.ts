@@ -1,11 +1,11 @@
-import { METHOD, Options, OptionsWithoutMethod } from '../types/httpTranspport';
+import { Method, Options, OptionsWithoutMethod } from '../types/httpTranspport';
 
 class HTTPTransport {
 	get(url: string, options: OptionsWithoutMethod = {}): Promise<XMLHttpRequest> {
-		return this.request(url, { ...options, method: METHOD.GET });
+		return this.request(url, { ...options, method: Method.GET });
 	}
 
-	request(url: string, options: Options = { method: METHOD.GET }): Promise<XMLHttpRequest> {
+	request(url: string, options: Options = { method: Method.GET }): Promise<XMLHttpRequest> {
 		const { method, data } = options;
 
 		return new Promise((resolve, reject) => {
@@ -20,7 +20,7 @@ class HTTPTransport {
 			xhr.onerror = reject;
 			xhr.ontimeout = reject;
 
-			if (method === METHOD.GET || !data) {
+			if (method === Method.GET || !data) {
 				xhr.send();
 			} else {
 				xhr.send(data);
@@ -28,6 +28,3 @@ class HTTPTransport {
 		});
 	}
 }
-
-const chats = new HTTPTransport().get('https://chats');
-console.log('chats', chats);

@@ -1,40 +1,50 @@
-import localePaths from '../assets/constants';
+import { LOCALE_PATHS } from '../assets/constants';
 import renderer from './renderer';
-import Pages from '../types/main';
+import EmptyLayout from '../layout/EmptyLayout';
+import login from '../pages/Login';
+import MainLayout from '../layout/MainLayout';
+import Auth from '../pages/Auth';
+import NotFound from '../components/Not-found';
 
-const { pathname } = window.location;
-const rootSelector = '#root';
+const { pathname }: Location = window.location;
+const rootSelector: string = '#root';
 
-const processingRouting = (pages: Pages): void => {
-	const {
-		main, auth, login, notFound,
-	} = pages;
-
+const processingRouting = (): void => {
 	switch (pathname) {
-	case localePaths.login:
-		if (login) {
-			renderer(rootSelector, login());
-		}
+	case LOCALE_PATHS.login:
+		EmptyLayout.setProps({
+			content: login,
+		});
+
+		renderer(rootSelector, EmptyLayout);
 		break;
-	case localePaths.auth:
-		if (auth) {
-			renderer(rootSelector, auth());
-		}
+
+	case LOCALE_PATHS.auth:
+		EmptyLayout.setProps({
+			content: Auth,
+		});
+
+		renderer(rootSelector, EmptyLayout);
 		break;
-	case localePaths.main:
-		if (main) {
-			renderer(rootSelector, main());
-		}
+
+	case LOCALE_PATHS.main:
+		renderer(rootSelector, MainLayout);
 		break;
-	case localePaths.empty:
-		if (login) {
-			renderer(rootSelector, login());
-		}
+
+	case LOCALE_PATHS.empty:
+		EmptyLayout.setProps({
+			content: login,
+		});
+
+		renderer(rootSelector, EmptyLayout);
 		break;
+
 	default:
-		if (notFound) {
-			renderer(rootSelector, notFound());
-		}
+		EmptyLayout.setProps({
+			content: NotFound,
+		});
+
+		renderer(rootSelector, EmptyLayout);
 		break;
 	}
 };

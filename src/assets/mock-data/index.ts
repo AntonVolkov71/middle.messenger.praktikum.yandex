@@ -7,6 +7,7 @@ const existUsers: User[] = [
 		password: 'A12345678',
 		email: 'volk@ura.ru',
 		name: 'Anton',
+		firstName: 'Aaaaanton',
 		secondName: 'Volkov',
 		nameInChat: 'Aleshka',
 		phone: '+7(999)999 99 99',
@@ -212,7 +213,7 @@ function activeChatsOptions(): ActiveChatsOptions[] {
 }
 
 const chats: Chat[] = createMockChats(sizeChats);
-const myProfile: User | undefined = existUsers.find((item) => item.id === 1);
+const myProfile: User = existUsers.find((item) => item.id === 1) || {} as User;
 
 export {
 	existUsers, chats, activeChatsOptions, myProfile, urlAvatars,

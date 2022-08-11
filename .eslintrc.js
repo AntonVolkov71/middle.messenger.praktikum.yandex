@@ -32,6 +32,8 @@ module.exports = {
 		"react/no-unused-class-component-methods": 0,
 		"no-shadow": "off",
 		"import/no-cycle": 0,
+		"no-useless-constructor": 0,
+		"no-mixed-spaces-and-tabs": 0,
 		"@typescript-eslint/no-shadow": ["error"],
 		"indent": [2, "tab"],
 		"no-tabs": 0,

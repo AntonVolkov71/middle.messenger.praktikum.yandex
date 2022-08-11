@@ -1,4 +1,4 @@
-export enum METHOD {
+export enum Method {
 	GET = 'GET',
 	POST = 'POST',
 	PUT = 'PUT',
@@ -7,7 +7,7 @@ export enum METHOD {
 }
 
 export type Options = {
-	method: METHOD;
+	method: Method;
 	data?: any;
 };
 

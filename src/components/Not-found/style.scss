@@ -1,0 +1,10 @@
+@import "../../assets/styles/variables";
+
+.notFound {
+	text-align: center;
+
+	.notFound__link-back:hover {
+		cursor: pointer;
+		text-decoration: underline $colorPrimary;
+	}
+}

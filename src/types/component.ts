@@ -27,3 +27,11 @@ export interface Meta {
 	tag: string;
 	props: Props
 }
+
+type AttrType = {
+	[key: string]: string
+}
+
+export interface Attribute {
+	attr?: AttrType
+}
