@@ -43,6 +43,7 @@ interface User {
 	password: string;
 	email: string;
 	name: string;
+	firstName: string;
 	secondName: string;
 	nameInChat: string;
 	phone: string;

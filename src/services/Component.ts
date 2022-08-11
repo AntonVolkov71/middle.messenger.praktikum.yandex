@@ -22,7 +22,7 @@ class Component {
 
 	protected element: HTMLElement | null;
 
-	protected props: Props;
+	public props: Props;
 
 	private readonly children: Children;
 
@@ -79,7 +79,7 @@ class Component {
 		this.addAttribute();
 	}
 
-	render() {
+	render(): Node | null {
 		return null;
 	}
 

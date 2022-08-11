@@ -1,0 +1,50 @@
+@import "../../assets/styles/variables";
+
+$maxHeightRow: 40px;
+
+.activeChat {
+  height: calc(100% - 8px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: $containerPadding;
+
+  .activeChat__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    max-height: $maxHeightRow;
+    border-bottom: 1px solid $colorInfo;
+
+    .activeChat__profile-wrapper {
+      display: flex;
+      justify-content: start;
+      align-items: center;
+      flex: 1 1 auto;
+
+      $sizeImage: 25px;
+
+      .activeChat__avatar_image {
+        width: $sizeImage;
+        height: $sizeImage;
+        border-radius: 50%;
+        background-color: $colorInfo;
+      }
+
+      .activeChat__name-profile {
+        margin: 10px;
+      }
+    }
+  }
+
+  .activeChat__messages {
+    flex-grow: 2;
+    padding: $containerPadding;
+    max-height: calc(100% - 40px - 40px);
+  }
+
+  .activeChat__send-messages {
+    max-height: $maxHeightRow;
+  }
+}

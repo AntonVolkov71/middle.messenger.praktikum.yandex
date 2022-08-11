@@ -1,5 +1,5 @@
 import { ValidationTypes } from '../../types/utils';
-import { maxLengthPassword, minLengthPassword } from '../../assets/config';
+import { MAX_LENGTH_PASSWORD, MIN_LENGTH_PASSWORD } from '../../assets/config';
 
 function isValidName(value: string): boolean {
 	const regex = /^[А-ЯЁA-Z]([а-яёa-z-])+$/;
@@ -50,7 +50,7 @@ const isValidation = (type: ValidationTypes, value: string = ''): boolean => {
 		return isValidEmail(value);
 
 	case ValidationTypes.PASSWORD:
-		if (value.length < minLengthPassword || value.length > maxLengthPassword) {
+		if (value.length < MIN_LENGTH_PASSWORD || value.length > MAX_LENGTH_PASSWORD) {
 			return false;
 		}
 

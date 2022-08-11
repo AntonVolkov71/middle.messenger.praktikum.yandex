@@ -1,38 +1,38 @@
 @import "../variables";
 
 .form {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
 
-  .form__label {
-    margin: 30px 0 0;
-    color: gray;
-    font-size: $fontXl;
-  }
-	
-  .form__input {
-    border-bottom: 1px solid #3369F3;
-    outline: none;
-  }
+	.form__label {
+		margin: 30px 0 0;
+		color: gray;
+		font-size: $fontXl;
+	}
 
-  .form__title {
-    margin: 50px auto 40px;
-  }
+	.form__input {
+		border-bottom: 1px solid #3369F3;
+		outline: none;
+	}
 
-  .form__link {
-    text-align: center;
-    font-size: $fontXl;
-  }
+	.form__title {
+		margin: 50px auto 40px;
+	}
 
-  .form__error {
-    font-size: $fontXs;
-    color: red;
+	.form__link {
+		text-align: center;
+		font-size: $fontXl;
+	}
 
-    margin: 5px 0;
-  }
-	
-	.form__error_form{
+	.form__error {
+		font-size: $fontXs;
+		color: red;
+
+		margin: 5px 0;
+	}
+
+	.form__error_form {
 		text-align: center;
 	}
 }

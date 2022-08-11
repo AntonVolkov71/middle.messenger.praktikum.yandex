@@ -15,20 +15,20 @@
   "devDependencies": {
     "@parcel/transformer-inline-string": "~2.4.1",
     "@parcel/transformer-sass": "~2.6.2",
-    "@types/express": "^4.17.13",
-    "@types/uuid": "^8.3.4",
+    "@types/express": "~4.17.13",
+    "@types/uuid": "~8.3.4",
     "@typescript-eslint/eslint-plugin": "~5.31.0",
     "@typescript-eslint/parser": "~5.31.0",
     "eslint": "~8.20.0",
-    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-airbnb": "~19.0.4",
     "eslint-config-airbnb-base": "~15.0.0",
     "eslint-plugin-import": "~2.26.0",
-    "parcel": "^2.4.1",
+    "parcel": "~2.4.1",
     "parcel-transformer-hbs": "~1.0.4",
-    "stylelint": "^14.9.1",
-    "ts-node": "^10.9.1",
+    "stylelint": "~14.9.1",
+    "ts-node": "~10.9.1",
     "typescript": "~4.7.4",
-    "typescript-hbs-plugin": "^0.1.1"
+    "typescript-hbs-plugin": "~0.1.1"
   },
   "targets": {
     "web": {
@@ -41,10 +41,10 @@
     }
   },
   "dependencies": {
-    "@types/hbs": "^4.0.1",
+    "@types/hbs": "~4.0.1",
     "express": "~4.18.1",
     "handlebars": "~4.7.7",
     "nodemon": "~2.0.19",
-    "uuid": "^8.3.2"
+    "uuid": "~8.3.2"
   }
 }

@@ -1,20 +1,19 @@
 import renderer from './renderer';
 import serverError from '../components/Server-error';
-import layout from '../layout/Layout';
-import Component from '../services/Component';
+import EmptyLayout from '../layout/EmptyLayout';
 
 const rootSelector: string = '#root';
 
-function renderServerError(): void {
-	const emptyLayout: Component = layout({ attr: { class: 'empty-layout' } });
-
-	emptyLayout.setProps({
-		content: serverError({
-			httpStatus: 500,
-		}),
+const renderServerError = (): void => {
+	serverError.setProps({
+		httpStatus: 500,
 	});
 
-	renderer(rootSelector, emptyLayout);
-}
+	EmptyLayout.setProps({
+		content: serverError,
+	});
+
+	renderer(rootSelector, EmptyLayout);
+};
 
 export default renderServerError;
