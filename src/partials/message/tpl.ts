@@ -10,7 +10,7 @@ const tpl: string = `
 				<p class="message__text">{{content.content.text}}</p>
 	
 			{{else if content.content.image}}
-				<img src="{{content.content.image}}" alt="" class="message__image" alt="simple image">
+				<img src="{{content.content.image}}" class="message__image" alt="simple image">
 			{{/if}}
 			
 			<div class="message__description">
