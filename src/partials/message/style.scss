@@ -1,44 +1,44 @@
-@import "../../styles/variables";
+@import "../../assets/styles/variables";
 
 .message {
-  max-width: 50%;
-  word-break: break-all;
+	max-width: 50%;
+	word-break: break-all;
 
-  border-radius: $borderRadius;
-  padding: $containerPadding;
-  margin-bottom: 10px;
+	border-radius: $borderRadius;
+	padding: $containerPadding;
+	margin-bottom: 10px;
 
-  .message__text {
-    margin: 0;
-  }
+	.message__text {
+		margin: 0;
+	}
 
-  .message__image {
-    background-color: transparent;
-    margin-bottom: 5px;
-  }
+	.message__image {
+		background-color: transparent;
+		margin-bottom: 5px;
+	}
 
-  .message__description {
-    display: flex;
-    justify-content: end;
-    align-items: center;
+	.message__description {
+		display: flex;
+		justify-content: end;
+		align-items: center;
 
-    .message__proof {
-      font-size: $fontXl;
-      color: $colorPrimary;
-    }
+		.message__proof {
+			font-size: $fontXl;
+			color: $colorPrimary;
+		}
 
-    .message__time {
-      text-align: end;
-      font-size: $fontXs;
-      margin: 0;
-    }
-  }
+		.message__time {
+			text-align: end;
+			font-size: $fontXs;
+			margin: 0;
+		}
+	}
 }
 
 .message_my {
-  background-color: $colorInfo;
+	background-color: $colorInfo;
 }
 
 .message_opponent {
-  background-color: $colorSuccess;
+	background-color: $colorSuccess;
 }
