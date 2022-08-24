@@ -1,6 +1,6 @@
 import Component from '../services/Component';
 
-const renderer = (query: string, element: Component) => {
+const render = (query: string, element: Component) => {
 	const root: HTMLElement | null = document.querySelector(query);
 
 	if (root) {
@@ -15,4 +15,4 @@ const renderer = (query: string, element: Component) => {
 	return root;
 };
 
-export default renderer;
+export default render;

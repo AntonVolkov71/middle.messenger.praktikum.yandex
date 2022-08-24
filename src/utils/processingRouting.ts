@@ -1,51 +1,84 @@
-import { LOCALE_PATHS } from '../assets/constants';
-import renderer from './renderer';
-import EmptyLayout from '../layout/EmptyLayout';
-import login from '../pages/Login';
-import MainLayout from '../layout/MainLayout';
+import propsEmptyLayout from '../layout/propsEmptyLayout';
+import Router from '../services/routing/Router';
+import Layout from '../layout/Layout';
+import Login from '../pages/Login';
 import Auth from '../pages/Auth';
+import propsMainLayout from '../layout/propsMainLayout';
+import { propsMain, MainElement } from '../pages/Main';
+import renderServerError from './renderServerError';
 import NotFound from '../components/Not-found';
+import Profile from '../components/Profile';
+import ListChats from '../components/List-chats';
+import SearchChat from '../components/Search-chat';
 
-const { pathname }: Location = window.location;
 const rootSelector: string = '#root';
 
 const processingRouting = (): void => {
-	switch (pathname) {
-	case LOCALE_PATHS.login:
-		EmptyLayout.setProps({
-			content: login,
-		});
+	try {
+		const router = new Router(rootSelector, '/notfound');
+		console.log('processingRouting');
+		router
+			.use(
+				'/',
+				Layout,
+				'div',
+				{
+					...propsEmptyLayout,
+					content: Login,
+				},
+			)
+			.use(
+				'/sign-up',
+				Layout,
+				'div',
+				{
+					...propsEmptyLayout,
+					content: Auth,
+				},
+			)
+			.use(
+				'/messenger',
+				Layout,
+				'div',
+				{
+					...propsMainLayout,
+					content: new MainElement(
+						'div',
+						{
+							...propsMain,
+							listChats: ListChats,
+							searchChat: SearchChat,
+						},
+					),
+				},
+			)
 
-		renderer(rootSelector, EmptyLayout);
-		break;
+			.use(
+				'/settings',
+				Layout,
+				'div',
+				{
+					...propsMainLayout,
+					content: new MainElement(
+						'div',
+						{ ...propsMain, content: Profile },
+					),
+				},
+			)
+			.use(
+				'/notfound',
+				Layout,
+				'div',
+				{
+					...propsEmptyLayout,
+					content: NotFound,
+				},
+			)
 
-	case LOCALE_PATHS.auth:
-		EmptyLayout.setProps({
-			content: Auth,
-		});
-
-		renderer(rootSelector, EmptyLayout);
-		break;
-
-	case LOCALE_PATHS.main:
-		renderer(rootSelector, MainLayout);
-		break;
-
-	case LOCALE_PATHS.empty:
-		EmptyLayout.setProps({
-			content: login,
-		});
-
-		renderer(rootSelector, EmptyLayout);
-		break;
-
-	default:
-		EmptyLayout.setProps({
-			content: NotFound,
-		});
-
-		renderer(rootSelector, EmptyLayout);
-		break;
+			.start();
+	} catch (e) {
+		console.log('e');
+		renderServerError();
 	}
 };
 

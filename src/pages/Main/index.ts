@@ -2,22 +2,20 @@ import './style.scss';
 import tpl from './tpl';
 import Component from '../../services/Component';
 import { Attribute } from '../../types/component';
-import handlerOpenProfile from '../../services/handlers/handlerOpenProfile';
+// import handlerOpenProfile from '../../services/handlers/handlerOpenProfile';
 import handlerSearchChat from '../../services/handlers/handlerSearchChat';
 import handlerActiveChat from '../../services/handlers/handlerActiveChat';
 import ActiveChat from '../../components/Active-chat';
 import OpenProfile from '../../components/Open-Profile';
-import SearchChat from '../../components/Search-chat';
 import EmptyChat from '../../components/Empty-chat';
-import ListChats from '../../components/List-chats';
 import ListMessages from '../../components/List-messages';
 
 interface MainProps extends Attribute {
 	openProfile: Component;
-	searchChat: Component;
-	listChats: Component;
+	searchChat?: Component;
+	listChats?: Component;
 	content: Component;
-	handlerOpenProfile?: (isOpen: boolean) => void;
+	handlerOpenProfile?: () => void;
 	handlerSearchChat?: (searchText: string) => void;
 	handlerActiveChat?: (activeChatId: string) => void;
 }
@@ -33,17 +31,25 @@ class MainElement extends Component {
 			handlerOpenProfile: this.handlerOpenProfile,
 		});
 
-		props.searchChat.setProps({
+		props.searchChat?.setProps({
 			handlerSearchChat: this.handlerSearchChat,
 		});
 
-		props.listChats.setProps({
+		props.listChats?.setProps({
 			handlerActiveChat: this.handlerActiveChat,
 		});
 	}
 
-	handlerOpenProfile = (isOpen: boolean): void => {
-		handlerOpenProfile(this, isOpen);
+	handlerOpenProfile = (): void => {
+		// handlerOpenProfile();
+
+		const { location } = window;
+
+		if (location.pathname === '/settings') {
+			location.href = '/messenger';
+		} else {
+			location.href = '/settings';
+		}
 	};
 
 	handlerSearchChat = (searchText: string): void => {
@@ -59,14 +65,13 @@ class MainElement extends Component {
 	}
 }
 
-const Main: Component = new MainElement('div', {
+const propsMain = {
 	openProfile: OpenProfile,
-	searchChat: SearchChat,
 	content: EmptyChat,
-	listChats: ListChats,
+
 	attr: {
 		class: 'main',
 	},
-});
+};
 
-export default Main;
+export { propsMain, MainElement };

@@ -12,7 +12,7 @@ const tpl: string = `
 		{{{fieldFormPasswordRepeat}}}
 		
 		{{> button id="auth-submit" classNames="auth__submit" type="submit" label="Зарегистрироваться" }}
-		<a class="form__link" href="/login">Войти</a>
+		<a class="form__link" href="/">Войти</a>
 		<p  class="form__error form__error_form hidden ">Не все поля корректные</p>
 	</form>
 `;

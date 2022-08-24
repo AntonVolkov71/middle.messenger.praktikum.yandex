@@ -1,4 +1,4 @@
-import LocalePaths from "../types/constants";
+import LocalePaths from '../types/constants';
 
 export const LOCALE_PATHS: LocalePaths = {
 	login: '/login',

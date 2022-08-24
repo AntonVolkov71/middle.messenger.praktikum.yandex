@@ -1,6 +1,6 @@
-import renderer from './renderer';
+import render from './render';
 import serverError from '../components/Server-error';
-import EmptyLayout from '../layout/EmptyLayout';
+import EmptyLayout from '../layout/propsEmptyLayout';
 
 const rootSelector: string = '#root';
 
@@ -13,7 +13,7 @@ const renderServerError = (): void => {
 		content: serverError,
 	});
 
-	renderer(rootSelector, EmptyLayout);
+	render(rootSelector, EmptyLayout);
 };
 
 export default renderServerError;

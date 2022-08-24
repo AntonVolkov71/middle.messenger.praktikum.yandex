@@ -33,10 +33,11 @@ class LoginElement extends Component {
 			const $login = this.element.querySelector('.login__form');
 			$login?.addEventListener('submit', this.props.events.submit);
 
-			this.element.querySelectorAll('.form__input').forEach((input) => {
-				input.addEventListener('focus', this.props.events.focus);
-				input.addEventListener('blur', this.props.events.blur);
-			});
+			this.element.querySelectorAll('.form__input')
+				.forEach((input) => {
+					input.addEventListener('focus', this.props.events.focus);
+					input.addEventListener('blur', this.props.events.blur);
+				});
 		}
 	}
 
@@ -45,7 +46,7 @@ class LoginElement extends Component {
 	}
 }
 
-const Login: Component = new LoginElement('div', {
+const props = {
 	fieldFormLogin: createFieldLogin(),
 	fieldFormPassword: createFieldPassword(),
 	events: {
@@ -76,7 +77,10 @@ const Login: Component = new LoginElement('div', {
 					toggleHideElement($errorText, isValidForm && isEqualPassword);
 				}
 				if (isValidForm && isEqualPassword) {
-					console.info('login data', { password, login: loginValue });
+					console.info('login data', {
+						password,
+						login: loginValue,
+					});
 				}
 			}
 		},
@@ -93,6 +97,10 @@ const Login: Component = new LoginElement('div', {
 	attr: {
 		class: 'login popup',
 	},
-});
+};
+
+const Login: Component = new LoginElement('div', props);
 
 export default Login;
+
+// export { LoginElement, props };

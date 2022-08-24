@@ -2,7 +2,7 @@ import './style.scss';
 import tpl from './tpl';
 
 import Component from '../../services/Component';
-import {Attribute} from '../../types/component';
+import { Attribute } from '../../types/component';
 
 interface LayoutProps extends Attribute {
 	content?: Component,

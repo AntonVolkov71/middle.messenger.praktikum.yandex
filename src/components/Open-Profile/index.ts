@@ -5,12 +5,11 @@ import { Attribute } from '../../types/component';
 
 interface OpenProfileProps extends Attribute {
 	events: {
-		click: (isOpen: boolean) => void
+		click: () => void
 	}
 }
 
 class OpenProfileElement extends Component {
-	private isOpenProfile: boolean = false;
 
 	constructor(tag: string, props: OpenProfileProps) {
 		super(tag, props);
@@ -22,8 +21,7 @@ class OpenProfileElement extends Component {
 		if (this.element) {
 			const $openProfile: HTMLElement | null = this.element.querySelector('.openProfile__title');
 			$openProfile?.addEventListener('click', () => {
-				this.isOpenProfile = !this.isOpenProfile;
-				this.props.events.click(this.isOpenProfile);
+				this.props.events.click();
 			});
 		}
 	}
@@ -35,9 +33,9 @@ class OpenProfileElement extends Component {
 
 const OpenProfile: Component = new OpenProfileElement('div', {
 	events: {
-		click(isOpen: boolean): void {
+		click(): void {
 			if (this instanceof OpenProfileElement) {
-				this.props.handlerOpenProfile(isOpen);
+				this.props.handlerOpenProfile();
 			}
 		},
 	},

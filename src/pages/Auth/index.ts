@@ -55,8 +55,7 @@ class AuthElement extends Component {
 		return this.compile(tpl, {});
 	}
 }
-
-const Auth: Component = new AuthElement('div', {
+const propsAuth = {
 	fieldFormEmail: createFieldEmail(),
 	fieldFormFirstName: createFieldFirstName(),
 	fieldFormSecondName: createFieldSecondName(),
@@ -114,6 +113,8 @@ const Auth: Component = new AuthElement('div', {
 	attr: {
 		class: 'auth popup',
 	},
-});
+};
+
+const Auth: Component = new AuthElement('div', propsAuth);
 
 export default Auth;

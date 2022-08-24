@@ -7,7 +7,7 @@ const tpl: string = `
 		
 		{{> button id="login-submit" classNames="login__submit" type="submit" label="Войти" }}
 		
-		<a class="form__link" href="/auth">Зарегистрироваться</a>
+		<a class="form__link" href="/sign-up">Зарегистрироваться</a>
 		<p  class="form__error form__error_form hidden ">Не угадал ни пароль ни логин</p>
 	</form>
 `;
