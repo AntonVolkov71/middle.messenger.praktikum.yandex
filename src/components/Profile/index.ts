@@ -1,41 +1,22 @@
 import tpl from './tpl';
 import './style.scss';
 import Component from '../../services/Component';
-import { myProfile } from '../../assets/mock-data';
-import toggleHideElement from '../../utils/toggleHideElement';
 import parseFocusBlur from '../../utils/validations/parseFocusBlur';
 import { Attribute } from '../../types/component';
-import { User } from '../../types/mock-data';
-import { FieldsAllData, FieldsPasswords } from '../../types/form';
 import isValidFormSavePassword from '../../utils/validations/isValidFormSavePassword';
 import isValidFormSaveData from '../../utils/validations/isValidFormSaveData';
 import InputFile from '../Input-file';
-import {
-	changeDisabledFormFields,
-	createFieldEmail,
-	createFieldFirstName, createFieldFormNameInChat,
-	createFieldFormPhone,
-	createFieldLogin, createFieldPasswordNew, createFieldPasswordOld, createFieldPasswordRepeat,
-	createFieldSecondName, FieldsFormData,
-} from './utils';
+import { connect, mapProfileToProps } from '../../store/maps';
+import Actions from '../../store/actions';
+import { ProfileState } from '../../types/state';
+import { ChangePasswords, User } from '../../types/api';
+import { API_PATHS_RESOURCE, LOCALE_PATHS } from '../../assets/constants';
 
-let isShow = true;
-
-interface ProfileElementProps extends Attribute {
+interface ProfileElementProps extends Attribute, ProfileState {
 	isShow: boolean,
-	myProfile: User,
 	changePassword?: boolean,
-	oldPassword?: string,
 	inputFile?: Component,
-	fieldFormFirstName: Component,
-	fieldFormSecondName: Component,
-	fieldFormLogin: Component,
-	fieldFormPhone: Component,
-	fieldFormNameInChat: Component,
-	fieldFormEmail: Component,
-	fieldFormPasswordNew: Component,
-	fieldFormPasswordRepeat: Component,
-	fieldFormPasswordOld: Component,
+	apiResource: string,
 	events: {
 		changeProfile: () => void,
 		changePassword: () => void,
@@ -51,16 +32,6 @@ interface ProfileElementProps extends Attribute {
 class ProfileElement extends Component {
 	constructor(tag: string, props: ProfileElementProps) {
 		super(tag, props);
-
-		const fieldsFormData: FieldsFormData = {
-			fieldFormEmail: props.fieldFormEmail,
-			fieldFormFirstName: props.fieldFormFirstName,
-			fieldFormSecondName: props.fieldFormSecondName,
-			fieldFormLogin: props.fieldFormLogin,
-			fieldFormPhone: props.fieldFormPhone,
-			fieldFormNameInChat: props.fieldFormNameInChat,
-		};
-		this.props.fieldsFormData = fieldsFormData;
 
 		this.props.events.changeProfile = props.events.changeProfile.bind(this);
 		this.props.events.changePassword = props.events.changePassword.bind(this);
@@ -89,149 +60,133 @@ class ProfileElement extends Component {
 			const $changeAvatar = this.element.querySelector('.profile__change-avatar');
 			$changeAvatar?.addEventListener('click', this.props.events.changeAvatar);
 
-			this.element.querySelectorAll('.form__input').forEach((input) => {
-				input.addEventListener('focus', this.props.events.focus);
-				input.addEventListener('blur', this.props.events.blur);
-			});
+			this.element.querySelectorAll('.form__input')
+				.forEach((input) => {
+					input.addEventListener('focus', this.props.events.focus);
+					input.addEventListener('blur', this.props.events.blur);
+				});
 		}
 	}
 
 	render(): Node | null {
-		return this.compile(tpl);
+		return this.compile(tpl, this.props);
 	}
 }
 
-const Profile: Component = new ProfileElement(
-	'div',
-	{
-		fieldFormEmail: createFieldEmail(),
-		fieldFormFirstName: createFieldFirstName(),
-		fieldFormSecondName: createFieldSecondName(),
-		fieldFormLogin: createFieldLogin(),
-		fieldFormPhone: createFieldFormPhone(),
-		fieldFormNameInChat: createFieldFormNameInChat(),
-		fieldFormPasswordOld: createFieldPasswordOld(),
-		fieldFormPasswordNew: createFieldPasswordNew(),
-		fieldFormPasswordRepeat: createFieldPasswordRepeat(),
-		myProfile,
-		isShow,
-		events: {
-			changeProfile(): void {
-				if (this instanceof ProfileElement) {
-					isShow = false;
-					changeDisabledFormFields(this.props.fieldsFormData, isShow);
+const propsProfile = {
+	events: {
+		changeProfile(): void {
+			if (this instanceof ProfileElement) {
+				Actions.profile.changeIsShow(false);
+			}
+		},
 
-					this.setProps({
-						isShow,
-					});
-				}
-			},
+		changePassword(): void {
+			if (this instanceof ProfileElement) {
+				Actions.profile.changeIsChangePassword(true);
+				Actions.profile.changeIsShow(false);
+			}
+		},
 
-			changePassword(): void {
-				if (this instanceof ProfileElement) {
-					this.setProps({
-						isShow: false,
-						changePassword: true,
-						oldPassword: 'A12345678',
-					});
-				}
-			},
+		async exitProfile(e: PointerEvent): Promise<void> {
+			e.preventDefault();
+			await Actions.authApi.logoutAction();
 
-			exitProfile(e: PointerEvent): void {
-				e.preventDefault();
-				console.info('exit profile');
-			},
+			window.location.href = LOCALE_PATHS.main;
+		},
 
-			savePassword(e: SubmitEvent): void {
-				e.preventDefault();
-				const $form: HTMLFormElement | null = e.target as HTMLFormElement;
+		async savePassword(e: SubmitEvent): Promise<void> {
+			e.preventDefault();
+			const $form: HTMLFormElement | null = e.target as HTMLFormElement;
 
-				if ($form !== null && $form instanceof HTMLElement) {
-					if ('password_old' in $form && 'password' in $form && 'password_repeat' in $form) {
-						const fields: FieldsPasswords = {
-							passwordOld: $form.password_old?.value || '',
-							passwordNew: $form.password?.value || '',
-							passwordRepeat: $form.password_repeat?.value || '',
-						};
-
-						const isValidAllFields: boolean = isValidFormSavePassword(fields);
-						const $errorText: HTMLElement | null = $form.querySelector('.form__error_form');
-
-						if ($errorText) {
-							toggleHideElement($errorText, isValidAllFields);
-						}
-						if (isValidAllFields) {
-							console.info('save passwords', fields);
-
-							if (this instanceof ProfileElement) {
-								this.setProps({
-									isShow: true,
-									changePassword: false,
-								});
-							}
-						}
-					}
-				}
-			},
-
-			saveProfileData(e: SubmitEvent): void {
-				e.preventDefault();
-				const $form: HTMLFormElement | null = e.target as HTMLFormElement;
-
-				if ($form && $form instanceof HTMLElement) {
-					const fields: FieldsAllData = {
-						login: $form.login?.value,
-						phone: $form.phone?.value,
-						email: $form.email?.value,
-						firstName: $form.first_name?.value,
-						secondName: $form.second_name?.value,
-						nameInChat: $form.name_in_chat?.value,
+			if ($form !== null && $form instanceof HTMLElement) {
+				if ('password_old' in $form && 'password' in $form && 'password_repeat' in $form) {
+					const passwords: ChangePasswords = {
+						oldPassword: $form.password_old?.value || '',
+						newPassword: $form.password?.value || '',
 					};
 
-					const isValidAllFields: boolean = isValidFormSaveData(fields);
-					const $errorText: HTMLElement | null = $form.querySelector('.form__error_form');
+					const repeatPassword: string = $form.password_repeat?.value || '';
 
-					if ($errorText) {
-						toggleHideElement($errorText, isValidAllFields);
-					}
+					const isValidAllFields: boolean = isValidFormSavePassword({
+						...passwords,
+						repeatPassword,
+					});
 
 					if (isValidAllFields) {
-						console.info('data profile', fields);
-
-						if (this instanceof ProfileElement) {
-							isShow = true;
-							changeDisabledFormFields(this.props.fieldsFormData, isShow);
-
-							this.setProps({
-								isShow,
-								myProfile: { ...myProfile, ...fields },
-							});
-						}
+						await Actions.profile.changePassword(passwords);
 					}
 				}
-			},
-
-			changeAvatar(e: FocusEvent): void {
-				e.preventDefault();
-				if (this instanceof ProfileElement) {
-					this.setProps({
-						inputFile: InputFile,
-					});
-				}
-			},
-
-			focus(e: FocusEvent): void {
-				parseFocusBlur(e);
-			},
-
-			blur(e: FocusEvent): void {
-				parseFocusBlur(e);
-			},
+			}
 		},
-		attr: {
-			class: 'profile',
+
+		async saveProfileData(e: SubmitEvent): Promise<void> {
+			e.preventDefault();
+			const $form: HTMLFormElement | null = e.target as HTMLFormElement;
+
+			if ($form && $form instanceof HTMLElement) {
+				const userData: User = {
+					login: $form.login?.value,
+					phone: $form.phone?.value,
+					email: $form.email?.value,
+					first_name: $form.first_name?.value,
+					second_name: $form.second_name?.value,
+					display_name: $form.display_name?.value,
+				};
+
+				const isValidUserData: boolean = isValidFormSaveData(userData);
+
+				if (isValidUserData) {
+					await Actions.profile.changeProfileData(userData);
+				}
+			}
+		},
+
+		changeAvatar(e: FocusEvent): void {
+			e.preventDefault();
+			if (this instanceof ProfileElement) {
+				this.setProps({
+					isOpenChangeAvatar: true,
+				});
+
+				Actions.inputFile.addTitle('Выберите изображение для аватара');
+
+				const self = this;
+
+				InputFile.setProps({
+					getFile: Actions.profile.changeAvatar,
+					close: () => {
+						self.setProps({
+							isOpenChangeAvatar: false,
+						});
+
+						Actions.inputFile.clearTitle();
+					},
+				});
+			}
+		},
+
+		focus(e: FocusEvent): void {
+			parseFocusBlur(e);
+		},
+
+		blur(e: FocusEvent): void {
+			parseFocusBlur(e);
 		},
 	},
+	isOpenChangeAvatar: false,
+	inputFile: InputFile,
+	apiResource: API_PATHS_RESOURCE,
+	attr: {
+		class: 'profile',
+	},
+};
+
+const ProfileWithState = connect(mapProfileToProps)(ProfileElement);
+
+const Profile: Component = new ProfileWithState(
+	'div',
+	propsProfile,
 );
 
 export default Profile;

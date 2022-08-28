@@ -2,13 +2,13 @@ import './style.scss';
 import tpl from './tpl';
 import Component from '../../services/Component';
 import { Attribute } from '../../types/component';
-// import handlerOpenProfile from '../../services/handlers/handlerOpenProfile';
 import handlerSearchChat from '../../services/handlers/handlerSearchChat';
 import handlerActiveChat from '../../services/handlers/handlerActiveChat';
 import ActiveChat from '../../components/Active-chat';
 import OpenProfile from '../../components/Open-Profile';
 import EmptyChat from '../../components/Empty-chat';
 import ListMessages from '../../components/List-messages';
+import { LOCALE_PATHS } from '../../assets/constants';
 
 interface MainProps extends Attribute {
 	openProfile: Component;
@@ -41,15 +41,11 @@ class MainElement extends Component {
 	}
 
 	handlerOpenProfile = (): void => {
-		// handlerOpenProfile();
-
 		const { location } = window;
 
-		if (location.pathname === '/settings') {
-			location.href = '/messenger';
-		} else {
-			location.href = '/settings';
-		}
+		location?.pathname === LOCALE_PATHS.settings
+			? location.href = LOCALE_PATHS.messenger
+			: location.href = LOCALE_PATHS.settings;
 	};
 
 	handlerSearchChat = (searchText: string): void => {

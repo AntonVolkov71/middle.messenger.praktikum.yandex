@@ -3,21 +3,21 @@ import tpl from './tpl';
 import Component from '../../services/Component';
 import { Attribute } from '../../types/component';
 import parseFocusBlur from '../../utils/validations/parseFocusBlur';
-import toggleHideElement from '../../utils/toggleHideElement';
 import isValidation from '../../utils/validations/isValidation';
 import { ValidationTypes } from '../../types/utils';
-import { myProfile } from '../../assets/mock-data';
-import { createFieldLogin, createFieldPassword } from './utils';
+import { LOCALE_PATHS } from '../../assets/constants';
+import Actions from '../../store/actions';
+import { connect, mapLoginToProps } from '../../store/maps';
 
 interface LoginProps extends Attribute {
-	fieldFormLogin: Component,
-	fieldFormPassword: Component,
 	events: {
 		linkToAuth: (e: PointerEvent) => void,
 		submit: (e: SubmitEvent) => void,
 		focus: (e: FocusEvent) => void,
 		blur: (e: FocusEvent) => void,
-	}
+	},
+	linkSignUp: string,
+	label: string
 }
 
 class LoginElement extends Component {
@@ -47,8 +47,6 @@ class LoginElement extends Component {
 }
 
 const props = {
-	fieldFormLogin: createFieldLogin(),
-	fieldFormPassword: createFieldPassword(),
 	events: {
 		linkToAuth: (e: PointerEvent) => {
 			e.preventDefault();
@@ -58,7 +56,7 @@ const props = {
 			window.location.href = href;
 		},
 
-		submit: (e: SubmitEvent): void => {
+		submit: async (e: SubmitEvent): Promise<void> => {
 			e.preventDefault();
 
 			const $form: HTMLFormElement | null = <HTMLFormElement>e.target;
@@ -70,17 +68,8 @@ const props = {
 				const isValidForm: boolean = isValidation(ValidationTypes.PASSWORD, password)
 					&& isValidation(ValidationTypes.LOGIN, loginValue);
 
-				const isEqualPassword: boolean = password === myProfile.password;
-				const $errorText: HTMLElement | null = $form.querySelector('.form__error_form');
-
-				if ($errorText) {
-					toggleHideElement($errorText, isValidForm && isEqualPassword);
-				}
-				if (isValidForm && isEqualPassword) {
-					console.info('login data', {
-						password,
-						login: loginValue,
-					});
+				if (isValidForm) {
+					await Actions.authApi.signinAction(loginValue, password);
 				}
 			}
 		},
@@ -94,13 +83,15 @@ const props = {
 		},
 
 	},
+	label: 'Вход',
+	linkSignUp: LOCALE_PATHS.signUp,
 	attr: {
 		class: 'login popup',
 	},
 };
 
-const Login: Component = new LoginElement('div', props);
+const LoginWithState = connect(mapLoginToProps)(LoginElement);
+
+const Login: Component = new LoginWithState('div', props);
 
 export default Login;
-
-// export { LoginElement, props };

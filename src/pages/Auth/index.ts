@@ -2,37 +2,26 @@ import './style.scss';
 import Component from '../../services/Component';
 import tpl from './tpl';
 import { Attribute } from '../../types/component';
-import toggleHideElement from '../../utils/toggleHideElement';
 import parseFocusBlur from '../../utils/validations/parseFocusBlur';
 import isValidFormAuth from '../../utils/validations/isValidFormAuth';
-import {
-	createFieldEmail,
-	createFieldFirstName,
-	createFieldFormNameInChat,
-	createFieldFormPhone,
-	createFieldLogin, createFieldPassword, createFieldPasswordRepeat,
-	createFieldSecondName,
-} from './utils';
+import { LOCALE_PATHS } from '../../assets/constants';
+import { connect, mapAuthToProps } from '../../store/maps';
+import Actions from '../../store/actions';
+import { PasswordRepeat, SignupDto } from '../../types/api';
 
-interface AuthElementProps extends Attribute {
-	fieldFormFirstName: Component,
-	fieldFormSecondName: Component,
-	fieldFormLogin: Component,
-	fieldFormPhone: Component,
-	fieldFormNameInChat: Component,
-	fieldFormPassword: Component,
-	fieldFormPasswordRepeat: Component,
-	fieldFormEmail: Component,
+interface AuthProps extends Attribute {
 	events: {
 		linkToLogin: (e: PointerEvent) => void,
 		submit: (e: SubmitEvent) => void,
 		focus: (e: FocusEvent) => void,
 		blur: (e: FocusEvent) => void,
-	}
+	},
+	label: string,
+	linkMain: string
 }
 
 class AuthElement extends Component {
-	constructor(tag: string, props: AuthElementProps) {
+	constructor(tag: string, props: AuthProps) {
 		super(tag, props);
 	}
 
@@ -44,26 +33,20 @@ class AuthElement extends Component {
 			const $form: HTMLFormElement | null = this.element.querySelector('.auth__form');
 			$form?.addEventListener('submit', this.props.events.submit);
 
-			this.element.querySelectorAll('.form__input').forEach((input: Element) => {
-				input.addEventListener('focus', this.props.events.focus);
-				input.addEventListener('blur', this.props.events.blur);
-			});
+			this.element.querySelectorAll('.form__input')
+				.forEach((input: Element) => {
+					input.addEventListener('focus', this.props.events.focus);
+					input.addEventListener('blur', this.props.events.blur);
+				});
 		}
 	}
 
 	render(): Node | null {
-		return this.compile(tpl, {});
+		return this.compile(tpl, this.props);
 	}
 }
-const propsAuth = {
-	fieldFormEmail: createFieldEmail(),
-	fieldFormFirstName: createFieldFirstName(),
-	fieldFormSecondName: createFieldSecondName(),
-	fieldFormLogin: createFieldLogin(),
-	fieldFormPhone: createFieldFormPhone(),
-	fieldFormNameInChat: createFieldFormNameInChat(),
-	fieldFormPassword: createFieldPassword(),
-	fieldFormPasswordRepeat: createFieldPasswordRepeat(),
+
+const propsAuth: AuthProps = {
 	events: {
 		linkToLogin: (e: PointerEvent) => {
 			e.preventDefault();
@@ -73,31 +56,32 @@ const propsAuth = {
 			window.location.href = href;
 		},
 
-		submit: (e: SubmitEvent): void => {
+		submit: async (e: SubmitEvent): Promise<void> => {
 			e.preventDefault();
 
 			const $form: HTMLFormElement | null = <HTMLFormElement>e.target;
 
 			if ($form && $form instanceof HTMLElement) {
-				const fields: { [key: string]: string | undefined } = {
-					password: $form.password?.value,
-					passwordRepeat: $form.password_repeat?.value,
+				const signup: SignupDto = {
+					first_name: $form.first_name?.value,
+					second_name: $form.second_name?.value,
+					display_name: $form.display_name?.value,
 					login: $form.login?.value,
-					phone: $form.phone?.value,
 					email: $form.email?.value,
-					firstName: $form.first_name?.value,
-					secondName: $form.second_name?.value,
+					phone: $form.phone?.value,
+					password: $form.password?.value,
 				};
 
-				const isValidAllFields: boolean = isValidFormAuth(fields);
-				const $errorText: HTMLElement | null = $form.querySelector('.form__error_form');
-
-				if ($errorText) {
-					toggleHideElement($errorText, isValidAllFields);
-				}
+				const passwordRepeat: PasswordRepeat = {
+					password_repeat: $form.password_repeat?.value,
+				};
+				const isValidAllFields: boolean = isValidFormAuth({
+					...signup,
+					...passwordRepeat,
+				});
 
 				if (isValidAllFields) {
-					console.info('auth data', fields);
+					await Actions.authApi.signupAction(signup);
 				}
 			}
 		},
@@ -110,11 +94,15 @@ const propsAuth = {
 			parseFocusBlur(e);
 		},
 	},
+	label: 'Регистрация',
+	linkMain: LOCALE_PATHS.main,
 	attr: {
-		class: 'auth popup',
+		class: 'authApi popup',
 	},
 };
 
-const Auth: Component = new AuthElement('div', propsAuth);
+const AuthWithState = connect(mapAuthToProps)(AuthElement);
+
+const Auth: Component = new AuthWithState('div', propsAuth);
 
 export default Auth;

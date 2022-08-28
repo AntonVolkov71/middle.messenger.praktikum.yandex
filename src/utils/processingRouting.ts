@@ -10,16 +10,17 @@ import NotFound from '../components/Not-found';
 import Profile from '../components/Profile';
 import ListChats from '../components/List-chats';
 import SearchChat from '../components/Search-chat';
+import { LOCALE_PATHS } from '../assets/constants';
 
 const rootSelector: string = '#root';
 
 const processingRouting = (): void => {
 	try {
 		const router = new Router(rootSelector, '/notfound');
-		console.log('processingRouting');
+
 		router
 			.use(
-				'/',
+				LOCALE_PATHS.main,
 				Layout,
 				'div',
 				{
@@ -28,7 +29,7 @@ const processingRouting = (): void => {
 				},
 			)
 			.use(
-				'/sign-up',
+				LOCALE_PATHS.signUp,
 				Layout,
 				'div',
 				{
@@ -37,7 +38,7 @@ const processingRouting = (): void => {
 				},
 			)
 			.use(
-				'/messenger',
+				LOCALE_PATHS.messenger,
 				Layout,
 				'div',
 				{
@@ -54,19 +55,22 @@ const processingRouting = (): void => {
 			)
 
 			.use(
-				'/settings',
+				LOCALE_PATHS.settings,
 				Layout,
 				'div',
 				{
 					...propsMainLayout,
 					content: new MainElement(
 						'div',
-						{ ...propsMain, content: Profile },
+						{
+							...propsMain,
+							content: Profile,
+						},
 					),
 				},
 			)
 			.use(
-				'/notfound',
+				LOCALE_PATHS.notfound,
 				Layout,
 				'div',
 				{

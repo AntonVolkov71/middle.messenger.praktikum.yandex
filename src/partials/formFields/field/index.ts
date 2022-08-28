@@ -1,7 +1,12 @@
+import * as Handlebars from 'handlebars';
+
 import tpl from './tpl';
 import './style.scss';
-import Component from '../../services/Component';
-import { Attribute } from '../../types/component';
+import Component from '../../../services/Component';
+import { Attribute } from '../../../types/component';
+
+Handlebars.registerPartial('fieldForm', tpl);
+
 
 interface FieldFormProps extends Attribute {
 	inputId?: string;

@@ -1,21 +1,23 @@
 const tpl: string = `
 	<div class="profile__wrapper-avatar">
-		<img src="{{myProfile.avatar}}" alt="my photo" class="profile__image">
+		<img
+			{{#if user.avatar}} src="{{apiResource}}{{user.avatar}}" {{/if}}
+			 alt="my photo" class="profile__image">
 		<div class="profile__change-avatar"> Поменять аватар</div>
 	</div>
 	
-	{{#if inputFile}}
+	{{#if isOpenChangeAvatar}}
 		{{{inputFile}}}
 	{{/if}}
-	
-	<h2 class="profile__name">{{myProfile.name}}</h2>
-	
-	{{#if changePassword}}
+
+	<h2 class="profile__name">{{user.first_name}}</h2>
+
+	{{#if isChangePassword}}
 		<form class="form profile__change-password">
-			{{{fieldFormPasswordOld}}} 
-			{{{fieldFormPasswordNew}}}
-			{{{fieldFormPasswordRepeat}}}
-		
+			{{> passwordOldField inputId='profile-password-old'}}
+			{{> passwordField inputId='profile-password'}}
+			{{> passwordRepeatField inputId='profile-password-repeat'}}
+
 			{{#unless  isShow}}
 			{{> button type='submit' classNames='profile__button-save-password' label='Сохранить' }}
 			
@@ -24,20 +26,20 @@ const tpl: string = `
 		</form>
 	
 	{{else}}
-	
 		<form class="form profile__data">
-		
-			{{{fieldFormEmail}}}
-			{{{fieldFormLogin}}}
-			{{{fieldFormFirstName}}}
-			{{{fieldFormSecondName}}}
-			{{{fieldFormPhone}}}
-			{{{fieldFormNameInChat}}}
-	
+			{{> emailField disabled=isShow email=user.email  inputId='profile-email'}}
+			{{> loginField disabled=isShow login=user.login  inputId='profile-login'}}
+			{{> firstNameField disabled=isShow first_name=user.first_name  inputId='profile-first-name'}}
+			{{> secondNameField disabled=isShow second_name=user.second_name  inputId='profile-second-name'}}
+			{{> phoneField disabled=isShow phone=user.phone  inputId='profile-phone'}}
+			{{> displayNameField disabled=isShow display_name=user.display_name inputId='profile-display-name'}}
+
 			{{#unless  isShow}}
 			{{> button type='submit' classNames='profile__button-save' label='Сохранить' }}
 			{{/unless }}
 		
+			<p  class="form__error form__error_form ">{{error}}</p>
+
 			<span  class="form__error form__error_form hidden ">А ты хорошо подумал...</span>
 			
 		</form>

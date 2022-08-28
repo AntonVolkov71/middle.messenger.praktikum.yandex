@@ -16,7 +16,6 @@ class Route {
 	private readonly _props: Props = {} as Props;
 
 	constructor(pathname: string, view: typeof LayoutElement, tag: string, props: Props) {
-		console.log('constructor tag', tag);
 		this._pathname = pathname;
 		this._blockClass = view;
 		this._block = null;

@@ -12,12 +12,12 @@ export const MIN_LENGTH_PHONE: number = 8;
 export const MAX_LENGTH_PHONE: number = 15;
 
 export const MINIMUM_FIELD_FORM = {
-	email: {
-		name: 'email',
-		label: 'Почта',
-		type: 'email',
-		textError: TEXT_ERROR.noValidEmail,
-	},
+	// email: {
+	// 	name: 'email',
+	// 	label: 'Почта',
+	// 	type: 'email',
+	// 	textError: TEXT_ERROR.noValidEmail,
+	// },
 	login: {
 		name: 'login',
 		label: 'Логин',

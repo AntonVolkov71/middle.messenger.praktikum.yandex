@@ -1,19 +1,20 @@
 const tpl: string = `
 	<form class="auth__form form">
-		<p class="form__title">{{label}}</p>
+		<h1 class="form__title">{{label}}</h1>
 
-		{{{fieldFormEmail}}}
-		{{{fieldFormFirstName}}}
-		{{{fieldFormSecondName}}}
-		{{{fieldFormLogin}}}
-		{{{fieldFormPhone}}}
-		{{{fieldFormNameInChat}}}
-		{{{fieldFormPassword}}}
-		{{{fieldFormPasswordRepeat}}}
+		{{> emailField inputId='auth-email'}}
+		{{> firstNameField inputId='auth-first_name'}}
+		{{> secondNameField inputId='auth-second_name'}}
+		{{> loginField inputId='auth-login'}}
+		{{> displayNameField inputId='auth-display-name'}}
+		{{> phoneField inputId='auth-phone'}}
+		{{> passwordField inputId='auth-password' }}
+		{{> passwordRepeatField inputId='auth-password-repeat' }}
 		
-		{{> button id="auth-submit" classNames="auth__submit" type="submit" label="Зарегистрироваться" }}
-		<a class="form__link" href="/">Войти</a>
-		<p  class="form__error form__error_form hidden ">Не все поля корректные</p>
+		{{> button id="authApi-submit" classNames="auth__submit" type="submit" label="Зарегистрироваться" }}
+		<a class="form__link" href={{linkMain}}>Войти</a>
+
+		<p  class="form__error form__error_form ">{{error}}</p>
 	</form>
 `;
 

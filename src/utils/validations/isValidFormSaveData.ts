@@ -1,22 +1,22 @@
-import { FieldsAllData } from '../../types/form';
 import isValidation from './isValidation';
 import { ValidationTypes } from '../../types/utils';
+import { User } from '../../types/api';
 
-const isValidFormSaveData = (fields: FieldsAllData): boolean => {
+const isValidFormSaveData = (userDto: User): boolean => {
 	const {
 		email,
 		login,
-		firstName,
-		secondName,
-		nameInChat,
+		first_name,
+		second_name,
+		display_name,
 		phone,
-	} = fields;
+	} = userDto;
 
 	return isValidation(ValidationTypes.EMAIL, email)
-		&& isValidation(ValidationTypes.FIRST_NAME, firstName)
+		&& isValidation(ValidationTypes.FIRST_NAME, first_name)
 		&& isValidation(ValidationTypes.LOGIN, login)
-		&& isValidation(ValidationTypes.SECOND_NAME, secondName)
-		&& isValidation(ValidationTypes.LOGIN, nameInChat)
+		&& isValidation(ValidationTypes.SECOND_NAME, second_name)
+		&& isValidation(ValidationTypes.LOGIN, display_name)
 		&& isValidation(ValidationTypes.PHONE, phone);
 };
 
