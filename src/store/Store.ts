@@ -1,30 +1,8 @@
 import EventBus from '../services/Event-bus';
 import set from '../utils/myDash/set';
 import { State, StoreEvents } from '../types/state';
-import { UserDto } from '../types/api';
 import cloneDeep from '../utils/myDash/clon-deep';
-
-const initialState: State = {
-	login: {
-		error: '',
-	},
-	profile: {
-		error: '',
-		user: {} as UserDto,
-		isShow: true,
-		isChangePassword: false,
-		errorInputFile: 'ssssss',
-	},
-	auth: {
-		error: '',
-	},
-	inputFile: {
-		title: 'Выберите файл',
-		successTitle: '',
-		errorTitle: '',
-		nameFile: ''
-	},
-};
+import initialState from './initial-state';
 
 class Store extends EventBus {
 	static __instance: Store;

@@ -1,5 +1,7 @@
 import Api from './Api';
-import { ChangePasswords, ResponseProfile, User } from '../types/api';
+import {
+	ChangePasswords, ResponseProfile, ResponseSearchUser, SearchUser, User,
+} from '../types/api';
 import { UserProfilePaths } from '../types/api-paths';
 import { Options } from '../types/httpTranspport';
 import { isStatusServerError } from '../utils/api';
@@ -48,6 +50,7 @@ class ProfileApi extends Api {
 
 		const data = new FormData();
 		data.append('avatar', file);
+
 		const options: Options = {
 			...this.options,
 			headers: {
@@ -55,6 +58,22 @@ class ProfileApi extends Api {
 			data,
 		};
 		const response: XMLHttpRequest = await this.put(url, options);
+
+		return {
+			statusCode: response.status,
+			data: isStatusServerError(response.status) ? response.response : JSON.parse(response.response),
+		};
+	}
+
+	public async searchUser(data: SearchUser):Promise<ResponseSearchUser> {
+		const url = `${this.url}/${UserProfilePaths.USER}/${UserProfilePaths.SEARCH}`;
+
+		const options: Options = {
+			...this.options,
+			data: JSON.stringify(data),
+		};
+
+		const response: XMLHttpRequest = await this.post(url, options);
 
 		return {
 			statusCode: response.status,

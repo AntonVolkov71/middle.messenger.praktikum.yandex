@@ -2,7 +2,7 @@ import isEqual from '../../utils/isEqual';
 import Component from '../Component';
 import { Props } from '../../types/component';
 import render from '../../utils/render';
-import LayoutElement from '../../layout/Layout';
+import LayoutElement from '../../display-components/layout/Layout';
 
 class Route {
 	private _pathname: string = '';

@@ -22,6 +22,13 @@ class HTTPTransport {
 		});
 	}
 
+	delete(url: string, options: Options = {} as Options): Promise<XMLHttpRequest> {
+		return this.request(url, {
+			...options,
+			method: Method.DELETE,
+		});
+	}
+
 	request(url: string, options: RequestOptions): Promise<XMLHttpRequest> {
 		const {
 			method,
@@ -49,7 +56,7 @@ class HTTPTransport {
 			xhr.onabort = reject;
 			xhr.onerror = reject;
 			xhr.ontimeout = reject;
-			
+
 			withCredentials
 				? xhr.withCredentials = true
 				: null;

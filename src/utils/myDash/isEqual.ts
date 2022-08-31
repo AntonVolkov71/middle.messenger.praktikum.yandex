@@ -1,3 +1,5 @@
+import isArray from './isArray';
+
 type PlainObject<T = any> = {
 	[k in string]: T;
 };
@@ -7,10 +9,6 @@ function isPlainObject(value: unknown): value is PlainObject {
 		&& value !== null
 		&& value.constructor === Object
 		&& Object.prototype.toString.call(value) === '[object Object]';
-}
-
-function isArray(value: unknown): value is [] {
-	return Array.isArray(value);
 }
 
 function isArrayOrObject(value: unknown): value is [] | PlainObject {
@@ -39,4 +37,4 @@ function isEqual(lhs: PlainObject, rhs: PlainObject) {
 	return true;
 }
 
-export default isEqual
+export default isEqual;

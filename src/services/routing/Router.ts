@@ -1,4 +1,4 @@
-import LayoutElement from '../../layout/Layout';
+import LayoutElement from '../../display-components/layout/Layout';
 import Route from './Route';
 import { Props } from '../../types/component';
 

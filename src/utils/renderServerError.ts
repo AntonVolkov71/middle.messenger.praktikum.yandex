@@ -1,6 +1,6 @@
 import render from './render';
-import serverError from '../components/Server-error';
-import EmptyLayout from '../layout/propsEmptyLayout';
+import serverError from '../display-components/components/Server-error';
+import EmptyLayout from '../display-components/layout/propsEmptyLayout';
 
 const rootSelector: string = '#root';
 

@@ -1,0 +1,14 @@
+@import "../../../assets/styles/variables";
+
+.emptyChat {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	height: 100%;
+
+	.emptyChat__title {
+		color: $colorInfo;
+		font-size: 1.2em;
+	}
+}

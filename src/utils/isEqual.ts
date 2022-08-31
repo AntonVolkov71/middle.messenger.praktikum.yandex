@@ -2,7 +2,6 @@ const isEqual = <T>(lhs: T, rhs: T) => lhs === rhs;
 
 export default isEqual;
 
-
 // type PlainObject<T = any> = {
 // 	[k in string]: T;
 // };

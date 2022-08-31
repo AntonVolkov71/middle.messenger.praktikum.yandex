@@ -1,16 +1,17 @@
-import propsEmptyLayout from '../layout/propsEmptyLayout';
+import propsEmptyLayout from '../display-components/layout/propsEmptyLayout';
 import Router from '../services/routing/Router';
-import Layout from '../layout/Layout';
-import Login from '../pages/Login';
-import Auth from '../pages/Auth';
-import propsMainLayout from '../layout/propsMainLayout';
-import { propsMain, MainElement } from '../pages/Main';
+import Layout from '../display-components/layout/Layout';
+import Login from '../display-components/pages/Login';
+import Auth from '../display-components/pages/Auth';
+import propsMainLayout from '../display-components/layout/propsMainLayout';
+import { propsMain, MainElement } from '../display-components/pages/Main';
 import renderServerError from './renderServerError';
-import NotFound from '../components/Not-found';
-import Profile from '../components/Profile';
-import ListChats from '../components/List-chats';
-import SearchChat from '../components/Search-chat';
+import NotFound from '../display-components/components/Not-found';
+import Profile from '../display-components/components/Profile';
+import ListChats from '../display-components/components/List-chats';
+import SearchChat from '../display-components/components/Search-chat';
 import { LOCALE_PATHS } from '../assets/constants';
+import CreateChat from '../display-components/components/CreateChat';
 
 const rootSelector: string = '#root';
 
@@ -49,11 +50,11 @@ const processingRouting = (): void => {
 							...propsMain,
 							listChats: ListChats,
 							searchChat: SearchChat,
+							createChat: CreateChat,
 						},
 					),
 				},
 			)
-
 			.use(
 				LOCALE_PATHS.settings,
 				Layout,

@@ -1,5 +1,14 @@
 import {
-	AuthState, InputFileState, LoginState, ProfileState, State, StoreEvents,
+	AuthState, ChatMenuState,
+	ChatState,
+	CreateChatState,
+	InputFileState,
+	LoginState,
+	ActiveChatState,
+	ProfileState,
+	SendMessageState,
+	State,
+	StoreEvents, MessagesState,
 } from '../types/state';
 import Component from '../services/Component';
 import { Props } from '../types/component';
@@ -56,4 +65,38 @@ export const mapInputFileToProps = (state: State): InputFileState => ({
 	errorTitle: state.inputFile?.errorTitle,
 	title: state.inputFile?.title,
 	nameFile: state.inputFile?.nameFile,
+});
+
+export const mapChatsToProps = (state: State): ChatState => ({
+	chats: state.chats?.chats,
+	error: state.chats?.error,
+});
+
+export const mapCreateChatsToProps = (state: State): CreateChatState => ({
+	isCreate: state.createChat?.isCreate,
+	error: state.createChat?.error,
+});
+
+export const mapActiveChatToProps = (state: State): ActiveChatState => ({
+	error: state.activeChat?.error,
+	connectionOpen: state.activeChat?.connectionOpen,
+	connectionClose: state.activeChat?.connectionClose,
+	isOpenMenuChat: state.activeChat?.isOpenMenuChat,
+});
+
+export const mapSendMessageToProps = (state: State): SendMessageState => ({
+	idSendFile: state.sendMessage?.idSendFile,
+	isOpenGetFile: state.sendMessage?.isOpenGetFile,
+});
+
+export const mapChatMenuToProps = (state: State): ChatMenuState => ({
+	error: state.chatMenu?.error,
+	users: state.chatMenu?.users,
+	chatId: state.chatMenu?.chatId,
+});
+
+export const mapMessagesToProps = (state: State): MessagesState => ({
+	messages: state.messages?.messages,
+	idChat: state.messages?.idChat,
+	myId: state.messages?.myId,
 });
