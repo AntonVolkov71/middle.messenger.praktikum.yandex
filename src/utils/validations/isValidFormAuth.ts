@@ -1,15 +1,18 @@
 import isValidation from './isValidation';
 import { ValidationTypes } from '../../types/utils';
+import { PasswordRepeat, SignupDto } from '../../types/api';
 
-const isValidFormAuth = (fields: { [key: string]: string | undefined }): boolean => {
+type Fields = SignupDto & PasswordRepeat
+
+const isValidFormAuth = (fields: Fields): boolean => {
 	const {
 		password,
-		passwordRepeat,
+		password_repeat: passwordRepeat,
 		login,
 		phone,
 		email,
-		firstName,
-		secondName,
+		first_name: firstName,
+		second_name: secondName,
 	} = fields;
 
 	return isValidation(ValidationTypes.PASSWORD, password)

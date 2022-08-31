@@ -1,0 +1,15 @@
+@import "../../../assets/styles/variables";
+
+.searchChat {
+
+	margin: 20px 0;
+
+	.searchChat__input {
+		width: 100%;
+		border-radius: $borderRadius;
+
+		color: $colorInfo;
+		text-align: center;
+		font-size: $fontXl;
+	}
+}

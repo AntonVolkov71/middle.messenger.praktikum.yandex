@@ -1,0 +1,44 @@
+@import "../../../assets/styles/variables";
+
+.inputMessage {
+	border-top: 1px solid $colorInfo;
+
+	.inputMessage__form {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+
+		height: 100%;
+
+		
+		.inputMessage__get-file {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+
+		}
+		.inputMessage__input-file-icon {
+			color: $colorInfo;
+		}
+
+		.inputMessage__input-message {
+			flex-grow: 2;
+			border-radius: $borderRadius;
+			padding: 5px;
+		}
+
+		.inputMessage__button-submit {
+			border: none;
+			background-color: inherit;
+		}
+
+		.inputMessage__button-submit-icon {
+			color: $colorInfo;
+		}
+
+		.inputMessage__button-submit:hover {
+			cursor: pointer;
+			background-color: $colorActive;
+		}
+	}
+}

@@ -12,7 +12,7 @@
 
 ## Страницы приложения
  - /main
- - /auth
+ - /authApi
  - /login
  
 ## README
