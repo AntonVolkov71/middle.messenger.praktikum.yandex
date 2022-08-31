@@ -42,6 +42,7 @@ module.exports = {
 		'camelcase': 0,
 		'import/prefer-default-export': 0,
 		'guard-for-in': 0,
+		'import/no-extraneous-dependencies': 0,
 		'@typescript-eslint/no-shadow': ['error'],
 		'indent': [2, 'tab'],
 		'no-tabs': 0,

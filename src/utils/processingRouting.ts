@@ -82,7 +82,6 @@ const processingRouting = (): void => {
 
 			.start();
 	} catch (e) {
-		console.log('e');
 		renderServerError();
 	}
 };

@@ -21,8 +21,6 @@ function renderMessage(this: any, message: Message) {
 		login = findUser.login;
 	}
 
-	console.log('login', login);
-
 	if (file) {
 		const src = `${API_PATHS_RESOURCE}${file.path}`;
 		if (file.content_type === 'image/jpeg') {

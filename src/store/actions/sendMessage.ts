@@ -19,7 +19,6 @@ export const setIdSendFile = (value: number | undefined) => {
 };
 
 export const sendFileToChat = (content: number) => {
-	// const url = 'wss://ya-praktikum.tech/ws/chats/96671/1001/176f0c41ee2305a06bbd211908b270d808f47a3d:1661882449'
 	const socket = new WebSocketApi();
 
 	socket.sendMessage(content.toString(), TypeMessage.FILE);

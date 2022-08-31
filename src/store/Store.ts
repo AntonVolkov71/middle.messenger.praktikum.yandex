@@ -5,18 +5,18 @@ import cloneDeep from '../utils/myDash/clon-deep';
 import initialState from './initial-state';
 
 class Store extends EventBus {
-	static __instance: Store;
+	static instance: Store;
 
 	private state: State = cloneDeep(initialState);
 
 	constructor() {
 		super();
 
-		if (Store.__instance) {
-			return Store.__instance;
+		if (Store.instance) {
+			return Store.instance;
 		}
 
-		Store.__instance = this;
+		Store.instance = this;
 	}
 
 	public getState(): State {

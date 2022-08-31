@@ -84,6 +84,10 @@ class Router {
 
 		return findRoute;
 	}
+
+	public getHistory() {
+		return this.history;
+	}
 }
 
 export default Router;

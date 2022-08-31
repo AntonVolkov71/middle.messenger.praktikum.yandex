@@ -2,7 +2,7 @@ import EventBus from './Event-bus';
 import { TypeMessage, WebsocketEvents } from '../types/websocket';
 
 class WebSocketApi extends EventBus {
-	static __instance: WebSocketApi;
+	static instance: WebSocketApi;
 
 	private socket: WebSocket;
 
@@ -15,11 +15,11 @@ class WebSocketApi extends EventBus {
 	constructor() {
 		super();
 
-		if (WebSocketApi.__instance) {
-			return WebSocketApi.__instance;
+		if (WebSocketApi.instance) {
+			return WebSocketApi.instance;
 		}
 
-		WebSocketApi.__instance = this;
+		WebSocketApi.instance = this;
 	}
 
 	public start(url: string) {
@@ -35,7 +35,6 @@ class WebSocketApi extends EventBus {
 		this.checkConnection();
 	}
 
-	// TODO delete any
 	public sendMessage(content: any, type: TypeMessage) {
 		this.socket.send(JSON.stringify({
 			content,
@@ -56,7 +55,6 @@ class WebSocketApi extends EventBus {
 		});
 	}
 
-	// TODO delete any
 	private messageListener() {
 		this.socket.addEventListener('message', (event: MessageEvent<any>) => {
 			this.emit(WebsocketEvents.MESSAGE, event.data);
