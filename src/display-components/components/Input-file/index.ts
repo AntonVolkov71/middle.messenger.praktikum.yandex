@@ -11,7 +11,7 @@ interface InputFileElementProps extends Attribute {
 	titleError?: string;
 	titleSuccess?: string;
 	titlePutFile?: string;
-	getFile: (file: File, filename: string)=> void,
+	getFile: (file: File, filename: string) => void,
 	events: {
 		onchange: (e: Event) => void
 		close: () => void

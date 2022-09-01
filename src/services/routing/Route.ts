@@ -1,4 +1,4 @@
-import isEqual from '../../utils/isEqual';
+import isEqualByValue from '../../utils/myDash/isEqualByValue';
 import Component from '../Component';
 import { Props } from '../../types/component';
 import render from '../../utils/render';
@@ -37,7 +37,7 @@ class Route {
 	}
 
 	match(pathname: string) {
-		return isEqual(pathname, this._pathname);
+		return isEqualByValue(pathname, this._pathname);
 	}
 
 	render() {

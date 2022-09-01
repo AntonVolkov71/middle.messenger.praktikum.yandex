@@ -1,8 +1,5 @@
 const tpl: string = `
-
-		
-
-		{{#if isCreate}}
+   	{{#if isCreate}}
 			<form class="createChat__form">
 				{{> input classNames="createChat__input" type="text" name="create_chat"
 				placeholder="value" minlength="1" }}

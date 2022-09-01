@@ -13,7 +13,7 @@ import {
 import Component from '../services/Component';
 import { Props } from '../types/component';
 import Store from './Store';
-import isEqual from '../utils/myDash/isEqual';
+import isEqualByReference from '../utils/myDash/isEqualByReference';
 
 export const connect = (mapStateToProps: (state: State) => any) => function block(Block: typeof Component) {
 	return class extends Block {
@@ -25,7 +25,7 @@ export const connect = (mapStateToProps: (state: State) => any) => function bloc
 			store.on(StoreEvents.UPDATED, () => {
 				const newState = mapStateToProps(store.getState());
 
-				if (!isEqual(state, newState)) {
+				if (!isEqualByReference(state, newState)) {
 					this.setProps({ ...newState });
 				}
 

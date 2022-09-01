@@ -15,7 +15,7 @@ function isArrayOrObject(value: unknown): value is [] | PlainObject {
 	return isPlainObject(value) || isArray(value);
 }
 
-function isEqual(lhs: PlainObject, rhs: PlainObject) {
+function isEqualByReference(lhs: PlainObject, rhs: PlainObject) {
 	if (Object.keys(lhs).length !== Object.keys(rhs).length) {
 		return false;
 	}
@@ -23,7 +23,7 @@ function isEqual(lhs: PlainObject, rhs: PlainObject) {
 	for (const [key, value] of Object.entries(lhs)) {
 		const rightValue = rhs[key];
 		if (isArrayOrObject(value) && isArrayOrObject(rightValue)) {
-			if (isEqual(value, rightValue)) {
+			if (isEqualByReference(value, rightValue)) {
 				continue;
 			}
 			return false;
@@ -37,4 +37,4 @@ function isEqual(lhs: PlainObject, rhs: PlainObject) {
 	return true;
 }
 
-export default isEqual;
+export default isEqualByReference;

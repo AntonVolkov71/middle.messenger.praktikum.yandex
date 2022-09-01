@@ -20,6 +20,7 @@ class SendMessageElement extends Component {
 		super(tag, props);
 
 		this.props.events.getFile = props.events.getFile.bind(this);
+		this.props.events.sendMessage = props.events.sendMessage.bind(this);
 	}
 
 	addEvents() {
@@ -49,6 +50,13 @@ const propsSendMessage = {
 				const message: string = $message.value;
 
 				Actions.sendMessage.sendContent(message);
+
+				if (this instanceof SendMessageElement) {
+					this.setProps({
+						idSendFile: undefined,
+					});
+				}
+
 				$message.value = '';
 			}
 		},

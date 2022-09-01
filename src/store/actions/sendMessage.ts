@@ -18,24 +18,18 @@ export const setIdSendFile = (value: number | undefined) => {
 	store.setState('sendMessage.idSendFile', value);
 };
 
-export const sendFileToChat = (content: number) => {
+export const sendMessageToChat = (content: string, type: TypeMessage) => {
 	const socket = new WebSocketApi();
-
-	socket.sendMessage(content.toString(), TypeMessage.FILE);
-};
-
-export const sendMessageToChat = (content: string) => {
-	const socket = new WebSocketApi();
-	socket.sendMessage(content, TypeMessage.MESSAGE);
+	socket.sendMessage(content, type);
 };
 
 export const sendContent = (content: string) => {
 	const { idSendFile } = store.getState().sendMessage;
 	if (idSendFile) {
-		sendFileToChat(idSendFile);
+		sendMessageToChat(idSendFile.toString(), TypeMessage.FILE);
 	}
 
-	sendMessageToChat(content);
+	sendMessageToChat(content, TypeMessage.MESSAGE);
 };
 
 export const sendFileToResource = async (file: File, fileName: string) => {
