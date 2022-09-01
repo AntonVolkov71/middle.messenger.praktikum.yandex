@@ -1,51 +1,88 @@
+import propsEmptyLayout from '../display-components/layout/propsEmptyLayout';
+import Router from '../services/routing/Router';
+import Layout from '../display-components/layout/Layout';
+import Login from '../display-components/pages/Login';
+import Auth from '../display-components/pages/Auth';
+import propsMainLayout from '../display-components/layout/propsMainLayout';
+import { propsMain, MainElement } from '../display-components/pages/Main';
+import renderServerError from './renderServerError';
+import NotFound from '../display-components/components/Not-found';
+import Profile from '../display-components/components/Profile';
+import ListChats from '../display-components/components/List-chats';
+import SearchChat from '../display-components/components/Search-chat';
 import { LOCALE_PATHS } from '../assets/constants';
-import renderer from './renderer';
-import EmptyLayout from '../layout/EmptyLayout';
-import login from '../pages/Login';
-import MainLayout from '../layout/MainLayout';
-import Auth from '../pages/Auth';
-import NotFound from '../components/Not-found';
+import CreateChat from '../display-components/components/CreateChat';
 
-const { pathname }: Location = window.location;
 const rootSelector: string = '#root';
 
 const processingRouting = (): void => {
-	switch (pathname) {
-	case LOCALE_PATHS.login:
-		EmptyLayout.setProps({
-			content: login,
-		});
+	try {
+		const router = new Router(rootSelector, '/notfound');
 
-		renderer(rootSelector, EmptyLayout);
-		break;
+		router
+			.use(
+				LOCALE_PATHS.main,
+				Layout,
+				'div',
+				{
+					...propsEmptyLayout,
+					content: Login,
+				},
+			)
+			.use(
+				LOCALE_PATHS.signUp,
+				Layout,
+				'div',
+				{
+					...propsEmptyLayout,
+					content: Auth,
+				},
+			)
+			.use(
+				LOCALE_PATHS.messenger,
+				Layout,
+				'div',
+				{
+					...propsMainLayout,
+					content: new MainElement(
+						'div',
+						{
+							...propsMain,
+							listChats: ListChats,
+							searchChat: SearchChat,
+							createChat: CreateChat,
+						},
+					),
+				},
+			)
+			.use(
+				LOCALE_PATHS.settings,
+				Layout,
+				'div',
+				{
+					...propsMainLayout,
+					content: new MainElement(
+						'div',
+						{
+							...propsMain,
+							content: Profile,
+						},
+					),
+				},
+			)
+			.use(
+				LOCALE_PATHS.notfound,
+				Layout,
+				'div',
+				{
+					...propsEmptyLayout,
+					content: NotFound,
+				},
+			)
 
-	case LOCALE_PATHS.auth:
-		EmptyLayout.setProps({
-			content: Auth,
-		});
-
-		renderer(rootSelector, EmptyLayout);
-		break;
-
-	case LOCALE_PATHS.main:
-		renderer(rootSelector, MainLayout);
-		break;
-
-	case LOCALE_PATHS.empty:
-		EmptyLayout.setProps({
-			content: login,
-		});
-
-		renderer(rootSelector, EmptyLayout);
-		break;
-
-	default:
-		EmptyLayout.setProps({
-			content: NotFound,
-		});
-
-		renderer(rootSelector, EmptyLayout);
-		break;
+			.start();
+	} catch (e) {
+		renderServerError();
 	}
 };
 

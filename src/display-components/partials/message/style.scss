@@ -1,0 +1,49 @@
+@import "../../../assets/styles/variables";
+
+.message {
+	max-width: 50%;
+	word-break: break-all;
+
+	border-radius: $borderRadius;
+	padding: $containerPadding;
+	margin-bottom: 10px;
+
+	.message__text {
+		margin: 0;
+	}
+
+	.message__image {
+		max-width: 500px;
+
+		background-color: transparent;
+		margin-bottom: 5px;
+	}
+
+	.message__description {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: end;
+
+		.message__login {
+			margin: 2px 5px;
+			color: $colorActive;
+		}
+
+		.message__time {
+			text-align: end;
+			align-self: end;
+			font-size: $fontXs;
+			margin: 0;
+			color: $colorActive;
+		}
+	}
+}
+
+.message_my {
+	background-color: $colorInfo;
+}
+
+.message_opponent {
+	background-color: $colorSuccess;
+}

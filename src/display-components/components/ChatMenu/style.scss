@@ -1,0 +1,75 @@
+@import "../../../assets/styles/variables";
+
+.chat-menu {
+	border-radius: $borderRadius;
+	background-color: $colorLight;
+
+	padding: $containerPadding;
+
+	.chat-menu__title {
+		text-align: center;
+	}
+
+	.chat-menu__add-user {
+		display: flex;
+		justify-content: space-between;
+
+		.chat-menu__add-user_input {
+			width: 100%;
+			margin-right: 5px;
+			border: 1px solid $colorSecondary;
+			border-radius: $borderRadius;
+			padding-left: 8px;
+			padding-right: 8px;
+		}
+
+		.chat-menu__wrapper-error {
+			width: 100%;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			
+			p {
+				margin: 5px;
+				color: $colorDanger;
+			}
+		}
+	}
+	
+	.chat-menu__wrapper-users {
+		margin: 5px 0;
+		padding: 5px;
+
+		border: 1px solid $colorSecondary;
+		border-radius: $borderRadius;
+
+		min-width: 500px;
+		max-height: 500px;
+		overflow-y: scroll;
+
+		.chat-menu__users {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			border-bottom: 1px solid $colorSecondary;
+			margin: 5px 0;
+
+			$sizeColSide: 47px;
+
+			.chat-menu__image, .chat-menu__avatar {
+				margin: 5px;
+
+				width: $sizeColSide;
+				height: $sizeColSide;
+				border-radius: 50%;
+				background-color: $colorInfo;
+			}
+
+			.chat-menu__button_delete {
+				max-height: $sizeColSide;
+				background-color: $colorDanger;
+			}
+		}
+	}
+}

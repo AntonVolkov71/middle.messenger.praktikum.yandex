@@ -1,4 +1,4 @@
-import {v4 as makeUUID} from 'uuid';
+import { v4 as makeUUID } from 'uuid';
 import * as Handlebars from 'handlebars';
 import EventBus from './Event-bus';
 import {
@@ -29,12 +29,12 @@ class Component {
 	private meta: Meta;
 
 	constructor(tag: string = 'div', propsAndChilds: PropsAndChilds = {}) {
-		const {children, props} = this.getChildren(propsAndChilds);
+		const { children, props } = this.getChildren(propsAndChilds);
 
 		this.eventBus = new EventBus();
 		this.children = this.makePropsProxy(children);
-		this.props = this.makePropsProxy({...props, __id: this.id});
-		this.meta = {tag, props};
+		this.props = this.makePropsProxy({ ...props, __id: this.id });
+		this.meta = { tag, props };
 
 		this.registerEvents();
 		this.eventBus.emit(Component.EVENT_INIT);
@@ -84,7 +84,7 @@ class Component {
 	}
 
 	addEvents() {
-		const {events = {}} = this.props;
+		const { events = {} } = this.props;
 
 		Object.keys(events).forEach((eventName) => {
 			if (this.element) {
@@ -94,7 +94,7 @@ class Component {
 	}
 
 	removeEvents(): void {
-		const {events = {}} = this.props;
+		const { events = {} } = this.props;
 
 		Object.keys(events).forEach((eventName) => {
 			if (this.element) {
@@ -125,7 +125,7 @@ class Component {
 			}
 		});
 
-		return {children, props};
+		return { children, props };
 	}
 
 	compile(template: string, props?: Props) {
@@ -134,7 +134,7 @@ class Component {
 			tempProps = this.props;
 		}
 
-		const propsAndStubs: Props = Object.keys(tempProps).length > 0 ? {...props, ...tempProps} : {...props};
+		const propsAndStubs: Props = Object.keys(tempProps).length > 0 ? { ...props, ...tempProps } : { ...props };
 
 		Object.entries(this.children).forEach(([key, child]: [key: string, child: Component]) => {
 			propsAndStubs[key] = `<div data-id="${child.id}"></div>`;
@@ -214,9 +214,9 @@ class Component {
 		}
 
 		this.setUpdate = false;
-		const oldValue: Props = {...this.props};
+		const oldValue: Props = { ...this.props };
 
-		const {children, props} = this.getChildren(newProps);
+		const { children, props } = this.getChildren(newProps);
 
 		if (Object.values(children).length) {
 			Object.assign(this.children, children);

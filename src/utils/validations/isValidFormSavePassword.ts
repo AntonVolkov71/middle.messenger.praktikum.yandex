@@ -1,20 +1,22 @@
-import { FieldsPasswords } from '../../types/form';
 import isValidation from './isValidation';
 import { ValidationTypes } from '../../types/utils';
-import { existUsers } from '../../assets/mock-data';
+import { ChangePasswords } from '../../types/api';
 
-const isValidFormSavePassword = (fields: FieldsPasswords): boolean => {
+interface PasswordAll extends ChangePasswords {
+	repeatPassword: string;
+}
+
+const isValidFormSavePassword = (passwords: PasswordAll): boolean => {
 	const {
-		passwordOld,
-		passwordNew,
-		passwordRepeat,
-	} = fields;
+		oldPassword,
+		newPassword,
+		repeatPassword,
+	} = passwords;
 
-	return isValidation(ValidationTypes.PASSWORD, passwordNew)
-		&& isValidation(ValidationTypes.PASSWORD, passwordRepeat)
-		&& passwordNew === passwordRepeat
-		&& passwordNew !== existUsers[0]?.password
-		&& passwordOld === existUsers[0]?.password;
+	return isValidation(ValidationTypes.PASSWORD, oldPassword)
+		&& isValidation(ValidationTypes.PASSWORD, repeatPassword)
+		&& isValidation(ValidationTypes.PASSWORD, newPassword)
+		&& newPassword === repeatPassword;
 };
 
 export default isValidFormSavePassword;
