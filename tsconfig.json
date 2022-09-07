@@ -1,4 +1,20 @@
 {
+	"exclude": [
+		"typings/main",
+		"typings/main.d.ts",
+		"typings/browser.d.ts",
+		"typings/browser",
+		"node_modules",
+		"/node_modules",
+		"../node_modules",
+		"*node_modules*",
+		"/node_modules*",
+		"angular2",
+		"rxjs",
+		"typings",
+		"src"
+		
+	],
 	"compilerOptions": {
 		"outDir": "dist",
 		"target": "es2016",
@@ -7,7 +23,7 @@
 		"strictNullChecks": true,
 		"sourceMap": true,
 		"incremental": true,
-		"skipLibCheck": true,
+		"skipLibCheck": true, 
 		"forceConsistentCasingInFileNames": false,
 		"allowJs": true,
 		"removeComments": true,
@@ -15,17 +31,23 @@
 		"experimentalDecorators": true,
 		"allowSyntheticDefaultImports": true,
 		"alwaysStrict": true,
-		"noImplicitAny": true,
+		"noImplicitAny": false,
+		//TODO return true
 		"strictPropertyInitialization": false,
 		"strictFunctionTypes": true,
 		"strictBindCallApply": true,
 		"noImplicitThis": true,
 		"useUnknownInCatchVariables": true,
 		// noPropertyAccessFromIndexSignature проверяет обращение к обьекту через точку, но не запрещает через object['method']
-		"noUncheckedIndexedAccess": true, // как обеъекты так и массивы
-		"noImplicitReturns": true, // обязательное возвращение чтобы всех веток функций результата
-		"noFallthroughCasesInSwitch": true, // switch/case правильное оформление
-		"noUnusedLocals": true, // наличие неиспользованных переменных переменных и аргументов функций соответственно
-		"noUnusedParameters": true // наличие неиспользованных переменных переменных и аргументов функций соответственно
+		"noUncheckedIndexedAccess": true,
+		// как обеъекты так и массивы
+		"noImplicitReturns": true,
+		// обязательное возвращение чтобы всех веток функций результата
+		"noFallthroughCasesInSwitch": true,
+		// switch/case правильное оформление
+		"noUnusedLocals": false,
+		//TODO return true // наличие неиспользованных переменных переменных и аргументов функций соответственно
+		"noUnusedParameters": false
+		//TODO return true  наличие неиспользованных переменных переменных и аргументов функций соответственно
 	}
 } 

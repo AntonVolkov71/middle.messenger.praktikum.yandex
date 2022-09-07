@@ -2,21 +2,21 @@ import * as Handlebars from 'handlebars';
 
 import './assets/styles/style.scss';
 
-import './display-components/partials/button';
-import './display-components/partials/chat';
-import './display-components/components/Empty-chat';
-import './display-components/partials/input';
+import  './display-components/partials/button';
+import  './display-components/partials/chat';
+import  './display-components/components/Empty-chat';
+import   './display-components/partials/input';
 import './display-components/partials/message';
-import './display-components/partials/modal';
-import './display-components/partials/formFields/field';
-import './display-components/partials/formFields/email';
-import './display-components/partials/formFields/first-name';
+import  './display-components/partials/modal';
+import  './display-components/partials/formFields/field';
+import  './display-components/partials/formFields/email';
+import  './display-components/partials/formFields/first-name';
 import './display-components/partials/formFields/second-name';
 import './display-components/partials/formFields/login';
-import './display-components/partials/formFields/display-name';
+import  './display-components/partials/formFields/display-name';
 import './display-components/partials/formFields/phone';
-import './display-components/partials/formFields/password';
-import './display-components/partials/formFields/password-repeat';
+import  './display-components/partials/formFields/password';
+import  './display-components/partials/formFields/password-repeat';
 import './display-components/partials/formFields/password-old';
 
 import processingRouting from './utils/processingRouting';
@@ -31,19 +31,20 @@ import { getChats } from './utils/middlewares/get-chats';
 
 import { LOCALE_PATHS } from './assets/constants';
 
-(async function letsGo() {
 	try {
 		Handlebars.registerHelper('ifEqualsId', ifEqualsId);
 		Handlebars.registerHelper('dateFilter', dateFilter);
 		Handlebars.registerHelper('renderMessage', renderMessage);
 
 		const { pathname } = window.location;
+(async function letsGo() {
 
 		await isAuth();
 		await getUserProfile(pathname === LOCALE_PATHS.settings);
 		await getChats();
-		processingRouting();
+	}());
+
+	processingRouting();
 	} catch (e) {
 		renderServerError();
 	}
-}());
