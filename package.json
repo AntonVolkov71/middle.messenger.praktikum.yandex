@@ -15,7 +15,8 @@
 		"start": "nodemon src/app.ts",
 		"eslint": "eslint src/**/**.ts",
 		"fix": "eslint src/**/**.ts --fix",
-		"test": "mocha -r jsdom-global/register --require ignore-styles --watch"
+		"test:watch": "mocha -r jsdom-global/register --require ignore-styles --watch",
+		"test": "mocha -r jsdom-global/register --require ignore-styles"
 	},
 	"pre-commit": {
 		"run": [
