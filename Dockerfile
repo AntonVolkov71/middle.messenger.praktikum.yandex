@@ -7,6 +7,7 @@ WORKDIR /messenger
 COPY ./dist/ dist
 
 COPY ./src/app.js app.js
+
 COPY ./package.json package.json
 COPY ./package-lock.json package-lock.json
 
