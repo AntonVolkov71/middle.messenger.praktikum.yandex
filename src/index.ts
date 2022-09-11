@@ -32,7 +32,6 @@ import { getChats } from './utils/middlewares/get-chats';
 import { LOCALE_PATHS } from './assets/constants';
 
 (async function letsGo() {
-
 	try {
 		Handlebars.registerHelper('ifEqualsId', ifEqualsId);
 		Handlebars.registerHelper('dateFilter', dateFilter);

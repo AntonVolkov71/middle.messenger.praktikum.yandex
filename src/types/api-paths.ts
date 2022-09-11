@@ -3,25 +3,21 @@ export enum AuthPaths {
 	SIGN_IN = 'signin',
 	SIGN_UP = 'signup',
 	USER = 'user',
-	LOGOUT = 'logout',
-	CHATS = 'chats',
+		LOGOUT = 'logout'
 }
 
 export enum UserProfilePaths {
-	USER ='user',
-	PROFILE ='profile',
-	PROFILE_AVATAR ='profile/avatar',
-	PASSWORD ='password',
-	SEARCH ='search'
+	USER = 'user',
+	PROFILE = 'profile',
+	PROFILE_AVATAR = 'profile/avatar',
+	PASSWORD = 'password',
+	SEARCH = 'search'
 }
 
 export enum ChatsPaths {
-	CHATS='chats',
-	FILES ='FILES',
-	ARCHIVE ='ARCHIVE',
-	USERS ='users',
-	AVATAR ='avatar',
-	TOKEN ='token',
+	CHATS = 'chats',
+	USERS = 'users',
+	TOKEN = 'token',
 }
 
 export enum ResourcePaths {

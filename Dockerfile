@@ -1,18 +1,15 @@
-FROM ubuntu:22.04
-
-RUN apt update && apt install -y nodejs && apt install -y npm
+FROM node:latest
 
 WORKDIR /messenger
 
-COPY ./dist/ dist
+COPY package*.json .
 
-COPY ./src/app.js app.js
+RUN npm install --legacy-peer-deps
 
-COPY ./package.json package.json
-COPY ./package-lock.json package-lock.json
+COPY . .
 
-RUN npm install
+RUN npm run build
 
 EXPOSE 3000
 
-CMD node app.js
+CMD node src/app.js
