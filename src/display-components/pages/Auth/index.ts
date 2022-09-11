@@ -1,13 +1,13 @@
 import './style.scss';
-import Component from '../../../services/Component';
+import parseFocusBlur from '@utils/validations/parseFocusBlur';
+import isValidFormAuth from '@utils/validations/isValidFormAuth';
+import { LOCALE_PATHS } from '@assets/constants';
+import { Attribute } from '@myTypes/component';
+import { PasswordRepeat, SignupDto } from '@myTypes/api';
+import Component from '@services/Component';
+import { connect, mapAuthToProps } from '@store/maps';
+import Actions from '@store/actions';
 import tpl from './tpl';
-import { Attribute } from '../../../types/component';
-import parseFocusBlur from '../../../utils/validations/parseFocusBlur';
-import isValidFormAuth from '../../../utils/validations/isValidFormAuth';
-import { LOCALE_PATHS } from '../../../assets/constants';
-import { connect, mapAuthToProps } from '../../../store/maps';
-import Actions from '../../../store/actions';
-import { PasswordRepeat, SignupDto } from '../../../types/api';
 
 interface AuthProps extends Attribute {
 	events: {

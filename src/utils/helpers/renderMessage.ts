@@ -1,9 +1,9 @@
 import * as Handlebars from 'handlebars';
-import { Message } from '../../types/state';
-import { API_PATHS_RESOURCE } from '../../assets/constants';
-import parseDate from '../parseDate';
-import Store from '../../store/Store';
-import { UserDto } from '../../types/api';
+import { API_PATHS_RESOURCE } from '@assets/constants';
+import { Message } from '@myTypes/state';
+import { UserDto } from '@myTypes/api';
+import Store from '@store/Store';
+import parseDate from '@utils/parseDate';
 
 const store: Store = new Store();
 

@@ -1,13 +1,13 @@
 import './style.scss';
+import parseFocusBlur from '@utils/validations/parseFocusBlur';
+import isValidation from '@utils/validations/isValidation';
+import { LOCALE_PATHS } from '@assets/constants';
+import { Attribute } from '@myTypes/component';
+import { ValidationTypes } from '@myTypes/utils';
+import Component from '@services/Component';
+import Actions from '@store/actions';
+import { connect, mapLoginToProps } from '@store/maps';
 import tpl from './tpl';
-import Component from '../../../services/Component';
-import { Attribute } from '../../../types/component';
-import parseFocusBlur from '../../../utils/validations/parseFocusBlur';
-import isValidation from '../../../utils/validations/isValidation';
-import { ValidationTypes } from '../../../types/utils';
-import { LOCALE_PATHS } from '../../../assets/constants';
-import Actions from '../../../store/actions';
-import { connect, mapLoginToProps } from '../../../store/maps';
 
 interface LoginProps extends Attribute {
 	events: {

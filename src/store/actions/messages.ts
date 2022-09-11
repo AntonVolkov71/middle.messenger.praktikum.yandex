@@ -1,5 +1,5 @@
-import { Message } from '../../types/state';
-import Store from '../Store';
+import { Message } from '@myTypes/state';
+import Store from '@store/Store';
 
 const store = new Store();
 

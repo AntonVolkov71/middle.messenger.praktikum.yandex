@@ -1,4 +1,4 @@
-import { ParseDateTypes } from '../types/utils';
+import { ParseDateTypes } from '@myTypes/utils';
 
 const months: string[] = [
 	'января',

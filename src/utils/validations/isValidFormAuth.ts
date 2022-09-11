@@ -1,6 +1,6 @@
+import { ValidationTypes } from '@myTypes/utils';
+import { PasswordRepeat, SignupDto } from '@myTypes/api';
 import isValidation from './isValidation';
-import { ValidationTypes } from '../../types/utils';
-import { PasswordRepeat, SignupDto } from '../../types/api';
 
 type Fields = SignupDto & PasswordRepeat
 

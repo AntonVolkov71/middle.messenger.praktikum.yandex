@@ -1,5 +1,5 @@
-import AuthApi from '../../api/AuthApi';
-import { API_PATHS, LOCALE_PATHS } from '../../assets/constants';
+import { API_PATHS, LOCALE_PATHS } from '@assets/constants';
+import AuthApi from '@api/AuthApi';
 
 const isAuth = async (): Promise<void> => {
 	const { pathname } = window.location;

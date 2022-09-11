@@ -1,8 +1,8 @@
 import * as Handlebars from 'handlebars';
+import Component from '@services/Component';
+import { Attribute } from '@myTypes/component';
 import tpl from './tpl';
 import './style.scss';
-import Component from '../../../services/Component';
-import { Attribute } from '../../../types/component';
 
 Handlebars.registerPartial('emptyChat', tpl);
 

@@ -1,7 +1,8 @@
+import { Attribute } from '@myTypes/component';
+import Component from '@services/Component';
+
 import tpl from './tpl';
 import './style.scss';
-import Component from '../../../services/Component';
-import { Attribute } from '../../../types/component';
 
 interface ServerErrorElementProps extends Attribute {
 	httpStatus: number

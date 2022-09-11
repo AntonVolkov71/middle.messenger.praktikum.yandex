@@ -1,7 +1,7 @@
-import { ValidationTypes } from '../../types/utils';
+import { ValidationTypes } from '@myTypes/utils';
+import toggleHideElement from '@utils/toggleHideElement';
 import parseValidationTypes from './parseValidationTypes';
 import isValidFocusBlur from './isValidFocusBlur';
-import toggleHideElement from '../toggleHideElement';
 
 const parseFocusBlur = (e: FocusEvent): void => {
 	const { value, name } = e.target as HTMLTextAreaElement;

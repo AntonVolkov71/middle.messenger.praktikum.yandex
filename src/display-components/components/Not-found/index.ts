@@ -1,7 +1,7 @@
-import './style.scss';
-import Component from '../../../services/Component';
+import { Attribute } from '@myTypes/component';
+import Component from '@services/Component';
 import tpl from './tpl';
-import { Attribute } from '../../../types/component';
+import './style.scss';
 
 interface NotFoundElementProps extends Attribute {
 	events: {

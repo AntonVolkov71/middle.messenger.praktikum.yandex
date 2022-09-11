@@ -1,8 +1,7 @@
-import './style.scss';
+import { Attribute } from '@myTypes/component';
+import Component from '@services/Component';
 import tpl from './tpl';
-
-import Component from '../../../services/Component';
-import { Attribute } from '../../../types/component';
+import './style.scss';
 
 interface LayoutProps extends Attribute {
 	content?: Component,

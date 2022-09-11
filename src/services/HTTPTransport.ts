@@ -1,4 +1,4 @@
-import { Method, Options, RequestOptions } from '../types/httpTranspport';
+import { Method, Options, RequestOptions } from '@myTypes/httpTranspport';
 
 class HTTPTransport {
 	get(url: string, options: Options = {} as Options): Promise<XMLHttpRequest> {

@@ -1,5 +1,5 @@
-import { ValidationTypes } from '../../types/utils';
-import { MAX_LENGTH_PASSWORD, MIN_LENGTH_PASSWORD } from '../../assets/constants';
+import { MAX_LENGTH_PASSWORD, MIN_LENGTH_PASSWORD } from '@assets/constants';
+import { ValidationTypes } from '@myTypes/utils';
 
 function isValidName(value: string): boolean {
 	const regex = /^[А-ЯЁA-Z]([а-яёa-z-])+$/;

@@ -1,4 +1,4 @@
-import { ValidationTypes } from '../../types/utils';
+import { ValidationTypes } from '@myTypes/utils';
 
 const parseValidationTypes = (type: string): ValidationTypes | null => {
 	switch (type) {

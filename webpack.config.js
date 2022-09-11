@@ -1,71 +1,20 @@
-const path = require('path');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const { merge } = require('webpack-merge');
+const developmentConfig = require('./webpack-development');
+const productionConfig = require('./webpack-production');
+const commonConfig = require('./webpack-common');
 
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const common = commonConfig();
+const development = { ...developmentConfig() };
+const production = { ...productionConfig() };
 
-module.exports = {
-	entry: './src/index.ts',
-	target: 'web',
-	output: {
-		path: path.resolve(__dirname, 'dist'),
-		filename: 'index.js',
-	},
-	devServer: {
-		historyApiFallback: true,
-	},
-	resolve: {
-		alias: { handlebars: 'handlebars/dist/handlebars.js' },
-		extensions: ['.ts', '.js', '.json'],
-	},
-	module: {
-		rules: [
-			{
-				test: /\.ts$/,
-				exclude: /node_modules/,
-				use: {
-					loader: 'babel-loader',
-					options: {
-						presets: ['@babel/preset-typescript'],
-					},
-				},
-			},
-			{
-				test: /\.tsx?$/,
-				use: [
-					{
-						loader: 'ts-loader',
-						options: {
-							configFile: path.resolve(__dirname, 'tsconfig.json'),
-						},
-					},
-				],
-				exclude: /node_modules/,
-			},
-			{
-				test: /\.(?:ico|gif|png|jpg|jpeg)$/i,
-				type: 'asset/resource',
-			},
-			{
-				test: /\.(woff(2)?|eot|ttf|otf|svg|)$/,
-				type: 'asset/inline',
-			},
-			{
-				test: /.s?css$/,
-				use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
-			},
+module.exports = (env, args) => {
+	switch (args.mode) {
+	case 'development':
+		return merge(common, development);
+	case 'production':
+		return merge(common, production);
 
-		],
-	},
-	optimization: {
-		minimizer: [
-			new CssMinimizerPlugin(),
-		],
-	},
-	plugins: [
-		new MiniCssExtractPlugin(),
-		new HtmlWebpackPlugin({
-			template: './src/index.html',
-		}),
-	],
+	default:
+		throw new Error('No matching configuration was found!');
+	}
 };

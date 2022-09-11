@@ -1,7 +1,6 @@
-import Api from './Api';
-import { ChatsPaths } from '../types/api-paths';
-import { Options } from '../types/httpTranspport';
-import { isStatusServerError } from '../utils/api';
+import { isStatusServerError } from '@utils/api';
+import { ChatsPaths } from '@myTypes/api-paths';
+import { Options } from '@myTypes/httpTranspport';
 import {
 	AddOrDeleteUser,
 	AddUser,
@@ -10,7 +9,8 @@ import {
 	ResponseChatsToken,
 	ResponseCreateChat,
 	ResponseUserChat,
-} from '../types/api';
+} from '@myTypes/api';
+import Api from './Api';
 
 class ChatsApi extends Api {
 	private readonly chatsPath: string = ChatsPaths.CHATS;

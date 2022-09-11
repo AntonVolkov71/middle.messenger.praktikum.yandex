@@ -1,6 +1,6 @@
-import ListChats from '../../display-components/components/List-chats';
-import { Chat } from '../../types/state';
-import Store from '../../store/Store';
+import ListChats from '@components/List-chats';
+import { Chat } from '@myTypes/state';
+import Store from '@store/Store';
 
 const handlerSearchChat = (listChats: typeof ListChats, searchText: string): void => {
 	const includesName = (chat: Chat): boolean => (chat.title)

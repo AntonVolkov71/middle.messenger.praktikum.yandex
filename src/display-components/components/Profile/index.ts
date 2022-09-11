@@ -1,16 +1,17 @@
+import parseFocusBlur from '@utils/validations/parseFocusBlur';
+import { Attribute } from '@myTypes/component';
+import isValidFormSavePassword from '@utils/validations/isValidFormSavePassword';
+import isValidFormSaveData from '@utils/validations/isValidFormSaveData';
+import { ProfileState } from '@myTypes/state';
+import { ChangePasswords, User } from '@myTypes/api';
+import { API_PATHS_RESOURCE, LOCALE_PATHS } from '@assets/constants';
+import Component from '@services/Component';
+import { connect, mapProfileToProps } from '@store/maps';
+import Actions from '@store/actions';
+import InputFile from '@components/Input-file';
+
 import tpl from './tpl';
 import './style.scss';
-import Component from '../../../services/Component';
-import parseFocusBlur from '../../../utils/validations/parseFocusBlur';
-import { Attribute } from '../../../types/component';
-import isValidFormSavePassword from '../../../utils/validations/isValidFormSavePassword';
-import isValidFormSaveData from '../../../utils/validations/isValidFormSaveData';
-import InputFile from '../Input-file';
-import { connect, mapProfileToProps } from '../../../store/maps';
-import Actions from '../../../store/actions';
-import { ProfileState } from '../../../types/state';
-import { ChangePasswords, User } from '../../../types/api';
-import { API_PATHS_RESOURCE, LOCALE_PATHS } from '../../../assets/constants';
 
 interface ProfileElementProps extends Attribute, ProfileState {
 	isShow: boolean,

@@ -1,6 +1,6 @@
 import { expect } from 'chai';
+import { StoreEvents } from '@myTypes/state';
 import Store from './Store';
-import { StoreEvents } from '../types/state';
 
 describe('Проверяем стор', () => {
 	it('Изменение стора', () => {

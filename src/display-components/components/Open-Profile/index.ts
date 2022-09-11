@@ -1,12 +1,13 @@
+import Component from '@services/Component';
+import { Attribute } from '@myTypes/component';
+
 import tpl from './tpl';
 import './style.scss';
-import Component from '../../../services/Component';
-import { Attribute } from '../../../types/component';
 
 interface OpenProfileProps extends Attribute {
 	events: {
 		click: () => void
-	}
+	};
 }
 
 class OpenProfileElement extends Component {

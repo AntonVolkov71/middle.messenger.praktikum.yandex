@@ -1,9 +1,9 @@
 import { v4 as makeUUID } from 'uuid';
 import * as Handlebars from 'handlebars';
-import EventBus from './Event-bus';
 import {
 	Children, EventsEnum, Meta, Props, PropsAndChilds,
-} from '../types/component';
+} from '@myTypes/component';
+import EventBus from './Event-bus';
 
 class Component {
 	static EVENT_INIT: EventsEnum = EventsEnum.EVENT_INIT;

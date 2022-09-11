@@ -1,9 +1,9 @@
+import { Attribute } from '@myTypes/component';
 import * as Handlebars from 'handlebars';
+import Component from '@services/Component';
 
 import tpl from './tpl';
 import './style.scss';
-import Component from '../../../../services/Component';
-import { Attribute } from '../../../../types/component';
 
 Handlebars.registerPartial('fieldForm', tpl);
 

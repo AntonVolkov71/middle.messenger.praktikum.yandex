@@ -1,35 +1,35 @@
 import * as Handlebars from 'handlebars';
 
-import './assets/styles/style.scss';
+import '@assets/styles/style.scss';
 
-import './display-components/partials/button';
-import './display-components/partials/chat';
-import './display-components/components/Empty-chat';
-import './display-components/partials/input';
-import './display-components/partials/message';
-import './display-components/partials/modal';
-import './display-components/partials/formFields/field';
-import './display-components/partials/formFields/email';
-import './display-components/partials/formFields/first-name';
-import './display-components/partials/formFields/second-name';
-import './display-components/partials/formFields/login';
-import './display-components/partials/formFields/display-name';
-import './display-components/partials/formFields/phone';
-import './display-components/partials/formFields/password';
-import './display-components/partials/formFields/password-repeat';
-import './display-components/partials/formFields/password-old';
+import '@partials/button';
+import '@partials/chat';
+import '@partials/input';
+import '@partials/message';
+import '@partials/modal';
+import '@partials/formFields/field';
+import '@partials/formFields/email';
+import '@partials/formFields/first-name';
+import '@partials/formFields/second-name';
+import '@partials/formFields/login';
+import '@partials/formFields/display-name';
+import '@partials/formFields/phone';
+import '@partials/formFields/password';
+import '@partials/formFields/password-repeat';
+import '@partials/formFields/password-old';
+import '@components/Empty-chat';
 
-import processingRouting from './utils/processingRouting';
-import ifEqualsId from './utils/helpers/ifEqualsId';
-import dateFilter from './utils/helpers/dateFilter';
-import renderMessage from './utils/helpers/renderMessage';
+import processingRouting from '@utils/processingRouting';
+import { getChats } from '@utils/middlewares/get-chats';
+import ifEqualsId from '@utils/helpers/ifEqualsId';
+import dateFilter from '@utils/helpers/dateFilter';
+import renderMessage from '@utils/helpers/renderMessage';
 
-import renderServerError from './utils/renderServerError';
-import isAuth from './utils/middlewares/is-auth';
-import getUserProfile from './utils/middlewares/get-user-profile';
-import { getChats } from './utils/middlewares/get-chats';
+import renderServerError from '@utils/renderServerError';
+import isAuth from '@utils/middlewares/is-auth';
+import getUserProfile from '@utils/middlewares/get-user-profile';
 
-import { LOCALE_PATHS } from './assets/constants';
+import { LOCALE_PATHS } from '@assets/constants';
 
 (async function letsGo() {
 	try {

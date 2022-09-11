@@ -1,3 +1,4 @@
+import isEqualByReference from '@utils/myDash/isEqualByReference';
 import {
 	AuthState, ChatMenuState,
 	ChatState,
@@ -9,11 +10,10 @@ import {
 	SendMessageState,
 	State,
 	StoreEvents, MessagesState,
-} from '../types/state';
-import Component from '../services/Component';
-import { Props } from '../types/component';
+} from '@myTypes/state';
+import { Props } from '@myTypes/component';
+import Component from '@services/Component';
 import Store from './Store';
-import isEqualByReference from '../utils/myDash/isEqualByReference';
 
 export const connect = (mapStateToProps: (state: State) => any) => function block(Block: typeof Component) {
 	return class extends Block {

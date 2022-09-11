@@ -1,13 +1,13 @@
-import './style.scss';
+import { LOCALE_PATHS } from '@assets/constants';
+import { Attribute } from '@myTypes/component';
+import Component from '@services/Component';
+import handlerSearchChat from '@services/handlers/handlerSearchChat';
+import Actions from '@store/actions';
+import ActiveChat from '@components/Active-chat';
+import OpenProfile from '@components/Open-Profile';
+import EmptyChat from '@components/Empty-chat';
 import tpl from './tpl';
-import Component from '../../../services/Component';
-import { Attribute } from '../../../types/component';
-import handlerSearchChat from '../../../services/handlers/handlerSearchChat';
-import ActiveChat from '../../components/Active-chat';
-import OpenProfile from '../../components/Open-Profile';
-import EmptyChat from '../../components/Empty-chat';
-import { LOCALE_PATHS } from '../../../assets/constants';
-import Actions from '../../../store/actions';
+import './style.scss';
 
 interface MainProps extends Attribute {
 	openProfile: Component;

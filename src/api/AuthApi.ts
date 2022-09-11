@@ -1,6 +1,6 @@
-import { Options } from '../types/httpTranspport';
-import { AuthPaths } from '../types/api-paths';
-import { AuthResponse, SigninDto, SignupDto } from '../types/api';
+import { Options } from '@myTypes/httpTranspport';
+import { AuthPaths } from '@myTypes/api-paths';
+import { AuthResponse, SigninDto, SignupDto } from '@myTypes/api';
 import Api from './Api';
 
 class AuthApi extends Api {

@@ -1,5 +1,5 @@
+import { ValidationTypes } from '@myTypes/utils';
 import isValidation from './isValidation';
-import { ValidationTypes } from '../../types/utils';
 
 const isValidFocusBlur = (type: ValidationTypes, value:string): boolean => isValidation(type, value);
 

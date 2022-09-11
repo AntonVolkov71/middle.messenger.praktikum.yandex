@@ -1,11 +1,11 @@
-import Store from '../Store';
+import { isStatusClientError, isStatusServerError } from '@utils/api';
+import { API_PATHS } from '@assets/constants';
 import {
 	ChangePasswords,
 	ResponseError, ResponseProfile, User, UserDto,
-} from '../../types/api';
-import { API_PATHS } from '../../assets/constants';
-import ProfileApi from '../../api/ProfileApi';
-import { isStatusClientError, isStatusServerError } from '../../utils/api';
+} from '@myTypes/api';
+import Store from '@store/Store';
+import ProfileApi from '@api/ProfileApi';
 import Actions from './index';
 
 const store: Store = new Store();

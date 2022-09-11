@@ -3,7 +3,7 @@ export enum AuthPaths {
 	SIGN_IN = 'signin',
 	SIGN_UP = 'signup',
 	USER = 'user',
-		LOGOUT = 'logout'
+	LOGOUT = 'logout'
 }
 
 export enum UserProfilePaths {

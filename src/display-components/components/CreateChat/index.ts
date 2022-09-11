@@ -1,15 +1,15 @@
+import Component from '@services/Component';
+import { Attribute } from '@myTypes/component';
+import { connect, mapCreateChatsToProps } from '@store/maps';
+import Actions from '@store/actions';
 import tpl from './tpl';
 import './style.scss';
-import Component from '../../../services/Component';
-import { Attribute } from '../../../types/component';
-import { connect, mapCreateChatsToProps } from '../../../store/maps';
-import Actions from '../../../store/actions';
 
 interface SearchChatProps extends Attribute {
 	events: {
 		createChat: (e: SubmitEvent) => Promise<void>;
 		openCreateChat: () => Promise<void>;
-	}
+	};
 }
 
 class CreateChatElement extends Component {

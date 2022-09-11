@@ -40,6 +40,7 @@ module.exports = {
 		'no-restricted-syntax': 0,
 		'no-continue': 0,
 		'camelcase': 0,
+		'import/no-unresolved': 0,
 		'import/prefer-default-export': 0,
 		'guard-for-in': 0,
 		'import/no-extraneous-dependencies': 0,

@@ -1,10 +1,9 @@
-import tpl from './tpl';
+import Component from '@services/Component';
+import { Attribute } from '@myTypes/component';
+import { API_PATHS_RESOURCE } from '@assets/constants';
+import { connect, mapChatMenuToProps } from '@store/maps';
+import Actions from '@store/actions'; import tpl from './tpl';
 import './style.scss';
-import Component from '../../../services/Component';
-import { Attribute } from '../../../types/component';
-import { connect, mapChatMenuToProps } from '../../../store/maps';
-import { API_PATHS_RESOURCE } from '../../../assets/constants';
-import Actions from '../../../store/actions';
 
 interface ChatMenuProps extends Attribute {
 	apiResource: string,

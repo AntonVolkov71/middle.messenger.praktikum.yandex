@@ -1,8 +1,8 @@
+import Component from '@services/Component';
+import { Attribute } from '@myTypes/component';
+import { connect, mapMessagesToProps } from '@store/maps';
 import tpl from './tpl';
 import './style.scss';
-import Component from '../../../services/Component';
-import { Attribute } from '../../../types/component';
-import { connect, mapMessagesToProps } from '../../../store/maps';
 
 interface ListMessagesProps extends Attribute {
 	myId?: number;

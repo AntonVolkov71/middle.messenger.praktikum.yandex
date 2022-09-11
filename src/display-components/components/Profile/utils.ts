@@ -1,4 +1,4 @@
-import Component from '../../../services/Component';
+import Component from '@services/Component';
 
 export interface FieldsFormData {
 	[key: string]: Component;

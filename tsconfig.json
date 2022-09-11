@@ -3,6 +3,19 @@
 		"node_modules",
 	],
 	"compilerOptions": {
+		"baseUrl": "./",
+		"paths": {
+			"@utils/*": ["src/utils/*"],
+			"@services/*": ["src/services/*"],
+			"@assets/*": ["src/assets/*"],
+			"@myTypes/*": ["src/types/*"],
+			"@store/*": ["src/store/*"],
+			"@api/*": ["src/api/*"],
+
+			"@components/*": ["src/display-components/components/*"],
+			"@pages/*": ["src/display-components/pages/*"],
+			"@layout/*": ["src/display-components/layout/*"],
+		},
 		"outDir": "dist",
 		"target": "es2016",
 		"declaration": false,

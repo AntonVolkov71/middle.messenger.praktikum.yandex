@@ -1,6 +1,6 @@
-import LayoutElement from '../../display-components/layout/Layout';
+import LayoutElement from '@layout/Layout';
+import { Props } from '@myTypes/component';
 import Route from './Route';
-import { Props } from '../../types/component';
 
 class Router {
 	static __instance: Router;

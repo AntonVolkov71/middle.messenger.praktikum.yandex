@@ -1,10 +1,10 @@
-import Api from './Api';
+import { isStatusServerError } from '@utils/api';
 import {
 	ChangePasswords, ResponseProfile, ResponseSearchUser, SearchUser, User,
-} from '../types/api';
-import { UserProfilePaths } from '../types/api-paths';
-import { Options } from '../types/httpTranspport';
-import { isStatusServerError } from '../utils/api';
+} from '@myTypes/api';
+import { UserProfilePaths } from '@myTypes/api-paths';
+import { Options } from '@myTypes/httpTranspport';
+import Api from './Api';
 
 class ProfileApi extends Api {
 	private readonly userProfilePath: string = UserProfilePaths.USER;
