@@ -1,8 +1,8 @@
-import * as Handlebars from 'handlebars';
-import parseDate from '../parseDate';
-import { ParseDateTypes } from '../../types/utils';
+import { HelperOptions } from 'handlebars';
+import { ParseDateTypes } from '@myTypes/utils';
+import parseDate from '@utils/parseDate';
 
-function dateFilter(this: string, options:Handlebars.HelperOptions) {
+function dateFilter(this: string, options:HelperOptions) {
 	const rawDate:string = options.fn(this);
 
 	if (rawDate) {

@@ -1,11 +1,11 @@
-import Store from '../Store';
-import { isStatusClientError, isStatusServerError } from '../../utils/api';
-import { Resource, ResponseError } from '../../types/api';
+import { isStatusClientError, isStatusServerError } from '@utils/api';
+import { API_PATHS } from '@assets/constants';
+import { Resource, ResponseError } from '@myTypes/api';
+import { TypeMessage } from '@myTypes/websocket';
+import WebSocketApi from '@services/WebSocketApi';
+import Store from '@store/Store';
+import ResourceApi from '@api/ResourceApi';
 import Actions from './index';
-import { API_PATHS } from '../../assets/constants';
-import ResourceApi from '../../api/ResourceApi';
-import WebSocketApi from '../../services/WebSocketApi';
-import { TypeMessage } from '../../types/websocket';
 
 const store: Store = new Store();
 const resourceApi = new ResourceApi(API_PATHS);

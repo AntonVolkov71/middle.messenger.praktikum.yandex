@@ -1,5 +1,5 @@
-import { State } from '../types/state';
-import { UserDto } from '../types/api';
+import { State } from '@myTypes/state';
+import { UserDto } from '@myTypes/api';
 
 const initialState: State = {
 	login: {

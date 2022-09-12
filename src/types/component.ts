@@ -1,4 +1,4 @@
-import Component from '../services/Component';
+import Component from '@services/Component';
 
 export enum EventsEnum {
 	EVENT_INIT = 'init',

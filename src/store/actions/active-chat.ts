@@ -1,13 +1,13 @@
-import ChatsApi from '../../api/Chats';
-import { API_PATHS, WEB_SOCKET_URL } from '../../assets/constants';
-import Store from '../Store';
-import { isStatusClientError, isStatusServerError } from '../../utils/api';
-import { ResponseError, Token } from '../../types/api';
-import WebSocketApi from '../../services/WebSocketApi';
-import getUserProfile from '../../utils/middlewares/get-user-profile';
-import { PingPong, TypeMessage, WebsocketEvents } from '../../types/websocket';
-import { Message } from '../../types/state';
-import isArray from '../../utils/myDash/isArray';
+import { isStatusClientError, isStatusServerError } from '@utils/api';
+import getUserProfile from '@utils/middlewares/get-user-profile';
+import isArray from '@utils/myDash/isArray';
+import { API_PATHS, WEB_SOCKET_URL } from '@assets/constants';
+import { ResponseError, Token } from '@myTypes/api';
+import { PingPong, TypeMessage, WebsocketEvents } from '@myTypes/websocket';
+import { Message } from '@myTypes/state';
+import WebSocketApi from '@services/WebSocketApi';
+import Store from '@store/Store';
+import ChatsApi from '@api/Chats';
 import Actions from './index';
 
 const store: Store = new Store();

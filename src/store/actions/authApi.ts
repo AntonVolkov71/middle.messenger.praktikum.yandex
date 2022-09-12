@@ -1,8 +1,8 @@
-import AuthApi from '../../api/AuthApi';
-import { API_PATHS, LOCALE_PATHS } from '../../assets/constants';
+import { isStatusClientError } from '@utils/api';
+import { API_PATHS, LOCALE_PATHS } from '@assets/constants';
+import { AuthResponse, ResponseError, SignupDto } from '@myTypes/api';
+import AuthApi from '@api/AuthApi';
 import Actions from './index';
-import { AuthResponse, ResponseError, SignupDto } from '../../types/api';
-import { isStatusClientError } from '../../utils/api';
 
 const authApi = new AuthApi(API_PATHS);
 

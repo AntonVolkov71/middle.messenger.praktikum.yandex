@@ -1,13 +1,13 @@
-import Store from '../Store';
-import { Chat } from '../../types/state';
-import ChatsApi from '../../api/Chats';
-import { API_PATHS } from '../../assets/constants';
-import { isStatusClientError, isStatusServerError } from '../../utils/api';
+import { isStatusClientError, isStatusServerError } from '@utils/api';
+import { API_PATHS } from '@assets/constants';
+import { Chat } from '@myTypes/state';
 import {
 	AddOrDeleteUser, ResponseError, UserChat, UserDto,
-} from '../../types/api';
+} from '@myTypes/api';
+import Store from '@store/Store';
+import ChatsApi from '@api/Chats';
+import ProfileApi from '@api/ProfileApi';
 import Actions from './index';
-import ProfileApi from '../../api/ProfileApi';
 
 const store: Store = new Store();
 const chatsApi = new ChatsApi(API_PATHS);

@@ -1,7 +1,7 @@
-import EventBus from '../services/Event-bus';
 import set from '../utils/myDash/set';
-import { State, StoreEvents } from '../types/state';
 import cloneDeep from '../utils/myDash/clon-deep';
+import { State, StoreEvents } from '../types/state';
+import EventBus from '../services/Event-bus';
 import initialState from './initial-state';
 
 class Store extends EventBus {

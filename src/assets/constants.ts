@@ -1,4 +1,4 @@
-import LocalePaths from '../types/constants';
+import LocalePaths from '@myTypes/constants';
 
 export const LOCALE_PATHS: LocalePaths = {
 	messenger: '/messenger',

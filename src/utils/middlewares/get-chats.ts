@@ -1,7 +1,7 @@
-import { API_PATHS, LOCALE_PATHS } from '../../assets/constants';
-import ChatsApi from '../../api/Chats';
-import Actions from '../../store/actions';
-import { isStatusClientError, isStatusServerError } from '../api';
+import { API_PATHS, LOCALE_PATHS } from '@assets/constants';
+import Actions from '@store/actions';
+import ChatsApi from '@api/Chats';
+import { isStatusClientError, isStatusServerError } from '@utils/api';
 
 export const getChats = async (): Promise<void> => {
 	const { pathname } = window.location;

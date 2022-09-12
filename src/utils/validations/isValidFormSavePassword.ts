@@ -1,6 +1,6 @@
+import { ValidationTypes } from '@myTypes/utils';
+import { ChangePasswords } from '@myTypes/api';
 import isValidation from './isValidation';
-import { ValidationTypes } from '../../types/utils';
-import { ChangePasswords } from '../../types/api';
 
 interface PasswordAll extends ChangePasswords {
 	repeatPassword: string;

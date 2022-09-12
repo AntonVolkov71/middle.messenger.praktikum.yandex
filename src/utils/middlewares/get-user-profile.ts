@@ -1,7 +1,7 @@
-import { API_PATHS } from '../../assets/constants';
-import AuthApi from '../../api/AuthApi';
-import Actions from '../../store/actions';
-import { UserDto } from '../../types/api';
+import { API_PATHS } from '@assets/constants';
+import { UserDto } from '@myTypes/api';
+import Actions from '@store/actions';
+import AuthApi from '@api/AuthApi';
 
 const getUserProfile = async (isNecessary:boolean = false): Promise<void> => {
 	if (isNecessary) {

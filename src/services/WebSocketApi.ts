@@ -1,5 +1,5 @@
+import { TypeMessage, WebsocketEvents } from '@myTypes/websocket';
 import EventBus from './Event-bus';
-import { TypeMessage, WebsocketEvents } from '../types/websocket';
 
 class WebSocketApi extends EventBus {
 	static instance: WebSocketApi;

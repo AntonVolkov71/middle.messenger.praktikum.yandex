@@ -1,8 +1,8 @@
-import { ResourcePaths } from '../types/api-paths';
+import { isStatusServerError } from '@utils/api';
+import { ResourcePaths } from '@myTypes/api-paths';
+import { Options } from '@myTypes/httpTranspport';
+import { ResponseResource } from '@myTypes/api';
 import Api from './Api';
-import { Options } from '../types/httpTranspport';
-import { isStatusServerError } from '../utils/api';
-import { ResponseResource } from '../types/api';
 
 class ResourceApi extends Api {
 	private readonly resourcePath: string = ResourcePaths.RESOURCES;

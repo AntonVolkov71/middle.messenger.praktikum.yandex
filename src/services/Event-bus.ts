@@ -1,4 +1,4 @@
-import { Callback, Listeners } from '../types/event-bus';
+import { Callback, Listeners } from '@myTypes/event-bus';
 
 class EventBus {
 	private listeners: Listeners = {};

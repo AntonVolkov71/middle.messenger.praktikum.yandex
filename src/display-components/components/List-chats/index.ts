@@ -1,10 +1,10 @@
 import './style.scss';
-import Component from '../../../services/Component';
+import { Attribute } from '@myTypes/component';
+import { Chat } from '@myTypes/state';
+import Component from '@services/Component';
+import { connect, mapChatsToProps } from '@store/maps';
+import Actions from '@store/actions';
 import tpl from './tpl';
-import { Attribute } from '../../../types/component';
-import { connect, mapChatsToProps } from '../../../store/maps';
-import { Chat } from '../../../types/state';
-import Actions from '../../../store/actions';
 
 interface ListChatsProps extends Attribute {
 	chats: Chat[],

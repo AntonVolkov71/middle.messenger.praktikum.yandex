@@ -1,9 +1,9 @@
-import Store from '../Store';
-import ChatsApi from '../../api/Chats';
-import { API_PATHS } from '../../assets/constants';
-import { ResponseCreateChat, ResponseError } from '../../types/api';
-import { isStatusClientError } from '../../utils/api';
-import { getChats } from '../../utils/middlewares/get-chats';
+import { isStatusClientError } from '@utils/api';
+import { getChats } from '@utils/middlewares/get-chats';
+import { API_PATHS } from '@assets/constants';
+import { ResponseCreateChat, ResponseError } from '@myTypes/api';
+import Store from '@store/Store';
+import ChatsApi from '@api/Chats';
 
 const store: Store = new Store();
 const chatsApi = new ChatsApi(API_PATHS);

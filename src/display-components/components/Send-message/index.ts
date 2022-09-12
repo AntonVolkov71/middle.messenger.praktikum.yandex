@@ -1,10 +1,11 @@
+import Component from '@services/Component';
+import { Attribute } from '@myTypes/component';
+import Actions from '@store/actions';
+import { connect, mapSendMessageToProps } from '@store/maps';
+import InputFile from '@components/Input-file';
+
 import tpl from './tpl';
 import './style.scss';
-import Component from '../../../services/Component';
-import { Attribute } from '../../../types/component';
-import InputFile from '../Input-file';
-import { connect, mapSendMessageToProps } from '../../../store/maps';
-import Actions from '../../../store/actions';
 
 interface SendMessageProps extends Attribute {
 	inputFile?: Component,

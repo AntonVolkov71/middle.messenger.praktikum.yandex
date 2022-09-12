@@ -1,5 +1,21 @@
 {
+	"exclude": [
+		"node_modules",
+	],
 	"compilerOptions": {
+		"baseUrl": "./",
+		"paths": {
+			"@utils/*": ["src/utils/*"],
+			"@services/*": ["src/services/*"],
+			"@assets/*": ["src/assets/*"],
+			"@myTypes/*": ["src/types/*"],
+			"@store/*": ["src/store/*"],
+			"@api/*": ["src/api/*"],
+
+			"@components/*": ["src/display-components/components/*"],
+			"@pages/*": ["src/display-components/pages/*"],
+			"@layout/*": ["src/display-components/layout/*"],
+		},
 		"outDir": "dist",
 		"target": "es2016",
 		"declaration": false,
@@ -21,11 +37,10 @@
 		"strictBindCallApply": true,
 		"noImplicitThis": true,
 		"useUnknownInCatchVariables": true,
-		// noPropertyAccessFromIndexSignature проверяет обращение к обьекту через точку, но не запрещает через object['method']
-		"noUncheckedIndexedAccess": true, // как обеъекты так и массивы
-		"noImplicitReturns": true, // обязательное возвращение чтобы всех веток функций результата
-		"noFallthroughCasesInSwitch": true, // switch/case правильное оформление
-		"noUnusedLocals": true, // наличие неиспользованных переменных переменных и аргументов функций соответственно
-		"noUnusedParameters": true // наличие неиспользованных переменных переменных и аргументов функций соответственно
+		"noUncheckedIndexedAccess": true,
+		"noImplicitReturns": true,
+		"noFallthroughCasesInSwitch": true,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true
 	}
 } 

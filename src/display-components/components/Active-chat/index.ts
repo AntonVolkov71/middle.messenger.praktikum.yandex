@@ -1,12 +1,13 @@
+import Component from '@services/Component';
+import { Attribute } from '@myTypes/component';
+import { connect, mapActiveChatToProps } from '@store/maps';
+import Actions from '@store/actions';
+import SendMessage from '@components/Send-message';
+import ChatMenu from '@components/ChatMenu';
+import ListMessages from '@components/List-messages';
+
 import tpl from './tpl';
 import './style.scss';
-import Component from '../../../services/Component';
-import { Attribute } from '../../../types/component';
-import SendMessage from '../Send-message';
-import { connect, mapActiveChatToProps } from '../../../store/maps';
-import Actions from '../../../store/actions';
-import ChatMenu from '../ChatMenu';
-import ListMessages from '../List-messages';
 
 interface ActiveChatProps extends Attribute {
 	messages: Component;

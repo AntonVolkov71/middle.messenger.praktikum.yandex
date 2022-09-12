@@ -1,8 +1,8 @@
-import isEqualByValue from '../../utils/myDash/isEqualByValue';
-import Component from '../Component';
-import { Props } from '../../types/component';
-import render from '../../utils/render';
-import LayoutElement from '../../display-components/layout/Layout';
+import isEqualByValue from '@utils/myDash/isEqualByValue';
+import render from '@utils/render';
+import LayoutElement from '@layout/Layout';
+import { Props } from '@myTypes/component';
+import Component from '@services/Component';
 
 class Route {
 	private _pathname: string = '';

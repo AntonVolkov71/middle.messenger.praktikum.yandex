@@ -1,7 +1,7 @@
-import Store from '../Store';
+import { getChats } from '@utils/middlewares/get-chats';
+import { AddOrDeleteUser, UserChat } from '@myTypes/api';
+import Store from '@store/Store';
 import Actions from './index';
-import { AddOrDeleteUser, UserChat } from '../../types/api';
-import { getChats } from '../../utils/middlewares/get-chats';
 
 const store: Store = new Store();
 

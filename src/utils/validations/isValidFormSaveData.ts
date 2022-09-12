@@ -1,6 +1,6 @@
+import { ValidationTypes } from '@myTypes/utils';
+import { User } from '@myTypes/api';
 import isValidation from './isValidation';
-import { ValidationTypes } from '../../types/utils';
-import { User } from '../../types/api';
 
 const isValidFormSaveData = (userDto: User): boolean => {
 	const {

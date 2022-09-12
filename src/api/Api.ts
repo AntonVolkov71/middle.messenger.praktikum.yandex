@@ -1,5 +1,5 @@
-import HTTPTransport from '../services/HTTPTransport';
-import { Headers, OptionsWithoutMethod } from '../types/httpTranspport';
+import { Headers, OptionsWithoutMethod } from '@myTypes/httpTranspport';
+import HTTPTransport from '@services/HTTPTransport';
 
 class Api extends HTTPTransport {
 	protected readonly url: string;
